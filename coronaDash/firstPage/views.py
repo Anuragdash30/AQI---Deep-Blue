@@ -83,7 +83,7 @@ trombayApi = trombay.tail(1)
 trombayApi['name'] = 'Trombay'
 
 AnushaktiApi = Anushakti.tail(1)
-AnushaktiApi['name'] = 'Ansuhakti'
+AnushaktiApi['name'] = 'Anushakti'
 
 mankhud_westApi = mankhud_west.tail(1)
 mankhud_westApi['name'] = 'Mankhurd'
