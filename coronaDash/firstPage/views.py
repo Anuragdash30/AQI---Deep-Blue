@@ -99,8 +99,6 @@ df_total=pd.concat([df_row,df_row2])
 def index(request):
     mwardwest=df_row
     mwardeast=df_row2
-    # deathGLobal=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv')
-    # recoverGlobal=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_recovered_global.csv')
     uniquewest=pd.unique(mwardwest['name'])
     overallCountminwest=df_row['AQI'].min()
     overallCountmineast=df_row2['AQI'].min() 
@@ -149,9 +147,9 @@ def getLinebarGroupData(mwardwest,uniquewest):
         datasetsForLine.append(temp)
     return datasetsForLine,list(range(len(colNames)))
 
-def getDataforMap(uniqueCOuntryName,df2):
+def getDataforMap(uniqueName_region,df2):
     dataForMap=[]
-    for i in uniqueCOuntryName:
+    for i in uniqueName_region:
         try:
             tempdf=df3[df3['name']==i]
             temp={}
@@ -171,21 +169,69 @@ def getDataforMap(uniqueCOuntryName,df2):
 
 def drillDownACountry(request):
     print (request.POST.dict())
-    countryName=request.POST.get('countryName')
-    mwardwest=pd.read_csv('https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv',encoding='utf-8',na_values=None)
-    countryDataSpe=pd.DataFrame(mwardwest[mwardwest['Country/Region']==countryName][mwardwest.columns[4:-1]].sum()).reset_index()
-    countryDataSpe.columns=['country','values']
-    countryDataSpe['lagVal']=countryDataSpe['values'].shift(1).fillna(0)
-    countryDataSpe['incrementVal']=countryDataSpe['values']-countryDataSpe['lagVal']
-    countryDataSpe['rollingMean']=countryDataSpe['incrementVal'].rolling(window=4).mean()
-    countryDataSpe=countryDataSpe.fillna(0)
-    datasetsForLine=[{'yAxisID': 'y-axis-1','label':'Daily Cumulated Data','data':countryDataSpe['values'].values.tolist(),'borderColor':'#03a9fc','backgroundColor':'#03a9fc','fill':'false'},
-                    {'yAxisID': 'y-axis-2','label':'Rolling Mean 4 days','data':countryDataSpe['rollingMean'].values.tolist(),'borderColor':'#fc5203','backgroundColor':'#fc5203','fill':'false'}]
-    axisvalues=countryDataSpe.index.tolist()
-    uniquewest=pd.unique(mwardwest['Country/Region'])
-    wast_west_n,countsVal_west,logVals,overallCount,dataForMapGraph,maxVal=getBarData(mwardwest,uniquewest)
-    dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
-    context=context={"countryName":countryName,'axisvalues':axisvalues,'datasetsForLine':datasetsForLine,'dateCat':dateCat,'dataForheatMap':dataForheatMap,'maxVal':maxVal,'dataForMapGraph':dataForMapGraph,'uniquewest':uniquewest,'wast_west_n':wast_west_n,'countsVal_west':countsVal_west,'logVals':logVals,'overallCount':overallCount}
+    Name_region=request.POST.get('Name_region')
+    if(Name_region=="Chedda-Nagar"):
+        indi = Chedda_Nagar
+    if(Name_region=="Tilak-Nagar"):
+        indi = Tilak_Nagar
+    if(Name_region=="Sindhi-Society"):
+        indi = Sindhi_Society
+    if(Name_region=="Chembur-West"):
+        indi = Chembur_West
+    if(Name_region=="Deonar"):
+        indi = Deonar
+    if(Name_region=="Mahul"):
+        indi = Mahul_E
+    if(Name_region=="Cheeta-Camp"):
+        indi = Cheeta_camp
+    if(Name_region=="Chembur-East"):
+        indi = chembur_east
+    if(Name_region=="Govandi"):
+        indi = govandi_east
+    if(Name_region=="Shivaji-Nagar"):
+        indi = shivaji_nagar
+    if(Name_region=="Trombay"):
+        indi = trombay
+    if(Name_region=="Anushakti"):
+        indi = Anushakti
+    if(Name_region=="Mankhurd"):
+        indi = mankhud_west
+   
+    indi=indi[list(indi.columns[0:4])+list([indi.columns[-1]])]
+    indi.columns=['Date','O3','PM2.5','PM10','AQI']
+    print(indi)
+    indidate=list(indi['Date'].values)
+    indidata=list(indi['AQI'].values)
+
+
+    mwardwest=df_row
+    mwardeast=df_row2
+    uniquewest=pd.unique(mwardwest['name'])
+    overallCountminwest=df_row['AQI'].min()
+    overallCountmineast=df_row2['AQI'].min() 
+    maxVal_west=df_row['AQI'].max()
+    maxVal_east=df_row2['AQI'].max() 
+    
+    unique_east=pd.unique(mwardeast['name'])
+    
+    df2=df_row[list(df_row.columns[4:5])+list([df_row.columns[-1]])]
+    df3=df_row2[list(df_row.columns[4:5])+list([df_row.columns[-1]])]
+    df2.columns=['AQI','name']
+    df2=df2.sort_values(by='AQI',ascending=False)
+    wast_west_n=list(df2['name'].values)
+    countsVal_west=list(df2['AQI'].values)
+
+    df3.columns=['AQI','name']
+    df3=df3.sort_values(by='AQI',ascending=False)
+    wast_east_n=list(df3['name'].values)
+    countsVal_east=list(df3['AQI'].values)
+
+    
+    
+    logVals=list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west )
+
+
+    context=context={'Name_region':Name_region,'indidate':indidate,'indidata':indidata,'uniquewest':uniquewest,'wast_west_n':wast_west_n,'countsVal_west':countsVal_west,'maxVal_east':maxVal_east,'maxVal_west':maxVal_west,'overallCountminwest':overallCountminwest,'overallCountmineast':overallCountmineast,'wast_east_n':wast_east_n,'countsVal_east':countsVal_east}
 
     return render(request,'index2.html',context)
 
