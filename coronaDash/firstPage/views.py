@@ -68,7 +68,7 @@ Anushakti=Anushakti.dropna(how = 'all')
 mankhud_west = pd.read_csv("Data\AQI DATA NEW\MankhurdWest.csv")
 mankhud_west=mankhud_west.dropna(how = 'all')
 Cheeta_campApi = Cheeta_camp.tail(1)
-Cheeta_campApi['name'] = 'Cheetah-Camp'
+Cheeta_campApi['name'] = 'Cheeta-Camp'
 
 chembur_eastApi = chembur_east.tail(1)
 chembur_eastApi['name'] = 'Chembur-East'
@@ -199,7 +199,7 @@ def drillDownACountry(request):
    
     indi=indi[list(indi.columns[0:4])+list([indi.columns[-1]])]
     indi.columns=['Date','O3','PM2.5','PM10','AQI']
-    print(indi)
+ 
     indidate=list(indi['Date'].values)
     indidata=list(indi['AQI'].values)
 
