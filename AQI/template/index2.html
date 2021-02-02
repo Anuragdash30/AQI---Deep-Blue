@@ -256,22 +256,39 @@
             options: chartOptions
     });
     </script>
-<script>    
+<script> 
+function getRandomColor(indidata) {
+    var pool = [];
+    
+    for(i = 0; i <indidata.length; i++) {
+      if(indidata[i]  >300)  
+      {
+      pool.push("red");
+      }
+      else
+      {
+        pool.push("green");
+      }
+
+
+    }
+    return pool;
+}   
     new Chart(document.getElementById("mixed-chart"), {
     type: 'bar',
     data: {
-      labels: {{ indidate|safe }},
+      labels: {{ indidate|safe}},
       datasets: [{
           label: "AQI",
           type: "line",
           borderColor: "#8e5ea2",
-          data: {{ indidata|safe }},
+          data: {{ indidata}},
           fill: false
         }, {
           label: "AQI",
           type: "bar",
-          backgroundColor: "rgba(0,0,0,0.2)",
-          data: {{ indidata|safe }},
+          backgroundColor:getRandomColor({{indidata}}),
+          data:  {{indidata}} ,
         }
       ]
     },
@@ -283,6 +300,7 @@
       legend: { display: false }
     }
 });
+
 </script>
 
 </html>

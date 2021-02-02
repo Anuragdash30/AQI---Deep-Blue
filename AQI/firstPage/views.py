@@ -199,11 +199,9 @@ def drillDownACountry(request):
    
     indi=indi[list(indi.columns[0:4])+list([indi.columns[-1]])]
     indi.columns=['Date','O3','PM2.5','PM10','AQI']
- 
     indidate=list(indi['Date'].values)
     indidata=list(indi['AQI'].values)
-
-
+    
     mwardwest=df_row
     mwardeast=df_row2
     uniquewest=pd.unique(mwardwest['name'])
