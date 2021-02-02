@@ -53,7 +53,7 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Higest AQI in M-West: 
-                      <span class="badge bg-primary rounded-pill">{{maxVal_west}}</span>
+                      <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lowest AQI in M-West: 
@@ -61,7 +61,7 @@
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Highest AQI in M-East: 
-                      <span class="badge bg-primary rounded-pill">{{maxVal_east}}</span>
+                      <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lowest AQI in M-East: 
@@ -200,7 +200,7 @@
                 data: {{ countsVal_west|safe }},
                 label: 'Current AQI',
                 barThickness:'flex',
-                backgroundColor:'#03a9fc',  
+                backgroundColor:'#696969',  
                 
             }]
         },
@@ -248,7 +248,7 @@
                 data: {{ countsVal_east|safe }},
                 label: 'Current AQI',
                 barThickness:'flex',
-                backgroundColor:'#03a9fc',  
+                backgroundColor:'#696969',  
                 
             }]
         },
