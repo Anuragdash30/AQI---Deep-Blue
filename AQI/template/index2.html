@@ -50,22 +50,22 @@
             <div class="container-fluid">
                 <div class="row">
                   <div class="col-3">
-                <ul class="list-group">
+                <ul class="list-group" style="background-color: #333;">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Higest AQI in M-West: 
-                      <span class="badge bg-primary rounded-pill">{{maxVal_west}}</span>
+                      <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lowest AQI in M-West: 
-                      <span class="badge bg-primary rounded-pill">{{overallCountminwest}}</span>
+                      <span class="badge bg-danger rounded-pill">{{overallCountminwest}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Highest AQI in M-East: 
-                      <span class="badge bg-primary rounded-pill">{{maxVal_east}}</span>
+                      <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Lowest AQI in M-East: 
-                        <span class="badge bg-primary rounded-pill">{{overallCountmineast}}</span>
+                        <span class="badge bg-danger rounded-pill">{{overallCountmineast}}</span>
                     </li>
                     
                   </ul>
@@ -197,7 +197,7 @@
                     data: {{ countsVal_west|safe }},
                     label: 'Current AQI',
                     barThickness:'flex',
-                    backgroundColor:'#03a9fc',  
+                    backgroundColor:'#696969',  
                     
                 }]
             },
@@ -245,7 +245,7 @@
                     data: {{ countsVal_east|safe }},
                     label: 'Current AQI',
                     barThickness:'flex',
-                    backgroundColor:'#03a9fc',  
+                    backgroundColor:'#696969',  
                     
                 }]
             },
@@ -261,9 +261,25 @@ function getRandomColor(indidata) {
     var pool = [];
     
     for(i = 0; i <indidata.length; i++) {
-      if(indidata[i]  >300)  
+      if(indidata[i]  >=300)  
       {
-      pool.push("red");
+      pool.push("#800000");
+      }
+      else if(indidata[i]>=201 || indidata[i]<300)
+      {
+        pool.push("#800080");
+      }
+      else if(indidata[i]>=151 || indidata[i]<201)
+      {
+        pool.push("red");
+      }
+      else if(indidata[i]>=101 || indidata[i]<151)
+      {
+        pool.push("orange");
+      }
+      else if(indidata[i]>=51 || indidata[i]<101)
+      {
+        pool.push("yellow");
       }
       else
       {
@@ -281,7 +297,7 @@ function getRandomColor(indidata) {
       datasets: [{
           label: "AQI",
           type: "line",
-          borderColor: "#8e5ea2",
+          borderColor: "#1E90FF",
           data: {{ indidata}},
           fill: false
         }, {
