@@ -49,32 +49,49 @@
             <!-- General Stats start -->
             <div class="container-fluid">
                 <div class="row">
-                  <div class="col-3">
-                <ul class="list-group">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Higest AQI in M-West: 
-                      <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Lowest AQI in M-West: 
-                      <span class="badge bg-primary rounded-pill">{{overallCountminwest}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Highest AQI in M-East: 
-                      <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Lowest AQI in M-East: 
-                        <span class="badge bg-primary rounded-pill">{{overallCountmineast}}</span>
-                    </li>
-                    
-                  </ul>
-                </div>
-                <div class="col-5">
-                  One of three columns
+                  <div class="col-4">
+                    <div class="card" style="width: 18rem;height:11rem;margin-left: 80px;">
+                        <div class="card-body ">
+                          <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
+                          <h2 style="text-align:center;font:bold;">131</h2>
+                          <p style="text-align:center;font:bold;font-size:20px;">It's safe</p>
+                          <h4 style="text-align:center">M-ward-WEST</h4>
+
+                        </div>
+                      </div>
                 </div>
                 <div class="col-4">
-                  One of three columns
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Higest AQI in M-West: 
+                          <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Lowest AQI in M-West: 
+                          <span class="badge bg-primary rounded-pill">{{overallCountminwest}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Highest AQI in M-East: 
+                          <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Lowest AQI in M-East: 
+                            <span class="badge bg-primary rounded-pill">{{overallCountmineast}}</span>
+                        </li>
+                        
+                      </ul>
+                </div>
+                <div class="col-4">
+                    <div class="card" style="width: 18rem;height:11rem;margin-left: 80px;">
+                        <div class="card-body">
+                          <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
+                          <h2 style="text-align:center;font:bold;">134</h2>
+                          <p style="text-align:center;font:bold;font-size:20px;">It's safe</p>
+
+                          <h4 style="text-align:center">M-ward-EAST</h4>
+
+                        </div>
+                      </div>
                 </div>
               </div>
             </div>
