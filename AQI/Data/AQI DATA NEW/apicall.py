@@ -2,9 +2,11 @@ import requests
 from datetime import date 
 from csv import writer 
 from csv import DictWriter 
+import json
+import pandas as pd
 today = date.today()
 #chemburwest
-r_Chembur_west = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0673&lon=72.9018&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_Chembur_west = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0673&lon=72.9018&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_cw = ['Date','PM10','O3', 
                'PM2.5','AQI'] 
 chembur_w = {}
@@ -33,7 +35,7 @@ with open('Chembur_west.csv', 'a') as f_object:
     f_object.close()
 
 #deonar    
-r_Deonar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0447&lon=72.9103&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_Deonar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0447&lon=72.9103&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_deo = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -58,9 +60,10 @@ with open('Deonar.csv', 'a') as f_object:
   
     
     dictwriter_object.writerow(Deonar) 
+    f_object.close()
 
 #tilaknagar
-r_tilak = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0683&lon=72.8973&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_tilak = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0683&lon=72.8973&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_tilak = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 print
@@ -91,7 +94,7 @@ with open('TilakNagar.csv', 'a') as f_object:
     
 
 #govandi
-r_govandi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0535&lon=72.9239&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_govandi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0535&lon=72.9239&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_govandi = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -121,7 +124,7 @@ with open('GovandiE.csv', 'a') as f_object:
     f_object.close()
 
 #shivajinagar
-r_ShivajiNagar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0641&lon=72.9241&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_ShivajiNagar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.06432699351229&lon=72.9253193501495&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_ShivajiNagar = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -150,7 +153,7 @@ with open('ShivajiNagar.csv', 'a') as f_object:
    
     f_object.close()
 #chembur east
-r_ChemburE = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0522&lon=72.9005&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_ChemburE = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0522&lon=72.9005&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_ChemburE = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -180,7 +183,7 @@ with open('ChemburE.csv', 'a') as f_object:
     f_object.close()
 
 #chedda nagar
-r_CheddaNagar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.069200569679644&lon=72.9056944243479&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_CheddaNagar = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.069200569679644&lon=72.9056944243479&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_CheddaNagar = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -210,7 +213,7 @@ with open('CheddaNagar.csv', 'a') as f_object:
     f_object.close()
 
 #SIndhiSociety
-r_SIndhiSociety = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0511&lon=72.8907&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_SIndhiSociety = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0511&lon=72.8907&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_SIndhiSociety = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -240,7 +243,7 @@ with open('SIndhiSociety.csv', 'a') as f_object:
     f_object.close()
 
 #trombay
-r_TrombayApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0093&lon=72.8984&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_TrombayApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0093&lon=72.8984&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_TrombayApi = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -270,7 +273,7 @@ with open('TrombayApi.csv', 'a') as f_object:
     f_object.close()
 
 #cheetahcamp
-r_CheetaCampApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0511&lon=72.9486&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_CheetaCampApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0511&lon=72.9486&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_CheetaCampApi = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -299,7 +302,7 @@ with open('CheetaCampApi.csv', 'a') as f_object:
    
     f_object.close()
 #anushakti nagar
-r_AnushaktiApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0385&lon=72.9232&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+r_AnushaktiApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.0385&lon=72.9232&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_AnushaktiApi = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -328,8 +331,8 @@ with open('AnushaktiApi.csv', 'a') as f_object:
    
     f_object.close()
 
-#mahul
-r_MahulApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.033708690103797&lon=72.89618102619643&APPID=4ib0fcliqk9o8p7gh2rf9dpdmu' ).json()
+#mahul 
+r_MahulApi = requests.get('http://api.airpollutionapi.com/1.0/aqi?lat=19.033708690103797&lon=72.89618102619643&APPID=up223na4hk0hug72bk2fd8fdr3' ).json()
 field_names_MahulApi = ['Date','O3', 
                'PM2.5','PM10','AQI'] 
 
@@ -347,7 +350,7 @@ for eachd in r_MahulApi['data']['aqiParams']:
 MahulApi['AQI'] = r_MahulApi['data']['value']
 
 
-with open('MahulApi.csv', 'a') as f_object: 
+with open('MahulApi.csv', 'a',newline='') as f_object: 
       
    
     dictwriter_object = DictWriter(f_object, fieldnames=field_names_MahulApi) 
@@ -357,3 +360,138 @@ with open('MahulApi.csv', 'a') as f_object:
   
    
     f_object.close()
+
+##############################
+Chedda_Nagar = pd.read_csv("CheddaNagar.csv")
+
+
+Tilak_Nagar = pd.read_csv("TilakNagar.csv")
+
+
+Sindhi_Society = pd.read_csv("SIndhiSociety.csv")
+
+
+Chembur_West =  pd.read_csv("Chembur_west.csv")
+
+Deonar =  pd.read_csv("Deonar.csv")
+
+
+Mahul_E = pd.read_csv("MahulApi.csv")
+
+
+CheddaApi = Chedda_Nagar['AQI'].iloc[-1]
+
+
+DeonarApi = Deonar['AQI'].iloc[-1]
+
+
+TilakApi = Tilak_Nagar['AQI'].iloc[-1]
+
+SindhiApi = Sindhi_Society['AQI'].iloc[-1]
+
+ChemburWApi = Chembur_West['AQI'].iloc[-1]
+
+MahulApi = Mahul_E['AQI'].iloc[-1]
+
+
+
+
+
+################# m ward east
+Cheeta_camp = pd.read_csv("CheetaCampApi.csv")
+
+
+chembur_east = pd.read_csv("ChemburE.csv")
+
+
+govandi_east = pd.read_csv("GovandiE.csv")
+
+
+shivaji_nagar =  pd.read_csv("ShivajiNagar.csv")
+
+
+trombay = pd.read_csv("TrombayApi.csv")
+
+Anushakti = pd.read_csv("AnushaktiApi.csv")
+
+mankhud_west = pd.read_csv("MankhurdWest.csv")
+
+Cheeta_campApi = Cheeta_camp['AQI'].iloc[-1]
+
+
+chembur_eastApi = chembur_east['AQI'].iloc[-1]
+
+
+govandi_eastApi = govandi_east['AQI'].iloc[-1]
+
+
+shivaji_nagarApi = shivaji_nagar['AQI'].iloc[-1]
+
+trombayApi = trombay['AQI'].iloc[-1]
+
+AnushaktiApi = Anushakti['AQI'].iloc[-1]
+
+mankhud_westApi = mankhud_west['AQI'].iloc[-1]
+
+################
+
+with open('M-ward-parts(E).json') as f:
+    data = json.load(f)
+
+for item in data['features']:
+    if item['properties']['name']== 'Trombay':
+        item['properties']['AQI'] = int(trombayApi)
+    if item['properties']['name']== 'Ansuhakti Nagar':
+        item['properties']['AQI'] = int(AnushaktiApi)
+    if item['properties']['name']== 'Mankhurd':
+        item['properties']['AQI'] = int(mankhud_westApi)
+    if item['properties']['name']== 'Chembur-east':
+        item['properties']['AQI'] = int(chembur_eastApi)
+    if item['properties']['name']== 'Govandi':
+        item['properties']['AQI'] = int(govandi_eastApi)
+    if item['properties']['name']== 'Shivaji Nagar':
+        item['properties']['AQI'] = int(shivaji_nagarApi)
+    
+
+with open('M-ward-parts(E).json', 'w') as f:
+    json.dump(data, f)
+f.close()
+
+
+with open('M-ward-parts(W).json') as f:
+    data = json.load(f)
+
+for item in data['features']:
+    if item['properties']['name']== 'Chedda nagar':
+        item['properties']['AQI'] = int(CheddaApi)
+    if item['properties']['name']== 'Chembur-west':
+        item['properties']['AQI'] = int(ChemburWApi)
+    if item['properties']['name']== 'Mahul':
+        item['properties']['AQI'] = int(MahulApi)
+   
+    
+
+with open('M-ward-parts(W).json', 'w') as f:
+    json.dump(data, f)
+f.close()
+
+
+
+with open('partsoverlap.json') as f:
+    data = json.load(f)
+
+for item in data['features']:
+    if item['properties']['name']== 'Sindhi Society':
+        item['properties']['AQI'] = int(SindhiApi)
+    if item['properties']['name']== 'Tilak Nagar':
+        item['properties']['AQI'] = int(TilakApi)
+    if item['properties']['name']== 'Cheetah Camp':
+        item['properties']['AQI'] = int(Cheeta_campApi)
+    if item['properties']['name']== 'Deonar':
+        item['properties']['AQI'] = int(DeonarApi)
+   
+    
+
+with open('partsoverlap.json', 'w') as f:
+    json.dump(data, f)
+f.close()
