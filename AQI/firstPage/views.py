@@ -157,14 +157,15 @@ def index(request):
     unique_east = pd.unique(mwardeast['name'])
 
     #getcolor
-    color=getcolor(AQIW_W)
+    color_west=getcolor(AQIW_W)
+    color_east=getcolor(AQIW_E)
     
 
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'color':color,'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'color_west':color_west,'color_east':color_east,'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
