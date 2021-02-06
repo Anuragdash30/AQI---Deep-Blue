@@ -51,7 +51,7 @@
                 <div class="row">
                   <div class="col-4">
                     <div class="card" style="width: 18rem;height:11rem;margin-left: 80px;">
-                        <div class="card-body" style="border-radius: 5%;">
+                        <div class="card-body" style="border-radius: 5%;background-color:{{color}};">
                           <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
                           <h2 style="text-align:center;font:bold;">{{AQIW}}</h2>
                           <p style="text-align:center;font:bold;font-size:16px;">{{message_west}}</p>
@@ -83,7 +83,7 @@
                 </div>
                 <div class="col-4">
                     <div class="card" style="width: 18rem;height:11rem;margin-left: 80px;">
-                        <div class="card-body" id="meast">
+                        <div class="card-body" style="border-radius: 5%;background-color:{{color}};">
                           <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
                           <h2 style="text-align:center;font:bold;">{{AQIE}}</h2>
                           <p style="text-align:center;font:bold;font-size:16px;">{{message_east}}</p>
@@ -181,74 +181,38 @@
                <br>
     </body>
 <script>
-var cardbody = document.querySelectorAll('.card-body');
-cardbody.style.backgroundcolor = getRandomColor({{AQIW}});
-function getRandomColor(AQIW) {
-    var pool = '';
+// var cardbody = document.querySelector('.card-body');
+// cardbody.style.backgroundColor = "{{color}}";
+// function getRandomColor(AQIW) {
+//     var pool = '';
     
-      if(AQIW  >=300)  
-      {
-      pool="#800000";
-      }
-      else if(AQIW>=201 && AQIW<300)
-      {
-        pool="#800080";
-      }
-      else if(AQIW>=151 && AQIW<201)
-      {
-        pool="red";
-      }
-      else if(AQIW>=101 && AQIW<151)
-      {
-        pool="#FF9B02";
-      }
-      else if(AQIW>=51 && AQIW<101)
-      {
-        pool="#FFF128";
-      }
-      else
-      {
-        pool="green";
-      }
+//       if(AQIW  >=300)  
+//       {
+//       pool="#800000";
+//       }
+//       else if(AQIW>=201 && AQIW<300)
+//       {
+//         pool="#800080";
+//       }
+//       else if(AQIW>=151 && AQIW<201)
+//       {
+//         pool="red";
+//       }
+//       else if(AQIW>=101 && AQIW<151)
+//       {
+//         pool="#FF9B02";
+//       }
+//       else if(AQIW>=51 && AQIW<101)
+//       {
+//         pool="#FFF128";
+//       }
+//       else
+//       {
+//         pool="green";
+//       }
 
-    return pool;
-    }
-</script>
-<script>
-var cardbdy = document.querySelectorAll('.card-bo');
-
-cardbdy.style.backgroundColor = getRandomColor({{AQIE}});
-
-    function getRandomColor(AQIE) {
-    var pool = '';
-    
-      if(AQIE  >=300)  
-      {
-      pool="#800000";
-      }
-      else if(AQIE>=201 && AQIE<300)
-      {
-        pool="#800080";
-      }
-      else if(AQIE>=151 && AQIE<201)
-      {
-        pool="red";
-      }
-      else if(AQIE>=101 && AQIE<151)
-      {
-        pool="#FF9B02";
-      }
-      else if(AQIE>=51 && AQIE<101)
-      {
-        pool="yellow";
-      }
-      else
-      {
-        pool="green";
-      }
-
-    return pool;
-    }
+//     return pool;
+//     }
 
     var ctx = document.getElementById('myChart').getContext('2d');
     var chartOptions = {

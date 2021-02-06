@@ -156,11 +156,15 @@ def index(request):
 
     unique_east = pd.unique(mwardeast['name'])
 
+    #getcolor
+    color=getcolor(AQIW_W)
+    
+
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'color':color,'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
@@ -295,3 +299,19 @@ def gettext(AQIW):
     else:
         pool = "Good"
     return pool
+
+def getcolor(AQIW):
+    if AQIW >= 300:
+        pool = "#800000"
+    elif AQIW >= 201 and AQIW < 300:
+        pool = "#800080"
+    elif (AQIW >= 151 and AQIW < 201):
+        pool = "red"
+    elif (AQIW >= 101 and AQIW < 151):
+        pool = "#FF9B02"
+    elif (AQIW >= 51 and AQIW < 101):
+        pool = "#FFF128"
+    else:
+        pool = "green"
+    return pool
+
