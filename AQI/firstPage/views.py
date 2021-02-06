@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
 import numpy as np
+from sklearn.ensemble import AdaBoostRegressor 
+from sklearn.ensemble import RandomForestRegressor
+
 # Create your views here.
 df3=pd.read_json('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json')
 pd.options.mode.chained_assignment = None
@@ -97,6 +100,21 @@ df_row2=pd.concat([chembur_eastApi,Cheeta_campApi,govandi_eastApi,shivaji_nagarA
 df_total=pd.concat([df_row,df_row2]) 
 
 def index(request):
+    # Ml prediction
+    train=df_row
+    train=train.fillna(0)
+    m1 = RandomForestRegressor() 
+    train1 = train.drop(['AQI','Date','name'], axis=1) 
+    target = train['AQI']
+    m1.fit(train1, target) 
+    m1.score(train1, target) * 100
+    m1.predict([[49,301,205]])
+    m2 = AdaBoostRegressor()
+    m2.fit(train1, target)
+    m2.score(train1, target)*100
+    AQIW=m2.predict([[49,301,205]])
+    AQIW_W=AQIW[0]
+    #ml ends
     mwardwest=df_row
     mwardeast=df_row2
     uniquewest=pd.unique(mwardwest['name'])
@@ -110,7 +128,7 @@ def index(request):
     wast_west_n,countsVal_west,logVals,dataForMapGraph,wast_east_n,countsVal_east=getBarData(mwardwest,uniquewest)
     #dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     #datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context={'uniquewest':uniquewest,'wast_west_n':wast_west_n,'countsVal_west':countsVal_west,'logVals':logVals,'maxVal_east':maxVal_east,'maxVal_west':maxVal_west,'overallCountminwest':overallCountminwest,'overallCountmineast':overallCountmineast,'wast_east_n':wast_east_n,'countsVal_east':countsVal_east}
+    context={'AQIW':AQIW_W,'uniquewest':uniquewest,'wast_west_n':wast_west_n,'countsVal_west':countsVal_west,'logVals':logVals,'maxVal_east':maxVal_east,'maxVal_west':maxVal_west,'overallCountminwest':overallCountminwest,'overallCountmineast':overallCountmineast,'wast_east_n':wast_east_n,'countsVal_east':countsVal_east}
     return render(request,'index.html',context)
     
 
