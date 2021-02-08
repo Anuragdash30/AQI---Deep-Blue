@@ -4,6 +4,7 @@ import pandas as pd
 import numpy as np
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.ensemble import RandomForestRegressor
+import emoji
 
 # Create your views here.
 df3 = pd.read_json(
@@ -160,11 +161,15 @@ def index(request):
     color_west = getcolor(AQIW_W)
     color_east = getcolor(AQIW_E)
 
+    #getemoji
+    emoji_west =getemoji(AQIW_W)
+    emoji_east =getemoji(AQIW_E)
+
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'emoji_west':emoji_west,'emoji_east':emoji_east,'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
@@ -315,3 +320,25 @@ def getcolor(AQIW):
     else:
         pool = "linear-gradient(to right, #00ff99 0%, #66ff33 100%)"
     return pool
+
+def getemoji(AQIW):
+    if AQIW >= 300:
+        emoj=emoji.emojize(':skull:', use_aliases=True)
+
+    elif AQIW >= 201 and AQIW < 300:
+        emoj=emoji.emojize(':fearful_face:', use_aliases=True)
+
+    elif (AQIW >= 151 and AQIW < 201):
+        emoj=emoji.emojize(':face_with_medical_mask:', use_aliases=True)
+
+    elif (AQIW >= 101 and AQIW < 151):
+        emoj=emoji.emojize(':frowning_face:', use_aliases=True)
+
+    elif (AQIW >= 51 and AQIW < 101):
+        emoj=emoji.emojize(':grinning_face_with_smiling_eyes:', use_aliases=True)
+
+    else:
+        emoj=emoji.emojize(':thumbsup:', use_aliases=True)
+    
+    return emoj 
+
