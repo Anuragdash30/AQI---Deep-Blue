@@ -165,6 +165,7 @@ def index(request):
     #getemoji
     emoji_west =getemoji(AQIW_W)
     emoji_east =getemoji(AQIW_E)
+    
 
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
@@ -270,6 +271,8 @@ def drillDownACountry(request):
     aqipredict = pred.values
     aqipredict = aqipredict.astype(int)
     aqipredict = list(aqipredict)
+    predcol=getpredcolor(aqipredict)
+    predemj=getpredemoj(aqipredict)
 
     #day predict
     newdates = []
@@ -308,7 +311,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'newdates':newdates,'daypredicts':daypredicts,'aqipredict':aqipredict,'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'predemj':predemj,'predcol':predcol,'newdates':newdates,'daypredicts':daypredicts,'aqipredict':aqipredict,'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
@@ -365,4 +368,57 @@ def getemoji(AQIW):
         emoj=emoji.emojize(':thumbsup:', use_aliases=True)
     
     return emoj 
+
+def getpredcolor(aqipredic):
+    pool=[]
+    for x in aqipredic:
+        if x >= 300:
+            pool.append("linear-gradient(to right, #cc0000 0%, #800000 100%)")
+            
+        elif x >= 201 and x < 300:
+            pool.append("linear-gradient(to right, #cc00cc 0%, #660066 100%)")
+
+            
+        elif (x >= 151 and x < 201):
+            pool.append("linear-gradient(to right, #ff6600 0%, #cc0000 100%)")
+
+            
+        elif (x >= 101 and x < 151):
+            pool.append("linear-gradient(to right, #ffcc66 0%, #ff6600 100%)")
+
+            
+        elif (x >= 51 and x < 101):
+            pool.append("linear-gradient(to right, #ffff66 0%, #ffcc00 100%)")
+            
+        else:
+            pool.append("linear-gradient(to right, #00ff99 0%, #66ff33 100%)")
+    return pool
+
+def getpredemoj(aqipredic):
+    emo=[]
+    for x in aqipredic:
+        if x >= 300:
+            emoj=emoji.emojize(':skull:', use_aliases=True)
+            emo.append(emoj)
+        elif x >= 201 and x < 300:
+            emoj=emoji.emojize(':fearful_face:', use_aliases=True)
+            emo.append(emoj)
+
+            
+        elif (x >= 151 and x < 201):
+            emoj=emoji.emojize(':face_with_medical_mask:', use_aliases=True)
+            emo.append(emoj)
+            
+        elif (x >= 101 and x < 151):
+            emoj=emoji.emojize(':frowning_face:', use_aliases=True)
+            emo.append(emoj)
+            
+        elif (x >= 51 and x < 101):
+            emoj=emoji.emojize(':grinning_face_with_smiling_eyes:', use_aliases=True)
+            emo.append(emoj)          
+        else:
+            emoj=emoji.emojize(':thumbsup:', use_aliases=True)
+            emo.append(emoj)
+    return emo
+
 
