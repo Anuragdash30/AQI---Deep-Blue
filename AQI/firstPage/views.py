@@ -2,13 +2,14 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import pandas as pd
 import numpy as np
+import datetime
 from sklearn.ensemble import AdaBoostRegressor
 from sklearn.ensemble import RandomForestRegressor
 import emoji
+from statsmodels.tsa.stattools import adfuller
+from pmdarima import auto_arima
+from statsmodels.tsa.arima_model import ARIMA
 
-# Create your views here.
-df3 = pd.read_json(
-    'https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json')
 pd.options.mode.chained_assignment = None
 
 
@@ -254,7 +255,30 @@ def drillDownACountry(request):
         indi = Anushakti
     if(Name_region == "Mankhurd"):
         indi = mankhud_west
+    train=indi
+    train=train.dropna()
+    train.set_index('Date', inplace = True)
+    train.index = pd.DatetimeIndex(train.index).to_period('D')
+  
+    model=ARIMA(train['AQI'],order=(1,0,0))
+    model=model.fit()
+    start=len(train)
+    end=len(train)+6
+    pred=model.predict(start=start,end=end,typ='levels').rename('ARIMA Predictions')
+    
+    daypredict=pred.index.to_series().astype(str)
+    aqipredict = pred.values
+    aqipredict = aqipredict.astype(int)
+    aqipredict = list(aqipredict)
 
+    #day predict
+    newdates = []
+    for date in daypredict:
+        newdates.append(datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%d/%m/%y'))
+    daypredicts=[]
+    for day in daypredict:
+        daypredicts.append(datetime.datetime.strptime(day, '%Y-%m-%d').strftime('%A'))
+    
     indi = indi[list(indi.columns[0:4])+list([indi.columns[-1]])]
     indi.columns = ['Date', 'O3', 'PM2.5', 'PM10', 'AQI']
     indidate = list(indi['Date'].values)
@@ -284,7 +308,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'newdates':newdates,'daypredicts':daypredicts,'aqipredict':aqipredict,'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
