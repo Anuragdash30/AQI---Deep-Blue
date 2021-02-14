@@ -162,16 +162,15 @@ def index(request):
     color_west = getcolor(AQIW_W)
     color_east = getcolor(AQIW_E)
 
-    #getemoji
-    emoji_west =getemoji(AQIW_W)
-    emoji_east =getemoji(AQIW_E)
-    
+    # getemoji
+    emoji_west = getemoji(AQIW_W)
+    emoji_east = getemoji(AQIW_E)
 
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'emoji_west':emoji_west,'emoji_east':emoji_east,'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
@@ -256,32 +255,35 @@ def drillDownACountry(request):
         indi = Anushakti
     if(Name_region == "Mankhurd"):
         indi = mankhud_west
-    train=indi
-    train=train.dropna()
-    train.set_index('Date', inplace = True)
+    train = indi
+    train = train.dropna()
+    train.set_index('Date', inplace=True)
     train.index = pd.DatetimeIndex(train.index).to_period('D')
-  
-    model=ARIMA(train['AQI'],order=(1,0,0))
-    model=model.fit()
-    start=len(train)
-    end=len(train)+6
-    pred=model.predict(start=start,end=end,typ='levels').rename('ARIMA Predictions')
-    
-    daypredict=pred.index.to_series().astype(str)
+
+    model = ARIMA(train['AQI'], order=(1, 0, 0))
+    model = model.fit()
+    start = len(train)
+    end = len(train)+6
+    pred = model.predict(start=start, end=end,
+                         typ='levels').rename('ARIMA Predictions')
+
+    daypredict = pred.index.to_series().astype(str)
     aqipredict = pred.values
     aqipredict = aqipredict.astype(int)
     aqipredict = list(aqipredict)
-    predcol=getpredcolor(aqipredict)
-    predemj=getpredemoj(aqipredict)
+    predcol = getpredcolor(aqipredict)
+    predemj = getpredemoj(aqipredict)
 
-    #day predict
+    # day predict
     newdates = []
     for date in daypredict:
-        newdates.append(datetime.datetime.strptime(date, '%Y-%m-%d').strftime('%d/%m/%y'))
-    daypredicts=[]
+        newdates.append(datetime.datetime.strptime(
+            date, '%Y-%m-%d').strftime('%d/%m/%y'))
+    daypredicts = []
     for day in daypredict:
-        daypredicts.append(datetime.datetime.strptime(day, '%Y-%m-%d').strftime('%A'))
-    
+        daypredicts.append(datetime.datetime.strptime(
+            day, '%Y-%m-%d').strftime('%A'))
+
     indi = indi[list(indi.columns[0:4])+list([indi.columns[-1]])]
     indi.columns = ['Date', 'O3', 'PM2.5', 'PM10', 'AQI']
     indidate = list(indi['Date'].values)
@@ -311,7 +313,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'predemj':predemj,'predcol':predcol,'newdates':newdates,'daypredicts':daypredicts,'aqipredict':aqipredict,'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
@@ -348,77 +350,76 @@ def getcolor(AQIW):
         pool = "linear-gradient(to right, #00ff99 0%, #66ff33 100%)"
     return pool
 
+
 def getemoji(AQIW):
     if AQIW >= 300:
-        emoj=emoji.emojize(':skull:', use_aliases=True)
+        emoj = emoji.emojize(':skull:', use_aliases=True)
 
     elif AQIW >= 201 and AQIW < 300:
-        emoj=emoji.emojize(':fearful_face:', use_aliases=True)
+        emoj = emoji.emojize(':fearful_face:', use_aliases=True)
 
     elif (AQIW >= 151 and AQIW < 201):
-        emoj=emoji.emojize(':face_with_medical_mask:', use_aliases=True)
+        emoj = emoji.emojize(':face_with_medical_mask:', use_aliases=True)
 
     elif (AQIW >= 101 and AQIW < 151):
-        emoj=emoji.emojize(':frowning_face:', use_aliases=True)
+        emoj = emoji.emojize(':frowning_face:', use_aliases=True)
 
     elif (AQIW >= 51 and AQIW < 101):
-        emoj=emoji.emojize(':grinning_face_with_smiling_eyes:', use_aliases=True)
+        emoj = emoji.emojize(
+            ':grinning_face_with_smiling_eyes:', use_aliases=True)
 
     else:
-        emoj=emoji.emojize(':thumbsup:', use_aliases=True)
-    
-    return emoj 
+        emoj = emoji.emojize(':thumbsup:', use_aliases=True)
+
+    return emoj
+
 
 def getpredcolor(aqipredic):
-    pool=[]
+    pool = []
     for x in aqipredic:
         if x >= 300:
-            pool.append("linear-gradient(to right, #cc0000 0%, #800000 100%)")
-            
+            pool.append("radial-gradient(#cc0000, #800000)")
+
         elif x >= 201 and x < 300:
-            pool.append("linear-gradient(to right, #cc00cc 0%, #660066 100%)")
+            pool.append("radial-gradient(#cc00cc, #660066)")
 
-            
         elif (x >= 151 and x < 201):
-            pool.append("linear-gradient(to right, #ff6600 0%, #cc0000 100%)")
+            pool.append("radial-gradient(#ff6600, #cc0000)")
 
-            
         elif (x >= 101 and x < 151):
-            pool.append("linear-gradient(to right, #ffcc66 0%, #ff6600 100%)")
+            pool.append("radial-gradient(#ffcc66, #ff6600)")
 
-            
         elif (x >= 51 and x < 101):
-            pool.append("linear-gradient(to right, #ffff66 0%, #ffcc00 100%)")
-            
+            pool.append("radial-gradient(#ffff66, #ffcc00)")
+
         else:
-            pool.append("linear-gradient(to right, #00ff99 0%, #66ff33 100%)")
+            pool.append("radial-gradient(#00ff99, #66ff33)")
     return pool
 
+
 def getpredemoj(aqipredic):
-    emo=[]
+    emo = []
     for x in aqipredic:
         if x >= 300:
-            emoj=emoji.emojize(':skull:', use_aliases=True)
+            emoj = emoji.emojize(':skull:', use_aliases=True)
             emo.append(emoj)
         elif x >= 201 and x < 300:
-            emoj=emoji.emojize(':fearful_face:', use_aliases=True)
+            emoj = emoji.emojize(':fearful_face:', use_aliases=True)
             emo.append(emoj)
 
-            
         elif (x >= 151 and x < 201):
-            emoj=emoji.emojize(':face_with_medical_mask:', use_aliases=True)
+            emoj = emoji.emojize(':face_with_medical_mask:', use_aliases=True)
             emo.append(emoj)
-            
+
         elif (x >= 101 and x < 151):
-            emoj=emoji.emojize(':frowning_face:', use_aliases=True)
+            emoj = emoji.emojize(':frowning_face:', use_aliases=True)
             emo.append(emoj)
-            
+
         elif (x >= 51 and x < 101):
-            emoj=emoji.emojize(':grinning_face_with_smiling_eyes:', use_aliases=True)
-            emo.append(emoj)          
+            emoj = emoji.emojize(
+                ':grinning_face_with_smiling_eyes:', use_aliases=True)
+            emo.append(emoj)
         else:
-            emoj=emoji.emojize(':thumbsup:', use_aliases=True)
+            emoj = emoji.emojize(':thumbsup:', use_aliases=True)
             emo.append(emoj)
     return emo
-
-
