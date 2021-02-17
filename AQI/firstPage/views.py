@@ -166,11 +166,15 @@ def index(request):
     emoji_west = getemoji(AQIW_W)
     emoji_east = getemoji(AQIW_E)
 
+    # gettext2
+    text2_W = gettext2(AQIW_W)
+    text2_E = gettext2(AQIW_E)
+
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'text2_W': text2_W, 'text2_E': text2_E, 'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
@@ -321,33 +325,33 @@ def drillDownACountry(request):
 
 def gettext(AQIW):
     if AQIW >= 300:
-        pool = "Hazardous"
+        pool = "AQI exceeding 300 is highly unacceptable to human- can lead to premature death."
     elif AQIW >= 201 and AQIW < 300:
-        pool = "Very Unhealthy	"
+        pool = "Breathing polluted AQI may lead to chronic health issues."
     elif (AQIW >= 151 and AQIW < 201):
-        pool = "Unhealthy"
+        pool = "Toxic air can provoke health difficulties expecially to the young kids and elderly people"
     elif (AQIW >= 101 and AQIW < 151):
-        pool = "Unhealthy for Sensitive Groups"
+        pool = "Poor air quality can affect health issues such as difficulty in breathing."
     elif (AQIW >= 51 and AQIW < 101):
-        pool = "Moderate"
+        pool = "Acceptable air quality for a healthy adults but still pose threat to sensitive individual."
     else:
-        pool = "Good"
+        pool = "People are no longer exposed to any health risk."
     return pool
 
 
 def getcolor(AQIW):
     if AQIW >= 300:
-        pool = "linear-gradient(to right, #cc0000 0%, #800000 100%)"
+        pool = "#800000"
     elif AQIW >= 201 and AQIW < 300:
-        pool = "linear-gradient(to right, #cc00cc 0%, #660066 100%)"
+        pool = "#9C27B0"
     elif (AQIW >= 151 and AQIW < 201):
-        pool = "linear-gradient(to right, #ff6600 0%, #cc0000 100%)"
+        pool = "#f44336"
     elif (AQIW >= 101 and AQIW < 151):
-        pool = "linear-gradient(to right, #ffcc66 0%, #ff6600 100%)"
+        pool = "#FF9100"
     elif (AQIW >= 51 and AQIW < 101):
-        pool = "linear-gradient(to right, #ffff66 0%, #ffcc00 100%)"
+        pool = "#FFEA00"
     else:
-        pool = "linear-gradient(to right, #00ff99 0%, #66ff33 100%)"
+        pool = "#00C853"
     return pool
 
 
@@ -423,3 +427,19 @@ def getpredemoj(aqipredic):
             emoj = emoji.emojize(':thumbsup:', use_aliases=True)
             emo.append(emoj)
     return emo
+
+
+def gettext2(AQIW):
+    if AQIW >= 300:
+        pool = "Hazardous"
+    elif AQIW >= 201 and AQIW < 300:
+        pool = "Severe"
+    elif (AQIW >= 151 and AQIW < 201):
+        pool = "Unhealthy"
+    elif (AQIW >= 101 and AQIW < 151):
+        pool = "Poor"
+    elif (AQIW >= 51 and AQIW < 101):
+        pool = "Moderate"
+    else:
+        pool = "Good"
+    return pool

@@ -1,6 +1,7 @@
 <html>
-
+<head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Load d3.js -->
     <script src="https://d3js.org/d3.v4.js"></script>
@@ -10,6 +11,8 @@
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -17,441 +20,122 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
     <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
-
-
+    
    
     </head>
-    <body>
+    <body style="background-color:#e3f2fd;">
         <!-- Navbar Start-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);background-color: #F5F5F5;">
             <div class="container-fluid">
-              <a class="navbar-brand" style="color:white" >AQV</a>
+              <a class="navbar-brand" style="font-family: poppins;font-size: large;font-weight: 500;" >AQV</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:white" aria-current="page" href="#">Home</a>
+                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 500;" aria-current="page" href="#">Home</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link active" style="color:white" aria-current="page" href="#">Socio-demo</a>
+                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 500;" aria-current="page" href="#">Socio-demo</a>
                   </li>
                  
                 </ul>
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" style="color:white" type="submit">Search</button>
-                </form>
               </div>
             </div>
           </nav>
-        <div>
             <!-- Nav End -->
+            <br>
+            <div class="container">
+            <div class="row">
+                <h1 style=" color: #0D47A1;font-weight: 600;font-size: 30px;text-align: center;font-family: poppins;">
+                  M-Ward Mumbai Air Quality Index (AQI)<br>
+                  <span style="color: #0D47A1;font-weight: 400;font-family: poppins;font-size:large;text-align: center;">Real-Time Air Pollution Level</span>
+                </h1>
+            </div>
+          </div>
             <br>
             <!-- General Stats start -->
             <div class="container-fluid">
                 <div class="row">
                   <div class="col-4">
-                    <div class="card" style="border-radius: 5%;width: 15rem;height:10rem;margin-left: 120px;border: 0px;box-shadow: 3px 3px 3px 3px rgba(15, 15, 15, 0.26)">
-                        <div class="card-body" style="width: 15rem;height:10rem;border-radius: 5%;background:{{color_west}}">
-                          <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
-                          <h2 style="text-align:center;font:bold;">{{AQIW}}<span> {{emoji_west}}</span></h2>
-                          <p style="text-align:center;font:bold;font-size:14px;">{{message_west}}</p>
-                          <h4 style="text-align:center;font-size: 18px;">M-ward-WEST</h4>
-
+                    <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                        <div class="card-body">
+                          <h4 style="font-family: 500;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-WEST,Mumbai</h4>  
+                          <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
+                          <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_west}}">{{AQIW}}
+                            <br>
+                          <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_W}}</span>
+                        </h2> 
+                          <hr>
+                          <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
+                          <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_west}}</p>
                         </div>
-                      </div>
-                </div>
-                <div class="col-4">
-                    <ul class="list-group">
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Higest AQI in M-West: 
-                          <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Lowest AQI in M-West: 
-                          <span class="badge bg-primary rounded-pill">{{overallCountminwest}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Highest AQI in M-East: 
-                          <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
-                        </li>
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Lowest AQI in M-East: 
-                            <span class="badge bg-primary rounded-pill">{{overallCountmineast}}</span>
-                        </li>
-                        
-                      </ul>
-                </div>
-                <div class="col-4">
-                    <div class="card" style="border-radius: 5%;width: 15rem;height:10rem;margin-left: 120px;border: 0px;box-shadow: 3px 3px 3px 3px rgba(15, 15, 15, 0.26)">
-                        <div class="card-body" style="width: 15rem;height:10rem;border-radius: 5%;background:{{color_east}}">
-                          <h5 class="card-title" style="text-align:center;">AQI Prediction</h5>
-                          <h2 style="text-align:center;font:bold;">{{AQIE}}<span> {{emoji_east}}</span></h2>
-                          <p style="text-align:center;font:bold;font-size:14px;">{{message_east}}</p>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                        <div class="card-body">
+                          <table class="table">
+                            <thead>
+                              <tr>
+                                <th scope="col">Category</th>
+                                <th scope="col">Area</th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
+                                <th scope="col"></th>
 
-                          <h4 style="text-align:center;font-size: 18px;">M-ward-EAST</h4>
+                                <th style="margin-left:500px">AQI</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <th scope="row">1</th>
+                                <td colspan="5">Mark</td>
+                                <td><button type="button" class="btn btn-primary">Primary</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">2</th>
+                                <td colspan="5">Jacob</td>
+                                <td><button type="button" class="btn btn-primary">Primary</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td colspan="5">Larry the Bird</td>
+                                <td><button type="button" class="btn btn-primary">Primary</button>
+                                </td>
+                              </tr>
+                              <tr>
+                                <th scope="row">3</th>
+                                <td colspan="5">Larry the Bird</td>
+                                <td><button type="button" class="btn btn-primary">Primary</button>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
 
+  
                         </div>
+                    </div>
+                  </div>
+                 <div class="col-4">
+                  <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                      <div class="card-body">
+                        <h4 style="font-family: 500;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-EAST,Mumbai</h4>  
+                        <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
+                        <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_east}}">{{AQIE}}
+                          <br>
+                        <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_E}}</span>
+                      </h2>
+                        <hr>
+                        <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
+                        <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_east}}</p>
                       </div>
-                </div>
+                   </div>
+                 </div>
               </div>
             </div>
-           
-<br>
-            <!-- Region wise chart -->
-                <div class="container-fluid">
-                    <div class="row">
-                      <div class="col-5">
-                        <div class="col-lg-12">
-                            <p class="fs-4"><strong>M-WARD WEST</strong></p>
-                            <div class="container-fluid">
-                                <div class="row row-cols-auto">
-                                  <div class="col">
-                                    <form method="post" enctype="multipart/form-data" action="Regionwise">
-                                        {% csrf_token %}
-                                        <div class="col-lg-4">
-                                            {% for con in wast_west_n %}
-                                            <table style="border-width: 2px; border: #333;">
-                                            <tr>
-                                                <button type="submit" class="btn btn-dark btn-outline-light" value={{con}} name="Name_region" style="width:140px; height: 35px; text-color: white;" > {{con}} </button>
-                                                <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
-                                            </tr>
-                                        </table>
-                                            {% endfor %}
-                                        </div>
-                                  </div>
-                                  <div class="col">
-                                    <div > 
-                                        <canvas id="myChart" style="height: 242px; width: 280px" ></canvas>
-                                    </div>
-                                  </div>
-                                  
-                                </div>
-                              </div>
-                            
-                            
-                        <p class="fs-4"><strong>M-WARD EAST</strong></p>
-                        <div class="container-fluid">
-                            <div class="row row-cols-auto">
-                              <div class="col">
-                                {% for con in wast_east_n %}
-                            <table style="border-width: 2px; border: #333;">
-                            <tr>
-                                <button type="submit" class="btn btn-dark btn-outline-light" value={{con}} name="Name_region"  style="width:140px; height: 35px; text-color: white;" > {{con}} </button>
-                                <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
-                            </tr>
-                        </table>
-                            {% endfor %}
-                        </div>
-                            <div style="float: left;"> 
-                                <canvas id="myChart2" style="height: 275px; width: 280px"></canvas>
-                            </div>
-                            </form>
-                        
-                        </div>
-            
-                      </div>
-                      </div>
-                      </div>
-                      <div class="col-4">
-                        
-                            <br>
-                            <br>
-                            <div ><iframe id="encoder_iframe" height="500px" width="600px" style="margin-left:-150px;" src="{% url 'testgame' %}">
-                            </iframe></div>
-                        
-                        </div>
-                  
-               
-                    <!-- <div style="height: 300px;"> 
-                        <canvas id="lineChart" style="height: 400px;"></canvas>
-                    </div> -->
-                      
-                      <!-- <div class="col-3">
-                            <div >
-                                <h1 class="text-center">Last 6 days</h1>
-                                
-                            </div>
-                            
-                        </div> -->
-                      </div>
-                      </div>
-             
-                  
-               <br>
-               <br>
-    </body>
-<script>
-// var cardbody = document.querySelector('.card-body');
-// cardbody.style.backgroundColor = "{{color}}";
-// function getRandomColor(AQIW) {
-//     var pool = '';
-    
-//       if(AQIW  >=300)  
-//       {
-//       pool="#800000";
-//       }
-//       else if(AQIW>=201 && AQIW<300)
-//       {
-//         pool="#800080";
-//       }
-//       else if(AQIW>=151 && AQIW<201)
-//       {
-//         pool="red";
-//       }
-//       else if(AQIW>=101 && AQIW<151)
-//       {
-//         pool="#FF9B02";
-//       }
-//       else if(AQIW>=51 && AQIW<101)
-//       {
-//         pool="#FFF128";
-//       }
-//       else
-//       {
-//         pool="green";
-//       }
-
-//     return pool;
-//     }
-
-    var ctx = document.getElementById('myChart').getContext('2d');
-    var chartOptions = {
-                            legend: {
-                                display: false
-                                    },
-                            scales: {
-                                xAxes: [{
-                                    barPercentage:1
-                                    }],
-                                yAxes: [
-                                        // {barPercentage: 1},
-                                        // {gridLines:{drawBorder: false}},
-                                        {ticks: {display:false}},
-                                        // {ticks: {mirror: true}},
-                                        {display: false},
-                                        
-                                        ],
-                            elements: {
-                                rectangle: {
-                                borderSkipped: 'left',
-                                }
-                            }
-                            }
-                        };
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'horizontalBar',
-
-        // The data for our dataset
-        data: {
-            labels: {{ wast_west_n|safe }},
-            datasets: [{
-                data: {{ countsVal_west|safe }},
-                label: 'Current AQI',
-                barThickness:'flex',
-                backgroundColor:'#696969',  
-                
-            }]
-        },
-
-        
-
-        // Configuration options go here
-        options: chartOptions
-});
-</script>
-<script>
-
-    var ctx = document.getElementById('myChart2').getContext('2d');
-    var chartOptions = {
-                            legend: {
-                                display: false
-                                    },
-                            scales: {
-                                xAxes: [{
-                                    barPercentage:1
-                                    }],
-                                yAxes: [
-                                        // {barPercentage: 1},
-                                        // {gridLines:{drawBorder: false}},
-                                        {ticks: {display:false}},
-                                        // {ticks: {mirror: true}},
-                                        {display: false},
-                                        
-                                        ],
-                            elements: {
-                                rectangle: {
-                                borderSkipped: 'left',
-                                }
-                            }
-                            }
-                        };
-    var chart = new Chart(ctx, {
-        // The type of chart we want to create
-        type: 'horizontalBar',
-
-        // The data for our dataset
-        data: {
-            labels: {{ wast_east_n|safe }},
-            datasets: [{
-                data: {{ countsVal_east|safe }},
-                label: 'Current AQI',
-                barThickness:'flex',
-                backgroundColor:'#696969',  
-                
-            }]
-        },
-
-        
-
-        // Configuration options go here
-        options: chartOptions
-});
-</script>
-
-<script>
-    var data2={{datasetForLine|safe}};
-    var chartOptions2 = {
-            legend: {
-                display: false
-                    }
-        };
-    var ctx2 = document.getElementById('lineChart').getContext('2d');  
-    var myLineChart = new Chart(ctx2, {
-    type: 'line',
-    data: {labels:{{axisvalues|safe}},
-            datasets:data2,},
-    options: chartOptions2
-});
-</script>
-<script>
-
-var someDataMap=[{'code3': 'AFG', 'name': 'Afghanistan', 'value': 484, 'code': 'AF'},
- {'code3': 'ALB', 'name': 'Albania', 'value': 409, 'code': 'AL'},
- {'code3': 'DZA', 'name': 'Algeria', 'value': 1666, 'code': 'DZ'},
- {'code3': 'AND', 'name': 'Andorra', 'value': 583, 'code': 'AD'},
- {'code3': 'AGO', 'name': 'Angola', 'value': 19, 'code': 'AO'}];
-
- var someData2=[{
-        "code3": "ABW",
-        "name": "Aruba",
-        "value": 582.34,
-        "code": "AW"
-    },
-    {
-        "code3": "AFG",
-        "name": "Afghanistan",
-        "value": 53.08,
-        "code": "AF"
-    },
-    {
-        "code3": "AGO",
-        "name": "Angola",
-        "value": 23.11,
-        "code": "AO"
-    }];
- var someData3={{dataForMapGraph|safe}};
-    Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
-
-// Prevent logarithmic errors in color calulcation
-data.forEach(function (p) {
-    p.value = (p.value < 1 ? 1 : p.value);
-});
-
-// Initiate the chart
-Highcharts.mapChart('mapChart', {
-
-    chart: {
-        map: 'custom/world'
-    },
-
-    title: {
-        text: 'World Map COVID-19 Infection '
-    },
-
-    legend: {
-        title: {
-            text: 'Infected Population',
-            style: {
-                color: ( // theme
-                    Highcharts.defaultOptions &&
-                    Highcharts.defaultOptions.legend &&
-                    Highcharts.defaultOptions.legend.title &&
-                    Highcharts.defaultOptions.legend.title.style &&
-                    Highcharts.defaultOptions.legend.title.style.color
-                ) || 'black'
-            }
-        }
-    },
-
-    mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-            verticalAlign: 'bottom'
-        }
-    },
-
-    tooltip: {
-        backgroundColor: 'none',
-        borderWidth: 0,
-        shadow: false,
-        useHTML: true,
-        padding: 0,
-        pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
-            '</span></span> {point.name}<br>' +'<span><h4>{point.value}</h4></span>',
-        positioner: function () {
-            return { x: 0, y: 250 };
-        }
-    },
-
-    colorAxis: {
-        min: 1,
-        max: {{maxVal|safe}},
-        type: 'logarithmic'
-    },
-
-    series: [{
-        data: someData3,
-        joinBy: ['iso-a3', 'code3'],
-        name: 'Current AQI',
-        states: {
-            hover: {
-                color: '#a4edba'
-            }
-        }
-    }]
-});
-});
-
-</script>
-
-<script>
-var options = {
-          series: {{dataForheatMap|safe}},
-          chart: {
-          height: 6500,
-          type: 'heatmap',
-        },
-        dataLabels: {
-          enabled: true
-        },
-        dataLabels: {
-            position: 'top'
-            },
-        colors: ["#008FFB"],
-        yaxis: {
-      show: false},
-      xaxis: {
-          type: 'category',
-          categories: {{dateCat|safe}}
-        },
-        
-        };
-var chart4 = new ApexCharts(document.querySelector("#heatchart"), options);
-
-chart4.render();
-</script>
+      <!-- General Stats ends -->
 </html>
