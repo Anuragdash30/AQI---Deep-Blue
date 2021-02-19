@@ -122,7 +122,7 @@ def index(request):
     m2.fit(train1, target)
     m2.score(train1, target)*100
     AQIW = m2.predict([[v1, v2, v3]])
-    AQIW_W = AQIW[0]
+    AQIW_W = round(AQIW[0], 2)
     # ml ends
 
     message_west = gettext(AQIW_W)
@@ -144,7 +144,7 @@ def index(request):
     m2.fit(train1, target)
     m2.score(train1, target)*100
     AQIW = m2.predict([[v1, v2, v3]])
-    AQIW_E = AQIW[0]
+    AQIW_E = round(AQIW[0], 2)
 
     # meast ends
     message_east = gettext(AQIW_E)
