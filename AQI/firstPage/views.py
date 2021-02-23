@@ -170,11 +170,15 @@ def index(request):
     text2_W = gettext2(AQIW_W)
     text2_E = gettext2(AQIW_E)
 
+    # getimg
+    img_W = getimg(AQIW_W)
+    img_E = getimg(AQIW_E)
+
     wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
         mwardwest, uniquewest)
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'text2_W': text2_W, 'text2_E': text2_E, 'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+    context = {'img_W': img_W, 'img_E': img_E, 'text2_W': text2_W, 'text2_E': text2_E, 'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
                'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
     return render(request, 'index.html', context)
 
@@ -442,4 +446,20 @@ def gettext2(AQIW):
         pool = "Moderate"
     else:
         pool = "Good"
+    return pool
+
+
+def getimg(AQIW):
+    if AQIW >= 300:
+        pool = "aqi-6.png"
+    elif AQIW >= 201 and AQIW < 300:
+        pool = "aqi-5.png"
+    elif (AQIW >= 151 and AQIW < 201):
+        pool = "aqi-4.png"
+    elif (AQIW >= 101 and AQIW < 151):
+        pool = "aqi-3.png"
+    elif (AQIW >= 51 and AQIW < 101):
+        pool = "aqi-2.png"
+    else:
+        pool = "aqi-1.png"
     return pool
