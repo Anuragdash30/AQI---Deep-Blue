@@ -282,6 +282,8 @@ def drillDownACountry(request):
     predcol = getpredcolor(aqipredict)
     predemj = getpredemoj(aqipredict)
 
+    preddesc = getdesc(aqipredict)
+
     # day predict
     newdates = []
     for date in daypredict:
@@ -321,7 +323,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
@@ -463,3 +465,40 @@ def getimg(AQIW):
     else:
         pool = "aqi-1.png"
     return pool
+
+
+def getdesc(aqipredic):
+    desc = []
+    for x in aqipredic:
+        if x >= 300:
+            des = "Stay at home!"
+            desc.append(des)
+        elif x >= 201 and x < 300:
+            des = "Go at your own Risk!"
+            desc.append(des)
+
+        elif (x >= 151 and x < 201):
+            des = "Only go if you have good immunity"
+            desc.append(des)
+
+        elif (x >= 101 and x < 151):
+            des = "Take extra precautions"
+            desc.append(des)
+
+        elif (x >= 51 and x < 101):
+            des = "Wear a mask"
+            desc.append(des)
+
+        else:
+            des = "Safe for you"
+            desc.append(des)
+    return desc
+
+# Safe for you
+# wear a mask
+# only go if you have good immunity.
+# risky!
+# Take extra precautions
+# choose a cleaner commute
+# Avoid going near high-traffic areas
+# stay at home!
