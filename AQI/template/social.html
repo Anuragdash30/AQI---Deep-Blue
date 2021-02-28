@@ -1,0 +1,472 @@
+{% load static %}
+{% static 'media' as base_url %}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Load d3.js -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/data.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
+    <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+    <!-- <style>
+      .card:hover {
+  transform: scale(1.1);
+}
+
+    </style>
+    -->
+    </head>
+    <body style="background-color:#B3E5FC;">
+        <!-- Navbar Start-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);background-color: #F5F5F5;">
+            <div class="container-fluid">
+              <a class="navbar-brand" style="font-family: poppins;font-size: large;font-weight: 600;" >AQV</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="#">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="#">Socio-demo</a>
+                  </li>
+                 
+                </ul>
+              </div>
+            </div>
+          </nav>
+            <!-- Nav End -->
+            <br>
+            <div class="container">
+            <div class="row">
+                <h1 style=" color: #0D47A1;font-weight: 600;font-size: 30px;text-align: center;font-family: poppins;">
+                  M-Ward Mumbai Demographic Data<br>
+                  <span style="color: #0D47A1;font-weight: 400;font-family: poppins;font-size:large;text-align: center;"></span>
+                </h1>
+            </div>
+          </div>
+            <br>
+            <!-- General Stats start -->
+            <div class="container-fluid">
+                <div class="row">
+                  <div class="col-4">
+                    <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-8">
+                          <h4 style="font-weight: 600;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-WEST,Mumbai</h4>  
+                          <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
+                          <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_west}}">{{AQIW}}
+                            <br>
+                          <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_W}}</span>
+                        </h2> 
+                          </div>
+                          <div class="col-4">
+                            <img style="height: 180px;width: 100px;" src="{{base_url}}/{{img_W}}" alt="My image">
+                          </div>
+                          <hr>
+                          <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
+                          <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_west}}</p>
+                        </div>
+                        </div>
+                    </div>
+                  </div>
+                  <div class="col-4">
+                    <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                        <div class="card-body">
+                          <table class="table">
+                            <thead>
+                              <tr class="table-dark">
+                                <th>Category</th>
+                                <th>Area</th>
+                                <th>AQI</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
+                                <td>M-Ward East Lowest</td>
+                                <td>Mankhurd</td>
+                                <td>{{overallCountmineast}}</td>
+                              </tr>      
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                                <td >M-Ward East Highest</td>
+                                <td>Shivaji Nagar</td>
+                                <td>{{maxVal_east}}</td>
+                              </tr>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
+                                <td>M-Ward West Lowest</td>
+                                <td>Chembur</td>
+                                <td>{{overallCountminwest}}</td>
+                              </tr>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                                <td>M-Ward West Highest</td>
+                                <td>Sindhi Society</td>
+                                <td>{{maxVal_west}}</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+  
+                        </div>
+                    </div>
+                  </div>
+                 <div class="col-4">
+                  <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-8">
+                        <h4 style="font-weight: 600;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-EAST,Mumbai</h4>  
+                        <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
+                        <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_east}}">{{AQIE}}
+                          <br>
+                        <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_E}}</span>
+                      </h2>
+                      </div>
+                      <div class="col-4">
+                        <img style="height: 180px;width: 100px;" src="{{base_url}}/{{img_E}}" alt="My image">
+                      </div>
+                      <hr>
+                        <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
+                        <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_east}}</p>
+                    </div>
+                    </div>
+                   </div>
+                 </div>
+              </div>
+            </div>
+            <br>
+            <br>
+      <!-- General Stats ends -->
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-4">
+            <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:710;">
+            <div class="card-body">
+              <h4 style="color: #7c0b03;font-family:Poppins;text-align:left;font-size:20px"><strong>&#9203 AQI Today</strong></h4>
+              <p class="fs-4" style="font-family: poppins"><strong>M-WARD WEST</strong></p>
+              <div class="row">
+              <div class="col-2" style="margin-left: 10px;">
+                <form method="post" enctype="multipart/form-data" action="Regionwise">
+                  {% csrf_token %}
+                  <div class="col-lg-4">
+                      {% for con in wast_west_n %}
+                      <table style="border-width: 2px; border: #333;">
+                      <tr>
+                          <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region" style="width:140px; height: 35px; " > {{con}} </button>
+                          <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
+                      </tr>
+                  </table>
+                      {% endfor %}
+                  </div>
+              </div>
+              <div class="col-8" style="margin-left: 57px;">
+                <div > 
+                  <canvas id="myChart" style="height: 230px; width: 280px" ></canvas>
+              </div>
+              </div>
+            </div>
+            <hr>
+            <p class="fs-4" style="font-family: poppins"><strong>M-WARD EAST</strong></p>
+            <div class="row">
+              <div class="col-2" style="margin-left: 10px;">
+                {% for con in wast_east_n %}
+            <table style="border-width: 2px; border: #333;">
+            <tr>
+                <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region"  style="width:140px; height: 35px;text-color: white;" > {{con}} </button>
+                <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
+            </tr>
+        </table>
+            {% endfor %}
+        </div>
+        <div class="col-8" style="margin-left: 60px;">
+            <div> 
+                <canvas id="myChart2" style="height: 265px; width: 280px"></canvas>
+            </div>
+          </div>
+            </form>
+          </div>
+        </div>
+            </div>
+            </div>
+            
+            <div class="col-8">
+              <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;height:710">
+                <div class="card-body">
+                  <h4 style="color: #055f3d;font-weight: 500;font-family:Poppins;text-align:center;font-size:20px"><strong>🗺️ M-Ward Map</strong></h4>
+              <div >
+                <iframe id="encoder_iframe" height="96%" width="100%" src="{% url 'testgame' %}">
+              </iframe>
+            </div>
+          </div>
+          </div>
+          </div>
+          </div>
+        </div>
+      </div>
+      <br>
+      <!-- horizontal graph ends  -->
+      <!-- static info -->
+
+
+
+      
+      
+
+
+      <!-- Charts javascript -->
+<script>
+      var ctx = document.getElementById('myChart').getContext('2d');
+var chartOptions = {
+            legend: {
+                display: false
+                    },
+            scales: {
+                xAxes: [{
+                    barPercentage:1
+                    }],
+                yAxes: [
+                        // {barPercentage: 1},
+                        // {gridLines:{drawBorder: false}},
+                        {ticks: {display:false}},
+                        // {ticks: {mirror: true}},
+                        {display: false},
+                        
+                        ],
+            elements: {
+                rectangle: {
+                borderSkipped: 'left',
+                }
+            }
+            }
+        };
+var chart = new Chart(ctx, {
+// The type of chart we want to create
+type: 'horizontalBar',
+
+// The data for our dataset
+data: {
+labels: {{ wast_west_n|safe }},
+datasets: [{
+data: {{ countsVal_west|safe }},
+label: 'Current AQI',
+barThickness:'flex',
+backgroundColor:'#90A4AE',  
+
+}]
+},
+
+
+
+// Configuration options go here
+options: chartOptions
+});
+</script>
+<script>
+
+var ctx = document.getElementById('myChart2').getContext('2d');
+var chartOptions = {
+            legend: {
+                display: false
+                    },
+            scales: {
+                xAxes: [{
+                    barPercentage:1
+                    }],
+                yAxes: [
+                        // {barPercentage: 1},
+                        // {gridLines:{drawBorder: false}},
+                        {ticks: {display:false}},
+                        // {ticks: {mirror: true}},
+                        {display: false},
+                        
+                        ],
+            elements: {
+                rectangle: {
+                borderSkipped: 'left',
+                }
+            }
+            }
+        };
+var chart = new Chart(ctx, {
+// The type of chart we want to create
+type: 'horizontalBar',
+
+// The data for our dataset
+data: {
+labels: {{ wast_east_n|safe }},
+datasets: [{
+data: {{ countsVal_east|safe }},
+label: 'Current AQI',
+barThickness:'flex',
+backgroundColor:'#90A4AE',  
+
+}]
+},
+
+
+
+// Configuration options go here
+options: chartOptions
+});
+</script>
+
+<script>
+var data2={{datasetForLine|safe}};
+var chartOptions2 = {
+legend: {
+display: false
+    }
+};
+var ctx2 = document.getElementById('lineChart').getContext('2d');  
+var myLineChart = new Chart(ctx2, {
+type: 'line',
+data: {labels:{{axisvalues|safe}},
+datasets:data2,},
+options: chartOptions2
+});
+</script>
+<script>
+
+var someDataMap=[{'code3': 'AFG', 'name': 'Afghanistan', 'value': 484, 'code': 'AF'},
+{'code3': 'ALB', 'name': 'Albania', 'value': 409, 'code': 'AL'},
+{'code3': 'DZA', 'name': 'Algeria', 'value': 1666, 'code': 'DZ'},
+{'code3': 'AND', 'name': 'Andorra', 'value': 583, 'code': 'AD'},
+{'code3': 'AGO', 'name': 'Angola', 'value': 19, 'code': 'AO'}];
+
+var someData2=[{
+"code3": "ABW",
+"name": "Aruba",
+"value": 582.34,
+"code": "AW"
+},
+{
+"code3": "AFG",
+"name": "Afghanistan",
+"value": 53.08,
+"code": "AF"
+},
+{
+"code3": "AGO",
+"name": "Angola",
+"value": 23.11,
+"code": "AO"
+}];
+var someData3={{dataForMapGraph|safe}};
+Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
+
+// Prevent logarithmic errors in color calulcation
+data.forEach(function (p) {
+p.value = (p.value < 1 ? 1 : p.value);
+});
+
+// Initiate the chart
+Highcharts.mapChart('mapChart', {
+
+chart: {
+map: 'custom/world'
+},
+
+title: {
+text: 'World Map COVID-19 Infection '
+},
+
+legend: {
+title: {
+text: 'Infected Population',
+style: {
+color: ( // theme
+    Highcharts.defaultOptions &&
+    Highcharts.defaultOptions.legend &&
+    Highcharts.defaultOptions.legend.title &&
+    Highcharts.defaultOptions.legend.title.style &&
+    Highcharts.defaultOptions.legend.title.style.color
+) || 'black'
+}
+}
+},
+
+mapNavigation: {
+enabled: true,
+buttonOptions: {
+verticalAlign: 'bottom'
+}
+},
+
+tooltip: {
+backgroundColor: 'none',
+borderWidth: 0,
+shadow: false,
+useHTML: true,
+padding: 0,
+pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
+'</span></span> {point.name}<br>' +'<span><h4>{point.value}</h4></span>',
+positioner: function () {
+return { x: 0, y: 250 };
+}
+},
+
+colorAxis: {
+min: 1,
+max: {{maxVal|safe}},
+type: 'logarithmic'
+},
+
+series: [{
+data: someData3,
+joinBy: ['iso-a3', 'code3'],
+name: 'Current AQI',
+states: {
+hover: {
+color: '#a4edba'
+}
+}
+}]
+});
+});
+
+</script>
+
+<script>
+var options = {
+series: {{dataForheatMap|safe}},
+chart: {
+height: 6500,
+type: 'heatmap',
+},
+dataLabels: {
+enabled: true
+},
+dataLabels: {
+position: 'top'
+},
+colors: ["#008FFB"],
+yaxis: {
+show: false},
+xaxis: {
+type: 'category',
+categories: {{dateCat|safe}}
+},
+
+};
+var chart4 = new ApexCharts(document.querySelector("#heatchart"), options);
+
+chart4.render();
+</script>
+</body>
+</html>

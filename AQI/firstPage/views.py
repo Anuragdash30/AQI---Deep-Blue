@@ -502,3 +502,138 @@ def getdesc(aqipredic):
 # choose a cleaner commute
 # Avoid going near high-traffic areas
 # stay at home!
+
+def social(request):
+    Chedda_Nagar = pd.read_csv("Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
+
+
+    Tilak_Nagar = pd.read_csv("Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
+
+
+    Sindhi_Society = pd.read_csv("Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
+
+
+    Chembur_West =  pd.read_csv("Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
+
+    Deonar =  pd.read_csv("Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
+
+
+    Mahul_E = pd.read_csv("Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
+
+
+    CheddaApi = Chedda_Nagar.tail(1)
+    CheddaApi['name'] = 'Chedda nagar'
+
+    DeonarApi = Deonar.tail(1)
+    DeonarApi['name'] = 'Deonar'
+
+    TilakApi = Tilak_Nagar.tail(1)
+    TilakApi['name'] = 'Tilak Nagar'
+    SindhiApi = Sindhi_Society.tail(1)
+    SindhiApi['name'] = 'Sindhi Society'
+    ChemburWApi = Chembur_West.tail(1)
+    ChemburWApi['name'] = 'Chembur-west'
+    MahulApi = Mahul_E.tail(1)
+    MahulApi['name'] = 'Mahul'
+
+
+
+
+    ################# m ward east
+    Cheeta_camp = pd.read_csv("Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
+
+
+    chembur_east = pd.read_csv("Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
+
+
+    govandi_east = pd.read_csv("Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
+
+
+    shivaji_nagar =  pd.read_csv("Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
+
+
+    trombay = pd.read_csv("Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
+
+    Anushakti = pd.read_csv("Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
+
+    mankhud_west = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
+
+    Cheeta_campApi = Cheeta_camp.tail(1)
+    Cheeta_campApi['name'] = 'Cheetah Camp'
+
+    chembur_eastApi = chembur_east.tail(1)
+    chembur_eastApi['name'] = 'Chembur-east'
+
+    govandi_eastApi = govandi_east.tail(1)
+    govandi_eastApi['name'] = 'Govandi'
+
+    shivaji_nagarApi = shivaji_nagar.tail(1)
+    shivaji_nagarApi['name'] = 'Shivaji Nagar'
+
+    trombayApi = trombay.tail(1)
+    trombayApi['name'] = 'Trombay'
+
+    AnushaktiApi = Anushakti.tail(1)
+    AnushaktiApi['name'] = 'Ansuhakti Nagar'
+
+    mankhud_westApi = mankhud_west.tail(1)
+    mankhud_westApi['name'] = 'Mankhurd'
+
+    #############
+    df_rowde = pd.concat([CheddaApi,ChemburWApi,MahulApi,TilakApi,SindhiApi]) 
+    df_row2de= pd.concat([SindhiApi, TilakApi,Cheeta_campApi,DeonarApi])
+
+    df_row3de=pd.concat([chembur_eastApi,govandi_eastApi,shivaji_nagarApi,trombayApi,AnushaktiApi,mankhud_westApi,DeonarApi,Cheeta_campApi])
+
+    # meast ends
+
+
+    message_east = gettext(AQIW_E)
+    mwardwest = df_row
+    mwardeast = df_row2
+    uniquewest = pd.unique(mwardwest['name'])
+    overallCountminwest = df_row['AQI'].min()
+    overallCountmineast = df_row2['AQI'].min()
+    maxVal_west = df_row['AQI'].max()
+    maxVal_east = df_row2['AQI'].max()
+
+    unique_east = pd.unique(mwardeast['name'])
+
+    # getcolor
+    color_west = getcolor(AQIW_W)
+    color_east = getcolor(AQIW_E)
+
+    # getemoji
+    emoji_west = getemoji(AQIW_W)
+    emoji_east = getemoji(AQIW_E)
+
+    # gettext2
+    text2_W = gettext2(AQIW_W)
+    text2_E = gettext2(AQIW_E)
+
+    # getimg
+    img_W = getimg(AQIW_W)
+    img_E = getimg(AQIW_E)
+
+    wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
+        mwardwest, uniquewest)
+    # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
+    # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
+    context = {'img_W': img_W, 'img_E': img_E, 'text2_W': text2_W, 'text2_E': text2_E, 'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
+               'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
+    return render(request, 'social.html', context) 
+
+def gettext3(AQIW):
+    if AQIW >= 300:
+        pool = "Hazardous"
+    elif AQIW >= 201 and AQIW < 300:
+        pool = "Severe"
+    elif (AQIW >= 151 and AQIW < 201):
+        pool = "Unhealthy"
+    elif (AQIW >= 101 and AQIW < 151):
+        pool = "Poor"
+    elif (AQIW >= 51 and AQIW < 101):
+        pool = "Moderate"
+    else:
+        pool = "Good"
+    return pool
