@@ -388,22 +388,22 @@ def getpredcolor(aqipredic):
     pool = []
     for x in aqipredic:
         if x >= 300:
-            pool.append("radial-gradient(#cc0000, #800000)")
+            pool.append("#800000")
 
         elif x >= 201 and x < 300:
-            pool.append("radial-gradient(#cc00cc, #660066)")
+            pool.append("#9C27B0")
 
         elif (x >= 151 and x < 201):
-            pool.append("radial-gradient(#ff6600, #cc0000)")
+            pool.append("#f44336")
 
         elif (x >= 101 and x < 151):
-            pool.append("radial-gradient(#ffcc66, #ff6600)")
+            pool.append("#FF9100")
 
         elif (x >= 51 and x < 101):
-            pool.append("radial-gradient(#ffff66, #ffcc00)")
+            pool.append("#FFEA00")
 
         else:
-            pool.append("radial-gradient(#00ff99, #66ff33)")
+            pool.append("#00C853")
     return pool
 
 
