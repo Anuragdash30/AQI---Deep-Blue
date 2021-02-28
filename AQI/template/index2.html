@@ -10,6 +10,8 @@
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
     <script src="https://code.highcharts.com/mapdata/custom/world.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
@@ -22,130 +24,185 @@
     <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
 
     </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-            <div class="container-fluid">
-              <a class="navbar-brand" style="color:white" >AQV</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" style="color:white" aria-current="page" href="\">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" style="color:white" aria-current="page" href="#">Socio-demo</a>
-                  </li>
-                 
-                </ul>
-                <form class="d-flex">
-                  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                  <button class="btn btn-outline-success" style="color:white" type="submit">Search</button>
-                </form>
+    <body style="background-color:#B3E5FC;">
+        <!-- Navbar Start-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);background-color: #F5F5F5;">
+          <div class="container-fluid">
+            <a class="navbar-brand" style="font-family: poppins;font-size: large;font-weight: 600;" >AQV</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="#">Socio-demo</a>
+                </li>
+               
+              </ul>
+            </div>
+          </div>
+        </nav>
+          <!-- Nav End -->
+            <br>
+            <div class="container">
+              <div class="row">
+                  <h1 style=" color: #0D47A1;font-weight: 600;font-size: 30px;text-align: center;font-family: poppins;">
+                    Extended Forecast of {{Name_region}}
+                    <br>
+                    <span style="color: #0D47A1;font-weight: 400;font-family: poppins;font-size:large;text-align: center;">Real-Time Air Pollution Prediction</span>
+                  </h1>
               </div>
             </div>
-          </nav>
-        <div>
-            <!-- Nav End -->
             <br>
             <!-- General Stats start -->
             <div class="container-fluid">
                 <div class="row">
-                  <div class="col-3">
-                <ul class="list-group" style="background-color: #333;">
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Higest AQI in M-West: 
-                      <span class="badge bg-danger rounded-pill">{{maxVal_west}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Lowest AQI in M-West: 
-                      <span class="badge bg-primary rounded-pill">{{overallCountminwest}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Highest AQI in M-East: 
-                      <span class="badge bg-danger rounded-pill">{{maxVal_east}}</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        Lowest AQI in M-East: 
-                        <span class="badge bg-primary rounded-pill">{{overallCountmineast}}</span>
-                    </li>
-                    
-                  </ul>
-                  <br>
-
-                </div>
+                  <!-- <div class="col-4">
+                    <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:300;">
+                        <div class="card-body">
+                          <table class="table">
+                            <thead>
+                              <tr class="table-dark">
+                                <th>Category</th>
+                                <th>Area</th>
+                                <th>AQI</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
+                                <td>M-Ward East Lowest</td>
+                                <td>Mankhurd</td>
+                                <td>{{overallCountmineast}}</td>
+                              </tr>      
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                                <td >M-Ward East Highest</td>
+                                <td>Shivaji Nagar</td>
+                                <td>{{maxVal_east}}</td>
+                              </tr>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
+                                <td>M-Ward West Lowest</td>
+                                <td>Chembur</td>
+                                <td>{{overallCountminwest}}</td>
+                              </tr>
+                              <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                                <td>M-Ward West Highest</td>
+                                <td>Sindhi Society</td>
+                                <td>{{maxVal_west}}</td>
+                              </tr>
+                             
+                            </tbody>
+                          </table>
+  
+                        </div>
+                    </div>
+                  </div> -->
                 
-                <div class="col-8" style="margin-left:55px;border-radius: 10px;border:1px solid #cecece;background-color: #F5F5F5	;">
-                  <h4 style="margin-left:300px;">Extended Forecast of {{Name_region}}</h4>
-                  <div class="container"  >
+                <div class="col-12">
+                  <!-- <h4 style="margin-left:300px;">Extended Forecast of {{Name_region}}</h4> -->
+                  <div class="container-fluid" style="font-family:Poppins;" >
                     <div class="row">
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.0}};border-radius: 8px"  >
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.0}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.0}}<span> {{predemj.0}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px"  >
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.0}}</strong> |
+                            <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.0}}</span></h5>
+                            
+                            <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.0}}</h6>
+                            <h6 class="card-title" style="font-weight: 600;color:{{predcol.0}};text-align: center;font-size: 40px;">{{aqipredict.0}}<span> {{predemj.0}}</span></h6>
+                            <hr>
+                            
+                            <h6 class="card-des" style="text-align: center;">{{preddesc.0}}</h6>
+                        
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.1}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.1}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.1}}<span> {{predemj.1}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.1}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.1}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                            <h6 class="card-title" style="font-weight: 600;color:{{predcol.1}};text-align: center;font-size: 40px;">{{aqipredict.1}}<span> {{predemj.1}}</span></h6>
+                            <hr>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.1}}</h6>
+                            <h6 class="card-des" style="text-align: center;" >{{preddesc.1}}</h6>
+
+                            
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.2}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.2}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.2}}<span> {{predemj.2}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.2}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.2}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                              <h6 class="card-title" style="font-weight: 600;color:{{predcol.2}};text-align: center;font-size: 40px;">{{aqipredict.2}}<span> {{predemj.2}}</span></h6>
+                            <hr>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.2}}</h6>
+                            <h6 class="card-des" style="text-align: center;">{{preddesc.2}}</h6>
+
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.3}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.3}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.3}}<span> {{predemj.3}}</span></h6>
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.3}}</h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.3}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.3}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                              <h6 class="card-title" style="font-weight: 600;color:{{predcol.3}};text-align: center;font-size: 40px;">{{aqipredict.3}}<span> {{predemj.3}}</span></h6>
+                            <hr>
+
+                            <h6 class="card-des" style="text-align: center;">{{preddesc.3}}</h6>
+
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.4}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.4}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.4}}<span> {{predemj.4}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.4}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.4}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                              <h6 class="card-title" style="font-weight: 600;color:{{predcol.4}};text-align: center;font-size: 40px;">{{aqipredict.4}}<span> {{predemj.4}}</span></h6>
+                            <hr>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.4}}</h6>
+                            <h6 class="card-des" style="text-align: center;">{{preddesc.4}}</h6>
+
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.5}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.5}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.5}}<span> {{predemj.5}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.5}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.5}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                              <h6 class="card-title" style="font-weight: 600;color:{{predcol.5}};text-align: center;font-size: 40px;">{{aqipredict.5}}<span> {{predemj.5}}</span></h6>
+                            <hr>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size: 19px;">{{newdates.5}}</h6>
+                            <h6 class="card-des" style="text-align: center;">{{preddesc.5}}</h6>
+                              
                           </div>
                         </div>
                       </div>
                       <div class="col-sm">
-                        <div class="card" style="border:0px;width: 7rem;height: 8rem;border-radius: 8px">
-                          <div class="card-body" style="background:{{predcol.6}};border-radius: 8px">
-                            <h5 class="card-title" style="text-align: center;font-size: 14px;">{{daypredicts.6}}</h5>
-                            <h6 class="card-title" style="text-align: center;font-size: 23px;">{{aqipredict.6}}<span> {{predemj.6}}</span></h6>
+                        <div class="card" style="border:0px;width: 11rem;height: 13rem;border-radius: 8px">
+                          <div class="card-body" style="background:white;border-radius: 8px">
+                            <h5 class="card-title" style="text-align: center;font-size: 13px;"><strong>{{daypredicts.6}}</strong> |
+                              <span class="card-subtitle mb-2" style="font-size: 14px;">{{newdates.6}}</span></h5>
+                              <h6 class="card-title" style="font-weight: 600;text-align:center;font-family:Poppins;">AQI</h6>
+                              <h6 class="card-title" style="font-weight: 600;color:{{predcol.6}};text-align: center;font-size: 40px;">{{aqipredict.6}}<span> {{predemj.6}}</span></h6>
+                            <hr>
 
-                            <h6 class="card-subtitle mb-2" style="text-align: center;font-size:19px;">{{newdates.6}}</h6>
+                            <h6 class="card-des" style="text-align: center;" >{{preddesc.6}}</h6>
+
+
                           </div>
                         </div>
                       </div>
@@ -157,72 +214,72 @@
                 </div> -->
               </div>
             </div>
+            <br>
         <!-- Region wise chart -->
         <div class="container-fluid">
-            <div class="row">
-              <div class="col-5">
-                <div class="col-lg-12">
-                    <p class="fs-4"><strong>M-WARD WEST</strong></p>
-                    <div class="container-fluid">
-                        <div class="row row-cols-auto">
-                          <div class="col">
-                            <form method="post" enctype="multipart/form-data" action="Regionwise">
-                                {% csrf_token %}
-                                <div class="col-lg-4">
-                                    {% for con in wast_west_n %}
-                                    <table style="border-width: 2px; border: #333;">
-                                    <tr>
-                                        <button type="submit" class="btn btn-dark btn-outline-light" value={{con}} name="Name_region" style="width:140px; height: 35px; text-color: white;" > {{con}} </button>
-                                        <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
-                                    </tr>
-                                </table>
-                                    {% endfor %}
-                                </div>
-                          </div>
-                          <div class="col">
-                            <div > 
-                                <canvas id="myChart" style="height: 242px; width: 280px" ></canvas>
-                            </div>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    
-                    
-                <p class="fs-4"><strong>M-WARD EAST</strong></p>
-                <div class="container-fluid">
-                    <div class="row row-cols-auto">
-                      <div class="col">
-                        {% for con in wast_east_n %}
-                    <table style="border-width: 2px; border: #333;">
-                    <tr>
-                        <button type="submit" class="btn btn-dark btn-outline-light" value={{con}} name="Name_region"  style="width:140px; height: 35px; text-color: white;" > {{con}} </button>
-                        <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
-                    </tr>
-                </table>
-                    {% endfor %}
-                </div>
-                    <div style="float: left;"> 
-                        <canvas id="myChart2" style="height: 275px; width: 280px"></canvas>
+          <div class="row">
+            <div class="col-4">
+              <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:710;">
+              <div class="card-body">
+                <h4 style="color: #7c0b03;font-family:Poppins;text-align:left;font-size:20px"><strong>&#9203 AQI Today</strong></h4>
+                <p class="fs-4" style="font-family: poppins"><strong>M-WARD WEST</strong></p>
+                <div class="row">
+                <div class="col-2" style="margin-left: 10px;">
+                  <form method="post" enctype="multipart/form-data" action="Regionwise">
+                    {% csrf_token %}
+                    <div class="col-lg-4">
+                        {% for con in wast_west_n %}
+                        <table style="border-width: 2px; border: #333;">
+                        <tr>
+                            <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region" style="width:140px; height: 35px; " > {{con}} </button>
+                            <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
+                        </tr>
+                    </table>
+                        {% endfor %}
                     </div>
-                    </form>
-                
                 </div>
-    
+                <div class="col-8" style="margin-left: 57px;">
+                  <div > 
+                    <canvas id="myChart" style="height: 230px; width: 280px" ></canvas>
+                </div>
+                </div>
+              </div>
+              <hr>
+              <p class="fs-4" style="font-family: poppins"><strong>M-WARD EAST</strong></p>
+              <div class="row">
+                <div class="col-2" style="margin-left: 10px;">
+                  {% for con in wast_east_n %}
+              <table style="border-width: 2px; border: #333;">
+              <tr>
+                  <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region"  style="width:140px; height: 35px;text-color: white;" > {{con}} </button>
+                  <!-- <input type="submit" value={{con}} name="Name_region" style="width:140px;"> -->
+              </tr>
+          </table>
+              {% endfor %}
+          </div>
+          <div class="col-8" style="margin-left: 60px;">
+              <div> 
+                  <canvas id="myChart2" style="height: 265px; width: 280px"></canvas>
+              </div>
+            </div>
+              </form>
+            </div>
+          </div>
               </div>
               </div>
-              </div>
-              <div class="col-7">
-                  
-            
-                <div style="text-align: left;margin-left:150px;margin-top: 35px;font-size:40px;font-weight: bold;">Analysis on {{Name_region}}</div>
+              <div class="col-8">
+                <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;height:710">
+                  <div class="card-body">
+                <div style="font-weight: 500;font-family:Poppins;font-size:40px;text-align: center;">&#128200 Analysis on {{Name_region}}</div>
                         
-                            <canvas id="mixed-chart" style="margin-top:5px;height:600px;width:1200px;margin-left:-100px;"></canvas>
-                    </div>
-                
-                <div class="col-lg-3" style="float: left;max-width: 300px;  max-height: 650px;overflow: scroll; overflow-x:hidden;">
-                    
+                            <canvas id="mixed-chart" style="margin-top:50px;height:600px;width:1200px;"></canvas>
+                            <br>
+                            <h5 style="margin-left:50px;font-weight: 600;font-size: 14px;font-family: poppins;"><span style="color: #34a12b;word-spacing: 10px;">&#8226 Good(0-50) </span><span style="color: #FFEA00;word-spacing: 10px;">&#8226 Moderate(51-100) </span><span style="color: #FF9100;word-spacing: 10px;">&#8226 Poor(101-150) </span><span style="color: #f44336;word-spacing: 10px;">&#8226 Unhealthy(151-200) </span><span style="color: #9C27B0;word-spacing: 10px;">&#8226 Severe(201-250) </span><span style="color: #800000;word-spacing: 10px;">&#8226 Hazard(251-300)</span></h5>
+
+                          </div>
+
                 </div>
+              </div>
               
            
               </div>
@@ -272,7 +329,7 @@
                     data: {{ countsVal_west|safe }},
                     label: 'Current AQI',
                     barThickness:'flex',
-                    backgroundColor:'#696969',  
+                    backgroundColor:'#90A4AE',  
                     
                 }]
             },
@@ -320,7 +377,7 @@
                     data: {{ countsVal_east|safe }},
                     label: 'Current AQI',
                     barThickness:'flex',
-                    backgroundColor:'#696969',  
+                    backgroundColor:'#90A4AE',  
                     
                 }]
             },
