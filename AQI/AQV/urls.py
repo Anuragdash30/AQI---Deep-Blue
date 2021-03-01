@@ -23,9 +23,11 @@ from django.views.generic import TemplateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     url('^$',views.index,name='Mainpage'),
-    url(r'^template/', TemplateView.as_view(template_name="map.html"),name='testgame'),
+    url(r'^template/mapop', TemplateView.as_view(template_name="mappop.html"),name='mapop'),
+    url(r'^template/testgame', TemplateView.as_view(template_name="map.html"),name='testgame'),
+    
  
-     url('Regionwise',views.drillDownACountry,name='drillDown'),
-     url('Social',views.social,name='social')
+    url('Regionwise',views.drillDownACountry,name='drillDown'),
+    url('Social',views.social,name='social')
 
 ]
