@@ -522,17 +522,17 @@ def social(request):
 
 
     CheddaApi = Chedda_Nagar.tail(1)
-    CheddaApi['name'] = 'Chedda nagar'
+    CheddaApi['name'] = 'Chedda-Nagar'
 
     DeonarApi = Deonar.tail(1)
     DeonarApi['name'] = 'Deonar'
 
     TilakApi = Tilak_Nagar.tail(1)
-    TilakApi['name'] = 'Tilak Nagar'
+    TilakApi['name'] = 'Tilak-Nagar'
     SindhiApi = Sindhi_Society.tail(1)
-    SindhiApi['name'] = 'Sindhi Society'
+    SindhiApi['name'] = 'Sindhi-Society'
     ChemburWApi = Chembur_West.tail(1)
-    ChemburWApi['name'] = 'Chembur-west'
+    ChemburWApi['name'] = 'Chembur-West'
     MahulApi = Mahul_E.tail(1)
     MahulApi['name'] = 'Mahul'
 
@@ -559,22 +559,22 @@ def social(request):
     mankhud_west = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
 
     Cheeta_campApi = Cheeta_camp.tail(1)
-    Cheeta_campApi['name'] = 'Cheetah Camp'
+    Cheeta_campApi['name'] = 'Cheetah-Camp'
 
     chembur_eastApi = chembur_east.tail(1)
-    chembur_eastApi['name'] = 'Chembur-east'
+    chembur_eastApi['name'] = 'Chembur-East'
 
     govandi_eastApi = govandi_east.tail(1)
     govandi_eastApi['name'] = 'Govandi'
 
     shivaji_nagarApi = shivaji_nagar.tail(1)
-    shivaji_nagarApi['name'] = 'Shivaji Nagar'
+    shivaji_nagarApi['name'] = 'Shivaji-Nagar'
 
     trombayApi = trombay.tail(1)
     trombayApi['name'] = 'Trombay'
 
     AnushaktiApi = Anushakti.tail(1)
-    AnushaktiApi['name'] = 'Ansuhakti Nagar'
+    AnushaktiApi['name'] = 'Ansuhakti-Nagar'
 
     mankhud_westApi = mankhud_west.tail(1)
     mankhud_westApi['name'] = 'Mankhurd'
