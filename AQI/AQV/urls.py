@@ -26,5 +26,6 @@ urlpatterns = [
     url(r'^template/', TemplateView.as_view(template_name="map.html"),name='testgame'),
  
      url('Regionwise',views.drillDownACountry,name='drillDown'),
+     url('Social',views.social,name='social')
 
 ]
