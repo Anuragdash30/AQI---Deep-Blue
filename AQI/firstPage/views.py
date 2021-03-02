@@ -522,17 +522,17 @@ def social(request):
 
 
     CheddaApi = Chedda_Nagar.tail(1)
-    CheddaApi['name'] = 'Chedda nagar'
+    CheddaApi['name'] = 'Chedda-Nagar'
 
     DeonarApi = Deonar.tail(1)
     DeonarApi['name'] = 'Deonar'
 
     TilakApi = Tilak_Nagar.tail(1)
-    TilakApi['name'] = 'Tilak Nagar'
+    TilakApi['name'] = 'Tilak-Nagar'
     SindhiApi = Sindhi_Society.tail(1)
-    SindhiApi['name'] = 'Sindhi Society'
+    SindhiApi['name'] = 'Sindhi-Society'
     ChemburWApi = Chembur_West.tail(1)
-    ChemburWApi['name'] = 'Chembur-west'
+    ChemburWApi['name'] = 'Chembur-West'
     MahulApi = Mahul_E.tail(1)
     MahulApi['name'] = 'Mahul'
 
@@ -559,68 +559,61 @@ def social(request):
     mankhud_west = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
 
     Cheeta_campApi = Cheeta_camp.tail(1)
-    Cheeta_campApi['name'] = 'Cheetah Camp'
+    Cheeta_campApi['name'] = 'Cheetah-Camp'
 
     chembur_eastApi = chembur_east.tail(1)
-    chembur_eastApi['name'] = 'Chembur-east'
+    chembur_eastApi['name'] = 'Chembur-East'
 
     govandi_eastApi = govandi_east.tail(1)
     govandi_eastApi['name'] = 'Govandi'
 
     shivaji_nagarApi = shivaji_nagar.tail(1)
-    shivaji_nagarApi['name'] = 'Shivaji Nagar'
+    shivaji_nagarApi['name'] = 'Shivaji-Nagar'
 
     trombayApi = trombay.tail(1)
     trombayApi['name'] = 'Trombay'
 
     AnushaktiApi = Anushakti.tail(1)
-    AnushaktiApi['name'] = 'Ansuhakti Nagar'
+    AnushaktiApi['name'] = 'Ansuhakti-Nagar'
 
     mankhud_westApi = mankhud_west.tail(1)
     mankhud_westApi['name'] = 'Mankhurd'
 
     #############
-    df_rowde = pd.concat([CheddaApi,ChemburWApi,MahulApi,TilakApi,SindhiApi]) 
-    df_row2de= pd.concat([SindhiApi, TilakApi,Cheeta_campApi,DeonarApi])
+    
+    df_rowwe = pd.concat([CheddaApi, SindhiApi, TilakApi,
+                        ChemburWApi, DeonarApi, MahulApi])
 
-    df_row3de=pd.concat([chembur_eastApi,govandi_eastApi,shivaji_nagarApi,trombayApi,AnushaktiApi,mankhud_westApi,DeonarApi,Cheeta_campApi])
+    df_row2ea = pd.concat([chembur_eastApi, Cheeta_campApi, govandi_eastApi,
+                        shivaji_nagarApi, trombayApi, AnushaktiApi, mankhud_westApi])
+
+    df_totalpo = pd.concat([df_rowwe, df_row2ea])
 
     # meast ends
+    westpop = df_rowwe['Population'].sum()
+    eastpop = df_row2ea['Population'].sum()
 
+    df2 = df_rowwe[list(['name', 'Population'])]
+    df3 = df_row2ea[list(['name', 'Population'])]
+    df2.columns = ['name', 'Population']
+    df2 = df2.sort_values(by='Population', ascending=False)
+    wast_west_n = list(df2['name'].values)
+    countsVal_west = list(df2['Population'].values)
 
-    message_east = gettext(AQIW_E)
-    mwardwest = df_row
-    mwardeast = df_row2
-    uniquewest = pd.unique(mwardwest['name'])
-    overallCountminwest = df_row['AQI'].min()
-    overallCountmineast = df_row2['AQI'].min()
-    maxVal_west = df_row['AQI'].max()
-    maxVal_east = df_row2['AQI'].max()
+    df3.columns = ['name', 'Population']
+    df3 = df3.sort_values(by='Population', ascending=False)
+    wast_east_n = list(df3['name'].values)
+    countsVal_east = list(df3['Population'].values)
+        
+    maxw=countsVal_west[-1]
+    loww=countsVal_west[0]
+    maxe=countsVal_east[-1]
+    lowe=countsVal_east[0]
 
-    unique_east = pd.unique(mwardeast['name'])
-
-    # getcolor
-    color_west = getcolor(AQIW_W)
-    color_east = getcolor(AQIW_E)
-
-    # getemoji
-    emoji_west = getemoji(AQIW_W)
-    emoji_east = getemoji(AQIW_E)
-
-    # gettext2
-    text2_W = gettext2(AQIW_W)
-    text2_E = gettext2(AQIW_E)
-
-    # getimg
-    img_W = getimg(AQIW_W)
-    img_E = getimg(AQIW_E)
-
-    wast_west_n, countsVal_west, logVals, dataForMapGraph, wast_east_n, countsVal_east = getBarData(
-        mwardwest, uniquewest)
+    
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'img_W': img_W, 'img_E': img_E, 'text2_W': text2_W, 'text2_E': text2_E, 'emoji_west': emoji_west, 'emoji_east': emoji_east, 'color_west': color_west, 'color_east': color_east, 'message_east': message_east, 'message_west': message_west, 'AQIW': AQIW_W, 'AQIE': AQIW_E, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west, 'logVals': logVals, 'maxVal_east': maxVal_east,
-               'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
+    context = {'popeast':eastpop,'popwest':westpop,'namew':wast_west_n,'namee':wast_east_n,'val_w':countsVal_west,'val_e':countsVal_east,'maxpw':maxw,'lowpw':loww,'maxpe':maxe,'lowpe':lowe}
     return render(request, 'social.html', context) 
 
 def gettext3(AQIW):

@@ -71,18 +71,16 @@
                           <div class="row">
                             <div class="col-8">
                           <h4 style="font-weight: 600;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-WEST,Mumbai</h4>  
-                          <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
-                          <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_west}}">{{AQIW}}
+                          <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">Population(Extrapoalted on the basis of census 2011)</h5>
+                          <h2 style="text-align:left;font-size: 65px;margin-left: 10px;font-family: Poppins;color: {{color_west}}">{{popwest}}
                             <br>
                           <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_W}}</span>
                         </h2> 
                           </div>
-                          <div class="col-4">
-                            <img style="height: 180px;width: 100px;" src="{{base_url}}/{{img_W}}" alt="My image">
-                          </div>
+                          
                           <hr>
-                          <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
-                          <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_west}}</p>
+                          <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Population Density - 18832 Residents per km&#178;</h5>
+                          <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">This Area is densely populated but the Population growth of this area has been reducing by 0.5% each year. </p>
                         </div>
                         </div>
                     </div>
@@ -95,29 +93,29 @@
                               <tr class="table-dark">
                                 <th>Category</th>
                                 <th>Area</th>
-                                <th>AQI</th>
+                                <th>Population</th>
                               </tr>
                             </thead>
                             <tbody>
                               <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
                                 <td>M-Ward East Lowest</td>
                                 <td>Mankhurd</td>
-                                <td>{{overallCountmineast}}</td>
+                                <td>{{maxpe}}</td>
                               </tr>      
                               <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
                                 <td >M-Ward East Highest</td>
                                 <td>Shivaji Nagar</td>
-                                <td>{{maxVal_east}}</td>
+                                <td>{{lowpe}}</td>
                               </tr>
                               <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-success">
                                 <td>M-Ward West Lowest</td>
                                 <td>Chembur</td>
-                                <td>{{overallCountminwest}}</td>
+                                <td>{{maxpw}}</td>
                               </tr>
                               <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
                                 <td>M-Ward West Highest</td>
                                 <td>Sindhi Society</td>
-                                <td>{{maxVal_west}}</td>
+                                <td>{{lowpw}}</td>
                               </tr>
                              
                             </tbody>
@@ -132,18 +130,16 @@
                         <div class="row">
                           <div class="col-8">
                         <h4 style="font-weight: 600;color: #2962FF;text-align:left;font-size:17px;font-family:Poppins;">&#128205 M-ward-EAST,Mumbai</h4>  
-                        <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">AQI Prediction</h5>
-                        <h2 style="text-align:left;font-size: 74px;margin-left: 10px;font-family: Poppins;color: {{color_east}}">{{AQIE}}
+                        <h5 class="card-title" style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">Population(Extrapoalted on the basis of census 2011)</h5>
+                        <h2 style="text-align:left;font-size: 65px;margin-left: 10px;font-family: Poppins;color: {{color_east}}">2048392
                           <br>
                         <span style="text-align:left;font-size:23px;margin-left: 10px;font-family:Poppins;">{{text2_E}}</span>
                       </h2>
                       </div>
-                      <div class="col-4">
-                        <img style="height: 180px;width: 100px;" src="{{base_url}}/{{img_E}}" alt="My image">
-                      </div>
+                      
                       <hr>
-                        <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Health Effects</h5>
-                        <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">{{message_east}}</p>
+                        <h5 style="font-weight: 600;text-align:left;font-size:16px;margin-left: 10px;font-family:Poppins;">&#9745 Population Density - 63027 Residents per km&#178;</h5>
+                        <p style="text-align:left;font-size:14px;margin-left: 10px;font-family:Poppins;">This Area is extremely dense in terms of populated and the Population growth of this area has been increasing by 19.7% each year.</p>
                     </div>
                     </div>
                    </div>
@@ -158,14 +154,14 @@
           <div class="col-4">
             <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:710;">
             <div class="card-body">
-              <h4 style="color: #7c0b03;font-family:Poppins;text-align:left;font-size:20px"><strong>&#9203 AQI Today</strong></h4>
+              <h4 style="color: #7c0b03;font-family:Poppins;text-align:left;font-size:20px"><strong>&#9203 Population 2021</strong></h4>
               <p class="fs-4" style="font-family: poppins"><strong>M-WARD WEST</strong></p>
               <div class="row">
               <div class="col-2" style="margin-left: 10px;">
                 <form method="post" enctype="multipart/form-data" action="Regionwise">
                   {% csrf_token %}
                   <div class="col-lg-4">
-                      {% for con in wast_west_n %}
+                      {% for con in namew %}
                       <table style="border-width: 2px; border: #333;">
                       <tr>
                           <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region" style="width:140px; height: 35px; " > {{con}} </button>
@@ -185,7 +181,7 @@
             <p class="fs-4" style="font-family: poppins"><strong>M-WARD EAST</strong></p>
             <div class="row">
               <div class="col-2" style="margin-left: 10px;">
-                {% for con in wast_east_n %}
+                {% for con in namee %}
             <table style="border-width: 2px; border: #333;">
             <tr>
                 <button type="submit" class="btn btn-light btn-outline-dark" value={{con}} name="Name_region"  style="width:140px; height: 35px;text-color: white;" > {{con}} </button>
@@ -210,7 +206,7 @@
                 <div class="card-body">
                   <h4 style="color: #055f3d;font-weight: 500;font-family:Poppins;text-align:center;font-size:20px"><strong>🗺️ M-Ward Map</strong></h4>
               <div >
-                <iframe id="encoder_iframe" height="96%" width="100%" src="{% url 'testgame' %}">
+                <iframe id="encoder_iframe" height="96%" width="100%" src="{% url 'mapop' %}">
               </iframe>
             </div>
           </div>
@@ -261,10 +257,10 @@ type: 'horizontalBar',
 
 // The data for our dataset
 data: {
-labels: {{ wast_west_n|safe }},
+labels: {{ namew|safe }},
 datasets: [{
-data: {{ countsVal_west|safe }},
-label: 'Current AQI',
+data: {{ val_w|safe }},
+label: 'Population',
 barThickness:'flex',
 backgroundColor:'#90A4AE',  
 
@@ -309,10 +305,10 @@ type: 'horizontalBar',
 
 // The data for our dataset
 data: {
-labels: {{ wast_east_n|safe }},
+labels: {{ namee|safe }},
 datasets: [{
-data: {{ countsVal_east|safe }},
-label: 'Current AQI',
+data: {{ val_e|safe }},
+label: 'Population',
 barThickness:'flex',
 backgroundColor:'#90A4AE',  
 
@@ -324,149 +320,10 @@ backgroundColor:'#90A4AE',
 // Configuration options go here
 options: chartOptions
 });
-</script>
 
-<script>
-var data2={{datasetForLine|safe}};
-var chartOptions2 = {
-legend: {
-display: false
-    }
-};
-var ctx2 = document.getElementById('lineChart').getContext('2d');  
-var myLineChart = new Chart(ctx2, {
-type: 'line',
-data: {labels:{{axisvalues|safe}},
-datasets:data2,},
-options: chartOptions2
-});
-</script>
-<script>
 
-var someDataMap=[{'code3': 'AFG', 'name': 'Afghanistan', 'value': 484, 'code': 'AF'},
-{'code3': 'ALB', 'name': 'Albania', 'value': 409, 'code': 'AL'},
-{'code3': 'DZA', 'name': 'Algeria', 'value': 1666, 'code': 'DZ'},
-{'code3': 'AND', 'name': 'Andorra', 'value': 583, 'code': 'AD'},
-{'code3': 'AGO', 'name': 'Angola', 'value': 19, 'code': 'AO'}];
 
-var someData2=[{
-"code3": "ABW",
-"name": "Aruba",
-"value": 582.34,
-"code": "AW"
-},
-{
-"code3": "AFG",
-"name": "Afghanistan",
-"value": 53.08,
-"code": "AF"
-},
-{
-"code3": "AGO",
-"name": "Angola",
-"value": 23.11,
-"code": "AO"
-}];
-var someData3={{dataForMapGraph|safe}};
-Highcharts.getJSON('https://cdn.jsdelivr.net/gh/highcharts/highcharts@v7.0.0/samples/data/world-population-density.json', function (data) {
 
-// Prevent logarithmic errors in color calulcation
-data.forEach(function (p) {
-p.value = (p.value < 1 ? 1 : p.value);
-});
-
-// Initiate the chart
-Highcharts.mapChart('mapChart', {
-
-chart: {
-map: 'custom/world'
-},
-
-title: {
-text: 'World Map COVID-19 Infection '
-},
-
-legend: {
-title: {
-text: 'Infected Population',
-style: {
-color: ( // theme
-    Highcharts.defaultOptions &&
-    Highcharts.defaultOptions.legend &&
-    Highcharts.defaultOptions.legend.title &&
-    Highcharts.defaultOptions.legend.title.style &&
-    Highcharts.defaultOptions.legend.title.style.color
-) || 'black'
-}
-}
-},
-
-mapNavigation: {
-enabled: true,
-buttonOptions: {
-verticalAlign: 'bottom'
-}
-},
-
-tooltip: {
-backgroundColor: 'none',
-borderWidth: 0,
-shadow: false,
-useHTML: true,
-padding: 0,
-pointFormat: '<span class="f32"><span class="flag {point.properties.hc-key}">' +
-'</span></span> {point.name}<br>' +'<span><h4>{point.value}</h4></span>',
-positioner: function () {
-return { x: 0, y: 250 };
-}
-},
-
-colorAxis: {
-min: 1,
-max: {{maxVal|safe}},
-type: 'logarithmic'
-},
-
-series: [{
-data: someData3,
-joinBy: ['iso-a3', 'code3'],
-name: 'Current AQI',
-states: {
-hover: {
-color: '#a4edba'
-}
-}
-}]
-});
-});
-
-</script>
-
-<script>
-var options = {
-series: {{dataForheatMap|safe}},
-chart: {
-height: 6500,
-type: 'heatmap',
-},
-dataLabels: {
-enabled: true
-},
-dataLabels: {
-position: 'top'
-},
-colors: ["#008FFB"],
-yaxis: {
-show: false},
-xaxis: {
-type: 'category',
-categories: {{dateCat|safe}}
-},
-
-};
-var chart4 = new ApexCharts(document.querySelector("#heatchart"), options);
-
-chart4.render();
 </script>
 </body>
 </html>
