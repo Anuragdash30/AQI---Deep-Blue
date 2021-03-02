@@ -9,7 +9,7 @@ import emoji
 from statsmodels.tsa.stattools import adfuller
 from pmdarima import auto_arima
 from statsmodels.tsa.arima_model import ARIMA
-
+from itertools import chain 
 pd.options.mode.chained_assignment = None
 
 
@@ -239,30 +239,54 @@ def drillDownACountry(request):
     Name_region = request.POST.get('Name_region')
     if(Name_region == "Chedda-Nagar"):
         indi = Chedda_Nagar
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
     if(Name_region == "Tilak-Nagar"):
         indi = Tilak_Nagar
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
     if(Name_region == "Sindhi-Society"):
         indi = Sindhi_Society
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
     if(Name_region == "Chembur-West"):
         indi = Chembur_West
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
     if(Name_region == "Deonar"):
         indi = Deonar
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
     if(Name_region == "Mahul"):
         indi = Mahul_E
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
     if(Name_region == "Cheeta-Camp"):
         indi = Cheeta_camp
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
     if(Name_region == "Chembur-East"):
         indi = chembur_east
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
     if(Name_region == "Govandi"):
         indi = govandi_east
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
     if(Name_region == "Shivaji-Nagar"):
         indi = shivaji_nagar
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
     if(Name_region == "Trombay"):
         indi = trombay
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
     if(Name_region == "Anushakti"):
         indi = Anushakti
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
     if(Name_region == "Mankhurd"):
         indi = mankhud_west
+        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
+    demo = demo.tail(1)
+    namegend=["Male","Female"]
+    valgend = demo[list(['Male', 'Female'])]
+    
+    valgend=valgend.values
+    xvalgend=[]
+
+    for l in valgend:
+        xvalgend.append(l)
+    xvalgend=np.array(xvalgend).tolist()
+    xvalgend = list(chain.from_iterable(xvalgend)) 
     train = indi
     train = train.dropna()
     train.set_index('Date', inplace=True)
@@ -323,7 +347,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)

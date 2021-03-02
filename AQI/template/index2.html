@@ -245,7 +245,7 @@
                 </div>
               </div>
               <hr>
-              <p class="fs-4" style="font-family: poppins"><strong>M-WARD EAST</strong></p>
+              <p class="fs-4" style="font-family: poppins"><strong>M-WARD EAST{{ valgend}}</strong></p>
               <div class="row">
                 <div class="col-2" style="margin-left: 10px;">
                   {% for con in wast_east_n %}
@@ -277,7 +277,7 @@
                             <h5 style="margin-left:50px;font-weight: 600;font-size: 14px;font-family: poppins;"><span style="color: #34a12b;word-spacing: 10px;">&#8226 Good(0-50) </span><span style="color: #FFEA00;word-spacing: 10px;">&#8226 Moderate(51-100) </span><span style="color: #FF9100;word-spacing: 10px;">&#8226 Poor(101-150) </span><span style="color: #f44336;word-spacing: 10px;">&#8226 Unhealthy(151-200) </span><span style="color: #9C27B0;word-spacing: 10px;">&#8226 Severe(201-250) </span><span style="color: #800000;word-spacing: 10px;">&#8226 Hazard(251-300)</span></h5>
 
                           </div>
-
+                          <canvas id="pie-chart" width="800" height="450"></canvas>
                 </div>
               </div>
               
@@ -449,6 +449,25 @@ function getRandomColor(indidata) {
     }
 });
 
+</script>
+<script>
+  new Chart(document.getElementById("pie-chart"), {
+    type: 'pie',
+    data: {
+      labels: {{ namegend|safe}},
+      datasets: [{
+        label: "Population (millions)",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: {{ valgend|safe}}
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Predicted world population (millions) in 2050'
+      }
+    }
+});
 </script>
 
 </html>
