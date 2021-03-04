@@ -16,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -29,6 +29,11 @@
 
     </style>
     -->
+    <style>
+      .checked {
+        color: orange;
+      }
+      </style>
     </head>
     <body style="background-color:#B3E5FC;">
         <!-- Navbar Start-->
@@ -223,16 +228,16 @@
       <!-- horizontal graph ends  -->
       <!-- Vicinity starts -->
       <div class="col-12">
-        <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:1370px;">
+        <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:1410px;">
             <div class="card-body">
               <h4 style="text-align: center;">M ward</h4>
-              <table class="table">
+              <table class="table" style="margin-left:38px;width: 95%;">
                 <thead>
                   <tr class="table-dark">
-                    <th style="width: 20%;">AREA</th>
-                    <th style="width: 28%;">Schools</th>
-                    <th>Hospitals</th>
-                    <th>Transportation</th>
+                    <th style="width: 16%;">AREA</th>
+                    <th style="width: 35%;">Schools</th>
+                    <th style="width: 35%;">Hospitals</th>
+                    <th style="width: 28%;">Transportation</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -241,7 +246,11 @@
                       Best</td>
                     <td>9 <br>
                       Swami Vivekanand High School<br>
-                      and Junior College (4.1)
+                      and Junior College <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-half checked"></span>
                     </td>
                     <td>4 <br>
                       Inlaks General Hospital (4.0)
