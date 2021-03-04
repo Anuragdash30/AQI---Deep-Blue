@@ -22,6 +22,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <!-- Flag sprites service provided by Martijn Lafeber, https://github.com/lafeber/world-flags-sprite/blob/master/LICENSE -->
     <link rel="stylesheet" type="text/css" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css" />
+    
+    <script src="https://unpkg.com/driver.js/dist/driver.min.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/driver.js/dist/driver.min.css">
     <!-- <style>
       .card:hover {
   transform: scale(1.1);
@@ -40,10 +43,10 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
+                  <li class="nav-item" id="home">
                     <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="/">Home</a>
                   </li>
-                  <li class="nav-item">
+                  <li class="nav-item" id="socio">
                     <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="Social">Socio-demo</a>
                   </li>
                  
@@ -482,6 +485,45 @@
     </div>
     </div> 
   </div>
+
+<!-- tour of the website js -->
+<script>
+  const driver = new Driver({
+    allowClose:false,
+  });
+
+// Define the steps for introduction
+driver.defineSteps([
+  {
+    element: '#home',
+    popover: {
+      className: 'first-step-popover-class',
+      title: 'Title on Popover',
+      description: 'Body of the popover',
+      position: 'bottom'
+    }
+  },
+  {
+    element: '#socio',
+    popover: {
+      title: 'Title on Popover',
+      description: 'Body of the popover',
+      position: 'bottom'
+    }
+  },
+  // {
+  //   element: '#third-element-introduction',
+  //   popover: {
+  //     title: 'Title on Popover',
+  //     description: 'Body of the popover',
+  //     position: 'right'
+  //   }
+  // },
+]);
+
+// Start the introduction
+driver.start();
+</script>
 
 
       <!-- Charts javascript -->
