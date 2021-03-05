@@ -278,6 +278,9 @@
 
                           </div>
                           <canvas id="pie-chart" width="800" height="450"></canvas>
+                          <canvas id="pie-chart1" width="800" height="450"></canvas>
+                          <canvas id="pie-chart2" width="800" height="450"></canvas>
+                          <canvas id="pie-chart3" width="800" height="450"></canvas>
                 </div>
               </div>
               
@@ -456,7 +459,7 @@ function getRandomColor(indidata) {
     data: {
       labels: {{ namegend|safe}},
       datasets: [{
-        label: "Population (millions)",
+        label: "Gender Wise Population",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
         data: {{ valgend|safe}}
       }]
@@ -464,10 +467,66 @@ function getRandomColor(indidata) {
     options: {
       title: {
         display: true,
-        text: 'Predicted world population (millions) in 2050'
+        text: 'Gender Wise Population(2021)'
       }
     }
 });
 </script>
-
+<script>
+  new Chart(document.getElementById("pie-chart1"), {
+    type: 'pie',
+    data: {
+      labels: {{ namerel|safe}},
+      datasets: [{
+        label: "Relegious Population",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: {{ xvalrel|safe}}
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Population Based On Relegion(2021)'
+      }
+    }
+});
+</script>
+<script>
+  new Chart(document.getElementById("pie-chart2"), {
+    type: 'pie',
+    data: {
+      labels: {{ namelang|safe}},
+      datasets: [{
+        label: "Population Based On Language Spoken",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: {{ xvallang|safe}}
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Population Based On Language Spoken(2021)'
+      }
+    }
+});
+</script>
+<script>
+  new Chart(document.getElementById("pie-chart3"), {
+    type: 'pie',
+    data: {
+      labels: {{ nameemp|safe}},
+      datasets: [{
+        label: "Population Based Of Occupation",
+        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        data: {{ xvalem|safe}}
+      }]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Population Based Of Occupation(2021)'
+      }
+    }
+});
+</script>
 </html>

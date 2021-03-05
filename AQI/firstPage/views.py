@@ -276,6 +276,7 @@ def drillDownACountry(request):
     if(Name_region == "Mankhurd"):
         indi = mankhud_west
         demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
+    demo1=demo
     demo = demo.tail(1)
     namegend=["Male","Female"]
     valgend = demo[list(['Male', 'Female'])]
@@ -287,6 +288,43 @@ def drillDownACountry(request):
         xvalgend.append(l)
     xvalgend=np.array(xvalgend).tolist()
     xvalgend = list(chain.from_iterable(xvalgend)) 
+    
+    
+    namerel=["Muslim","Hindu","Baudha"]
+    valgend = demo[list(['Muslim', 'Hindu','Baudha'])]
+    
+    valgend=valgend.values
+    xvalrel=[]
+
+    for l in valgend:
+        xvalrel.append(l)
+    xvalrel=np.array(xvalrel).tolist()
+    xvalrel = list(chain.from_iterable(xvalrel)) 
+    
+
+    namelang=["Hindi","Marathi","Bhjopuri","Urdu"]
+    valgend = demo[list(['Hindi','Marathi','Bhjopuri','Urdu'])]
+    
+    valgend=valgend.values
+    xvallang=[]
+
+    for l in valgend:
+        xvallang.append(l)
+    xvallang=np.array(xvallang).tolist()
+    xvallang = list(chain.from_iterable(xvallang)) 
+    
+    nameemp=["Casual_labour","Business","Employeed","Rag_picker"]
+    valgend = demo[list(['Casual_labour','Business','Employeed','Rag_picker'])]
+    
+    valgend=valgend.values
+    xvalem=[]
+
+    for l in valgend:
+        xvalem.append(l)
+    xvalem=np.array(xvalem).tolist()
+    xvalem = list(chain.from_iterable(xvalem)) 
+
+
     train = indi
     train = train.dropna()
     train.set_index('Date', inplace=True)
@@ -347,7 +385,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'nameemp':nameemp,'xvalem':xvalem,'xvallang':xvallang,'namelang':namelang,'namerel':namerel,'xvalrel':xvalrel,'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
