@@ -232,22 +232,56 @@
       <!-- Vicinity starts -->
       <div class="container">
         <div class="row">
-      <div class="col-12">
-        <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:1470px;">
-            <div class="card-body">
+          <div class="col-2">
+            <!-- <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 300%;height:1470px;">
+              <div class="card-body"> -->
+                
+            <div style="margin-top: 90px;margin-left: 65px;">
+              
+              <form method="post" enctype="multipart/form-data" action="Regionwise">
+                {% csrf_token %}
+                
+                    {% for con in wast_west_n %}
+                    <table style="border-width: 2px; border: #333;">
+                    <tr>
+                        <button  type="submit" class="btn btn-light " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
+                    </tr>
+                </table>
+                
+                    {% endfor %}
+  
+                    {% for con in wast_east_n %}
+              <table style="border-width: 2px; border: #333;">
+              <tr>
+                  <button type="submit" class="btn btn-light " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
+              </tr>
+          </table>
+              {% endfor %}
+               
+           
+          </form>
+           
+        
+          </div>
+          </div>
+          
+      <div class="col-10" style="margin-left:-5px;">
+        
               <h4 style="text-align: center;">M ward</h4>
-              <table class="table" style="margin-left:30px;width: 95%;">
+              <table class="table" style="margin-left:30px;">
                 <thead>
                   <tr class="table-dark">
                     <th style="width: 16%;">AREA</th>
-                    <th style="width: 37%;">Schools</th>
-                    <th style="width: 35%;">Hospitals</th>
-                    <th style="width: 28%;">Transportation</th>
+                    <th style="width: 50%;">Schools</th>
+                    <th style="width: 50%;">Hospitals</th>
+                    <th style="width: 18%;">Transportation</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
-                    <td>Sindhi Society<br>
+                  <!-- line-height: 30px;min-height: 45px;  -->
+                  <tr style="height: 80px;" class="table-primary">
+                    <td>
+
                       Best</td>
                     <td>9 <br>
                       Swami Vivekanand High School<br>
@@ -268,7 +302,7 @@
                     <td>{{overallCountmineast}} <br>
                       Hello</td>
                   </tr>      
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td >Deonar<br>
                       Best</td>
                     <td>2 <br>
@@ -288,7 +322,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Mahul<br>
                       Best</td>
                     <td>1<br>
@@ -306,7 +340,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td>Tilak-Nagar<br>
                       Best</td>
                     <td>9<br>
@@ -324,7 +358,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Chedda-Nagar<br>
                       Best</td>
                     <td>8<br>
@@ -344,7 +378,7 @@
                     <td><br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td>Chembur-West<br>
                       Best</td>
                     <td>6<br>
@@ -362,7 +396,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Anushakti Nagar<br>
                       Best</td>
                     <td>1<br>
@@ -380,7 +414,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td>Govandi<br>
                       Best</td>
                     <td>10<br>
@@ -398,7 +432,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Chembur-East<br>
                       Best</td>
                     <td>5<br>
@@ -416,7 +450,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td>Mankhurd<br>
                       Best</td>
                     <td>14<br>
@@ -434,7 +468,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Trombay<br>
                       Best</td>
                     <td>14<br>
@@ -444,7 +478,7 @@
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span></td>
                     <td>7<br>
-                      Jupiter Hospital & diagnostic center (4.3)<span class="fa fa-star checked"></span>
+                      Jupiter Hospital (4.3)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -452,7 +486,7 @@
                     <td>{{overallCountmineast}}</td>
                   </tr>
 
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-danger">
+                  <tr style="height: 80px;" class="table-danger">
                     <td>Cheeta-Camp<br>
                       Best</td>
                     <td>8<br>
@@ -470,7 +504,7 @@
                     <td>{{overallCountmineast}}<br>
                       Hello</td>
                   </tr>
-                  <tr style="line-height: 40px;min-height: 25px; height: 35px;" class="table-primary">
+                  <tr style="height: 80px;" class="table-primary">
                     <td>Shivaji-Nagar<br>
                       Best</td>
                     <td>9<br>
@@ -494,6 +528,9 @@
             </div>
         </div>
       </div>
+    </div>
+  </div>
+  
 
 
       
@@ -559,7 +596,7 @@
 
                         </tr>
                         <tr>
-                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-poor" style="color: white; background-color: orange; width: 100px;">101-200 </button></td>
+                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-poor" style="color: white; background-color: orange; width: 100px;">101-150 </button></td>
                             <td data-column="Air Quality is"> Poor </td>
                             <td data-column="health effects could be">
                                 <p>Poor air quality can affect health issues such as difficulty in breathing.</p>
@@ -567,7 +604,7 @@
 
                         </tr>
                         <tr>
-                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-unhealthy" style="color:white ;background-color: rgb(245, 135, 190);width: 100px;">201-300 </button></td>
+                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-unhealthy" style="color:white ;background-color: rgb(245, 135, 190);width: 100px;">151-200 </button></td>
                             <td data-column="Air Quality is"> Unhealthy </td>
                             <td data-column="health effects could be">
                                 <p>Toxic air can provoke health difficulties expecially to the young kids and elderly people..</p>
@@ -575,7 +612,7 @@
 
                         </tr>
                         <tr>
-                            <td data-column="When AQI is in the range"><button type="button " class="btn bg-severe" style="background-color: purple; width: 100px;color: white;">301-400 </button></td>
+                            <td data-column="When AQI is in the range"><button type="button " class="btn bg-severe" style="background-color: purple; width: 100px;color: white;">201-300 </button></td>
                             <td data-column="Air Quality is"> Severe </td>
                             <td data-column="health effects could be">
                                 <p>Breathing polluted AQI may lead to chronic health issues. </p>
@@ -583,10 +620,10 @@
 
                         </tr>
                         <tr>
-                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-hazardous" style="background-color: red; width: 100px; color: white;">401-500+ </button></td>
+                            <td data-column="When AQI is in the range"><button type="button" class="btn bg-hazardous" style="background-color: red; width: 100px; color: white;">300+ </button></td>
                             <td data-column="Air Quality is"> Hazardous </td>
                             <td data-column="health effects could be">
-                                <p>AQI exceeding 400 is highly unacceptable to human- can lead to premature death.</p>
+                                <p>AQI exceeding 300 is highly unacceptable to human- can lead to premature death.</p>
                             </td>
 
                         </tr>
