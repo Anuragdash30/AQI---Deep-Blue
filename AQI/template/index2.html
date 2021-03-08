@@ -513,26 +513,32 @@ function getRandomColor(indidata) {
     options: {
       title: {
         display: true,
-        text: 'Gender Wise Population(2021)'
+        text: 'Gender Wise Population(2021)',
+        fontSize:20
+        
       }
     }
+    
 });
 </script>
 <script>
+  
   new Chart(document.getElementById("pie-chart1"), {
     type: 'pie',
     data: {
       labels: {{ namerel|safe}},
       datasets: [{
-        label: "Relegious Population",
+        label: "Religious Population",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: {{ xvalrel|safe}}
+        data: {{ xvalrel|safe}},
+        fontSize:20
       }]
     },
     options: {
       title: {
         display: true,
-        text: 'Population Based On Relegion(2021)'
+        text: 'Population Based On Religion(2021)',
+        fontSize:20
       }
     }
 });
@@ -551,7 +557,8 @@ function getRandomColor(indidata) {
     options: {
       title: {
         display: true,
-        text: 'Population Based On Language Spoken(2021)'
+        text: 'Population Based On Language Spoken(2021)',
+        fontSize:20
       }
     }
 });
@@ -564,13 +571,16 @@ function getRandomColor(indidata) {
       datasets: [{
         label: "Population Based Of Occupation",
         backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
-        data: {{ xvalem|safe}}
+        data: {{ xvalem|safe}},
+        
+        
       }]
     },
     options: {
       title: {
         display: true,
-        text: 'Population Based Of Occupation(2021)'
+        text: 'Population Based Of Occupation(2021)',
+        fontSize:20
       }
     }
 });
