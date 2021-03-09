@@ -692,3 +692,6 @@ def gettext3(AQIW):
     else:
         pool = "Good"
     return pool
+
+def compare(request):
+    return render(request,'AirCompare.html')
