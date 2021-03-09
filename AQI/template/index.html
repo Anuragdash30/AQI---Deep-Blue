@@ -234,11 +234,13 @@
       <!-- Vicinity starts -->
       <div class="container">
         <div class="row">
+          <div class="card" >
+            <div class="card-body">
           <div class="col-2">
             <!-- <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 300%;height:1470px;">
               <div class="card-body"> -->
                 
-            <div style="margin-top: 90px;margin-left: 65px;">
+            <div style="margin-top: 110px;margin-left: 20px;">
               
               <form method="post" enctype="multipart/form-data" action="Regionwise">
                 {% csrf_token %}
@@ -246,7 +248,7 @@
                     {% for con in wast_west_n %}
                     <table style="border-width: 2px; border: #333;">
                     <tr>
-                        <button  type="submit" class="btn btn-light " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
+                        <button  type="submit" class="btn btn-info " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
                     </tr>
                 </table>
                 
@@ -255,7 +257,7 @@
                     {% for con in wast_east_n %}
               <table style="border-width: 2px; border: #333;">
               <tr>
-                  <button type="submit" class="btn btn-light " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
+                  <button type="submit" class="btn btn-info " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
               </tr>
           </table>
               {% endfor %}
@@ -267,25 +269,23 @@
           </div>
           </div>
           
-      <div class="col-10" style="margin-left:-5px;">
+      <div class="col-10" style="margin-left:170px;margin-top: -1180px;">
         
               <h4 style="text-align: center;">M ward</h4>
               <table class="table" style="margin-left:30px;">
                 <thead>
                   <tr class="table-dark">
-                    <th style="width: 16%;">AREA</th>
-                    <th style="width: 50%;">Schools</th>
-                    <th style="width: 50%;">Hospitals</th>
-                    <th style="width: 18%;">Transportation</th>
+                    <th style="width: 10%;">No. of Schools</th>
+                    <th style="width: 45%;">Best School</th>
+                    <th style="width: 10%;">No. of Hospitals</th>
+                    <th style="width: 55%;">Best Hospital</th>
                   </tr>
                 </thead>
                 <tbody>
                   <!-- line-height: 30px;min-height: 45px;  -->
                   <tr style="height: 80px;" class="table-primary">
+                    <td>9</td>
                     <td>
-
-                      Best</td>
-                    <td>9 <br>
                       Swami Vivekanand High School<br>
                       and Junior College (4.2) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
@@ -294,235 +294,210 @@
                       <span class="fa fa-star-half checked"></span>
                     </td>
                     <td>4 <br>
-                      Inlaks General Hospital (4.0)<span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star"></span>
+                      
 
                     </td>
-                    <td>{{overallCountmineast}} <br>
-                      Hello</td>
+                    <td>Inlaks General Hospital (4.0)<span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star"></span><br>
+                      </td>
                   </tr>      
                   <tr style="height: 80px;" class="table-danger">
-                    <td >Deonar<br>
-                      Best</td>
-                    <td>2 <br>
-                      The Gateway School Of Mumbai (3.8)<span class="fa fa-star checked"></span>
+                    <td >2</td>
+                    <td>  The Gateway School Of Mumbai (3.8)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span>
                       <span class="fa fa-star "></span>
                     </td>
                     <td>4 <br>
-                      Apollo Spectra Hospitals (4.6)<span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star-half checked"></span>
+                     
                       </td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
+                    <td> Apollo Spectra Hospitals (4.6)<span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star-half checked"></span></td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Mahul<br>
-                      Best</td>
-                    <td>1<br>
+                    <td>1</td>
+                    <td>
                       Vinay High School english medium (3.1)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star "></span>
                       <span class="fa fa-star "></span></td>
                     <td>1<br>
-                      Municipal Hospital (4.0) <span class="fa fa-star checked"></span>
+                     </td>
+                    <td> Municipal Hospital (4.0) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-danger">
-                    <td>Tilak-Nagar<br>
-                      Best</td>
-                    <td>9<br>
+                    <td>9</td>
+                    <td>
                       Saraswati Vidya Mandir (4.4) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>4<br>
-                      SRV Hospital (3.4) <span class="fa fa-star checked"></span>
+                    <td>4
+                      </td>
+                    <td>SRV Hospital (3.4) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Chedda-Nagar<br>
-                      Best</td>
-                    <td>8<br>
+                    <td>8</td>
+                    <td>
                       RBK International Academy (4.1) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star "></span></td>
-                    <td>1<br>
-                      Life Care Hospital (3)<span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star checked"></span>
-                      <span class="fa fa-star "></span>
-                      <span class="fa fa-star "></span>
-
+                    <td>1
                     </td>
-                    <td><br>
-                      Hello</td>
+                    <td>Life Care Hospital (3)<span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star checked"></span>
+                      <span class="fa fa-star "></span>
+                      <span class="fa fa-star "></span>
+                      </td>
                   </tr>
                   <tr style="height: 80px;" class="table-danger">
-                    <td>Chembur-West<br>
-                      Best</td>
-                    <td>6<br>
+                    <td>6</td>
+                    <td>
                       Modern English School (3.8) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked "></span>
                       <span class="fa fa-star "></span></td>
-                    <td>7<br>
-                      Kolekar Hospital & ICCU (4.2)<span class="fa fa-star checked"></span>
+                    <td>7
+                      </td>
+                    <td>Kolekar Hospital & ICCU (4.2)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Anushakti Nagar<br>
-                      Best</td>
-                    <td>1<br>
+                    <td>1</td>
+                    <td>
                       atomic energy central school 1-6 (4.5)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>2<br>
-                      BARC Hospital (4) <span class="fa fa-star checked"></span>
+                    <td>2
+                     </td>
+                    <td> BARC Hospital (4) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-danger">
-                    <td>Govandi<br>
-                      Best</td>
-                    <td>10<br>
+                    <td>10</td>
+                    <td>
                       Kumud Vidya Mandir School (3.9) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star "></span></td>
-                    <td>4<br>
-                      Jai Hind Hospital & ICCU (4.4)<span class="fa fa-star checked"></span>
+                    <td>4
+                      </td>
+                    <td>Jai Hind Hospital & ICCU (4.4)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Chembur-East<br>
-                      Best</td>
-                    <td>5<br>
+                    <td>5</td>
+                    <td>
                       Our Lady of Perpetual Succour High School (4.5)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>8<br>
-                      Joy Hospital (3.2)<span class="fa fa-star checked"></span>
+                    <td>8
+                      </td>
+                    <td>Joy Hospital (3.2)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star "></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-danger">
-                    <td>Mankhurd<br>
-                      Best</td>
-                    <td>14<br>
+                    <td>14</td>
+                    <td>
                       Shree Sai Vidyalaya (4)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>13<br>
-                      Vishwakarma Hospital (4.2)<span class="fa fa-star checked"></span>
+                    <td>13
+                      </td>
+                    <td>Vishwakarma Hospital (4.2)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Trombay<br>
-                      Best</td>
-                    <td>14<br>
+                    <td>14</td>
+                    <td>
                     Trombay Public High School (4.0)<span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star checked"></span>
                     <span class="fa fa-star"></span></td>
-                    <td>7<br>
-                      Jupiter Hospital (4.3)<span class="fa fa-star checked"></span>
+                    <td>7
+                     </td>
+                    <td> Jupiter Hospital (4.3)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>{{overallCountmineast}}</td>
                   </tr>
 
                   <tr style="height: 80px;" class="table-danger">
-                    <td>Cheeta-Camp<br>
-                      Best</td>
-                    <td>8<br>
+                    <td>8</td>
+                    <td>
                       Abhinav English School (4.5) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star-half checked"></span></td>
-                    <td>2<br>
+                    <td>2</td>
+                    <td>
                       MAA HOSPITAL AND ICU (3.8)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                   <tr style="height: 80px;" class="table-primary">
-                    <td>Shivaji-Nagar<br>
-                      Best</td>
-                    <td>9<br>
+                    <td>9</td>
+                    <td>
                       Shree Geeta Vidyalaya (4.2) <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>10<br>
-                      Mannat Hospital (4.1)<span class="fa fa-star checked"></span>
+                    <td>10
+                      </td>
+                    <td>Mannat Hospital (4.1)<span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star checked"></span>
                       <span class="fa fa-star"></span></td>
-                    <td>{{overallCountmineast}}<br>
-                      Hello</td>
                   </tr>
                 </tbody>
               </table>
