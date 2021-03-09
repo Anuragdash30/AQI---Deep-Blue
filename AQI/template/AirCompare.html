@@ -1,3 +1,5 @@
+{% load static %}
+{% static 'media' as base_url %}
 <html>
 
     <meta charset="utf-8">
@@ -99,5 +101,465 @@
      
               <br>
               <br>
+
+              <!-- air compare -->
+              <div class="con" style="display: flex;">
+                <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;margin-left:10px; width:800px;height:600px;margin-top: 20px;">
+                  <div class="card-body">
+                    <h1>M-Ward West Vs M-Ward East Aqi</h1>
+              <canvas id="myChart" style="position: absolute;" height="180" width="200"></canvas>
+              <canvas id="myChart2" style="position: absolute;" height="180" width="200"></canvas>
+                  </div>
+                </div>
+               
+              </div>
+              <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px; margin-left: 50px; width:90%;height:550px; margin-top: 20px;">
+                <div class="card-body">
+                <h1>Compare Regions</h1>
+                    <select id="select" style="height: 40px;
+                    border: 2px solid skyblue;
+                    border-radius: 5px;
+                    background-color: transparent;    
+                    color: skyblue;        
+                    font-size: 1rem;
+                    font-weight: bold;
+                    padding: 5px 10px;">
+                        <option>Select Region</option>
+                    </select>
+                    <select id="select2" style="height: 40px;
+                    border: 2px solid skyblue;
+                    border-radius: 5px;
+                    background-color: transparent;    
+                    color: skyblue;        
+                    font-size: 1rem;
+                    font-weight: bold;
+                    padding: 5px 10px;">
+                        <option>Select Region</option>
+                    </select>
+                    <button id="btn" onclick="getRegion()">GO</button>
+                    <p id="regionname"></p>
+                    <canvas id="myChart3" style="position: absolute;" height="130" width="200"></canvas>
+          
+            </div>
+              </div>
+          
+              <script>
+                
+                setup();
+          
+                async function setup() {
+                  const ctx = document.getElementById('myChart').getContext('2d');
+                  const globalTemps = await getData();
+                  const myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                      labels: globalTemps.date,
+                      datasets: [
+                        {
+                          label: 'M-WARD WEST Aqi Index',
+                          data: globalTemps.avg,
+                          fill: 'origin',
+                          lineTension:0,
+                          pointRadius:0,
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                          borderWidth: 1
+                        }
+                      ]
+                    },
+                    options: {
+                  layout: {
+                      padding: {
+                          left: 10,
+                          right: 130,
+                          top: 0,
+                          bottom: 450
+                      }
+                      
+                  },
+                  scales: {
+                      xAxes: [{
+                            // display: false,
+                          //  type: 'date',
+                          ticks: {
+                              display: true,//this will remove only the label
+                              autoSkip: true,
+                              maxTicksLimit: 17
+                          },
+                          // scaleLabel: {
+                          //   display: true,
+                          //   labelString: globalTemps.date
+                          // }
+                      }]
+                  },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: false,
+                  },
+                  hover: {
+                      mode: 'nearest',
+                      intersect: true
+                  },
+                  
+              }
+                  });
+                
+                const ctx2 = document.getElementById('myChart2').getContext('2d');
+          
+                  const globalTemps2 = await getData2();
+                  const myChart2 = new Chart(ctx2, {
+                    type: 'line',
+                    data: {
+                      labels: globalTemps2.date,
+                      datasets: [
+                        {
+                          label: 'M-WARD EAST Aqi Index',
+                          data: globalTemps2.avg,
+                          fill: 'origin',
+                          lineTension:0,
+                          pointRadius:0,
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                          borderWidth: 1
+                        }
+                      ]
+                    },
+                    options: {
+                  layout: {
+                      padding: {
+                          left: 10,
+                          right: 150,
+                          top: 300,
+                          bottom: 150
+                      }
+                      
+                  },
+                  scales: {
+                      xAxes: [{
+                        ticks: {
+                              display: true,//this will remove only the label
+                              autoSkip: true,
+                              maxTicksLimit: 17
+                          },
+                      }],
+                  //     yAxes: [{
+                  //   gridLines: {
+                  //     tickMarkLength: 0,
+                  //   },
+                  // }] 
+                  },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: false,
+                  },
+                  hover: {
+                      mode: 'nearest',
+                      intersect: true
+                  },
+                  
+              }
+                  });
+          
+                  const ctx3 = document.getElementById('myChart3').getContext('2d');
+                  const globalTemps3 = await getDatafull();
+                  
+               
+                  const myChart3 = new Chart(ctx3, {
+                    type: 'line',
+                    data: {
+                      labels: globalTemps3.date,
+                      datasets: [
+                        {
+                          label: 'M-WARD Aqi Index',
+                          data: globalTemps3.avg,
+                    
+                          lineTension:0,
+                          
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          // backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                          borderWidth: 1
+                        }
+                      ]
+                    },
+                    options: {
+                  layout: {
+                      padding: {
+                          left: 10,
+                          right: 130,
+                          top: 0,
+                          bottom: 450
+                      }
+                      
+                  },
+                  scales: {
+                      xAxes: [{
+                           
+                          ticks: {
+                              display: true,//this will remove only the label
+                              autoSkip: true,
+                              maxTicksLimit: 17
+                          },
+                         
+                      }]
+                  },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: false,
+                  },
+                  hover: {
+                      mode: 'nearest',
+                      intersect: true
+                  },
+                  
+              }
+                  });
+                  $("#btn").on("click", async function() {
+                  const ctx4 = document.getElementById('myChart3').getContext('2d');
+                  const globalTemps4 = await getDataCity1();
+                  console.log(globalTemps4);
+                  const globalTemps5 = await getDataCity2();
+                  console.log(globalTemps5);
+                  const myChart4 = new Chart(ctx4, {
+                    type: 'line',
+                    data: {
+                      labels: globalTemps4.date,
+                      datasets: [
+                        {
+                          label: globalTemps4.first,
+                          data: globalTemps4.avg,
+                          fill: false,
+                          // lineTension:0,
+                          // pointRadius:0,
+                          borderColor: 'rgba(255, 99, 132, 1)',
+                          // backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                          borderWidth: 1
+                        },
+                        {
+                          label: globalTemps5.second,
+                          data: globalTemps5.avg,
+                          fill: false,
+                          // lineTension:0,
+                          // pointRadius:0,
+                          borderColor: 'rgba(58, 52, 235, 1)',
+                          // backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                          borderWidth: 1
+                        }
+                      ]
+                    },
+                    options: {
+                  layout: {
+                      padding: {
+                          left: 10,
+                          right: 130,
+                          top: 0,
+                          bottom: 450
+                      }
+                      
+                  },
+                  scales: {
+                      xAxes: [{
+                           
+                          ticks: {
+                              display: true,//this will remove only the label
+                              autoSkip: true,
+                              maxTicksLimit: 17
+                          },
+                         
+                      }]
+                  },
+                  tooltips: {
+                      mode: 'index',
+                      intersect: false,
+                  },
+                  hover: {
+                      mode: 'nearest',
+                      intersect: true
+                  },
+                  
+              }
+                  });
+                });
+                }
+                
+                async function getData() {
+                  var west = '{% static "westaqi.csv" %}'
+
+                  const response = await fetch(west);
+                  const data = await response.text();
+                  const date = [];
+                  const avg = [];
+                  const rows = data.split('\n').slice(1);
+                  rows.forEach(row => {
+                    const cols = row.split(',');
+                    date.push(cols[1]);
+                    avg.push(cols[7]);
+                  });
+                  return { date, avg };
+                }
+          
+                async function getData2() {
+                  var east = '{% static "eastaqi.csv" %}'
+                  const response = await fetch(east);
+                  const data = await response.text();
+                  const date = [];
+                  const avg = [];
+                  const rows = data.split('\n').slice(1);
+                  rows.forEach(row => {
+                    const cols = row.split(',');
+                    date.push(cols[1]);
+                    avg.push(cols[10]);
+                    console.log(avg);
+                  });
+                  return { date, avg };
+                }
+                async function getDatafull() {
+                  var full = '{% static "fullmward.csv" %}'
+
+                  const response = await fetch(full);
+                  const data = await response.text();
+                  const date = [];
+                  const avg = [];
+                  const rows = data.split('\n').slice(1);
+                  rows.forEach(row => {
+                    const cols = row.split(',');
+                    date.push(cols[1]);
+                    avg.push(cols[17]);
+                    console.log(avg);
+                  });
+                  return { date, avg };
+                }
+                var select = document.querySelector("#select");
+                var select2 = document.querySelector("#select2");
+          
+                var pTag = document.querySelector("#regionname");
+          
+                const Regions= ["Chheda Nagar", "Tilak Nagar", "Sindhi Society", "Mahul", "Chembur West", "Mankhurd", "Deonar", "Cheeta Camp", "Anushakti Nagar", "Shiavji Nagar", "Govandi", "Chembur East", "Trombay" ];
+                for(let i=0; i<Regions.length;i++){
+              let region = Regions[i];
+              let optionElement = document.createElement('option');   
+              optionElement.value = region;
+              optionElement.textContent = region;
+              select.appendChild(optionElement);
+              console.log(optionElement);    
+          }
+          for(let i=0; i<Regions.length;i++){
+              let region = Regions[i];
+              let optionElement = document.createElement('option');   
+              optionElement.value = region;
+              optionElement.textContent = region;
+              select2.appendChild(optionElement);
+              console.log(optionElement);    
+          }
+          
+          
+          function getRegion() {
+              
+              let val = select.options[select.selectedIndex].text;
+              let val2= select2.options[select2.selectedIndex].text;
+              
+              console.log(pTag.textContent);
+              return [val, val2];
+          }
+          
+          async function getDataCity1() {
+                  // const response = await fetch('testdata.csv');
+                  var fulm = '{% static "fullmward.csv" %}'
+
+                  const response = await fetch(fulm);
+                  const data = await response.text();
+                  const date = [];
+                  const avg = [];
+                  const rows = data.split('\n').slice(1);
+                  const [first, second] = getRegion();
+                  rows.forEach(row => {
+                    const cols = row.split(',');
+                    date.push(cols[1]);
+                    
+                    console.log(first);
+                    if(first=="Chheda Nagar"){
+                      avg.push(cols[2]);
+                    }else if(first=="Tilak Nagar"){
+                      avg.push(cols[3]);
+                    }else if(first=="Sindhi Society"){
+                      avg.push(cols[4]);
+                    }else if(first=="Mahul"){
+                      avg.push(cols[5]);
+                    }else if(first=="Chembur West"){
+                      avg.push(cols[6]);
+                    }else if(first=="Mankhurd"){
+                      avg.push(cols[8]);
+                    }else if(first=="Deonar"){
+                      avg.push(cols[9]);
+                    }else if(first=="Cheeta Camp"){
+                      avg.push(cols[10]);
+                    }else if(first=="Anushakti Nagar"){
+                      avg.push(cols[11]);
+                    }else if(first=="Shivaji Nagar"){
+                      avg.push(cols[12]);
+                    }else if(first=="Govandi"){
+                      avg.push(cols[13]);
+                    }else if(first=="Chembur East"){
+                      avg.push(cols[14]);
+                    }else if(first=="Trombay"){
+                      avg.push(cols[15]);
+                    }
+          
+                    // date.push(cols[1]);
+                    // avg.push(cols[17]);
+                    console.log(avg);
+                  });
+                  return { date, avg, first };
+                }
+            
+                async function getDataCity2() {
+                  // const response = await fetch('testdata.csv');
+                  var fullm = '{% static "fullmward.csv" %}'
+
+                  const response = await fetch(fullm);
+                  const data = await response.text();
+                  const date = [];
+                  const avg = [];
+                  const rows = data.split('\n').slice(1);
+                  console.log(rows);
+                  const [first, second] = getRegion();
+                  rows.forEach(row => {
+                    const cols = row.split(',');
+                    date.push(cols[1]);
+                    
+                    console.log(second);
+                    if(second=="Chheda Nagar"){
+                      avg.push(cols[2]);
+                    }else if(second=="Tilak Nagar"){
+                      avg.push(cols[3]);
+                    }else if(second=="Sindhi Society"){
+                      avg.push(cols[4]);
+                    }else if(second=="Mahul"){
+                      avg.push(cols[5]);
+                    }else if(second=="Chembur West"){
+                      avg.push(cols[6]);
+                    }else if(second=="Mankhurd"){
+                      avg.push(cols[8]);
+                    }else if(second=="Deonar"){
+                      avg.push(cols[9]);
+                    }else if(second=="Cheeta Camp"){
+                      avg.push(cols[10]);
+                    }else if(second=="Anushakti Nagar"){
+                      avg.push(cols[11]);
+                    }else if(second=="Shivaji Nagar"){
+                      avg.push(cols[12]);
+                    }else if(second=="Govandi"){
+                      avg.push(cols[13]);
+                    }else if(second=="Chembur East"){
+                      avg.push(cols[14]);
+                    }else if(second=="Trombay"){
+                      avg.push(cols[15]);
+                    }
+          
+                    console.log(avg);
+                  });
+                  return { date, avg, second};
+                }
+              </script>
        
 </body>
+</html>

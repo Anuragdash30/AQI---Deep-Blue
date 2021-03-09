@@ -694,4 +694,6 @@ def gettext3(AQIW):
     return pool
 
 def compare(request):
+    westaqi=pd.read_csv("Data\AQI DATA NEW\westaqi.csv")
+    eastaqi=pd.read_csv("Data\AQI DATA NEW\eastaqi.csv")
     return render(request,'AirCompare.html')
