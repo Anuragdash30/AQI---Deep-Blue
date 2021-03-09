@@ -28,6 +28,7 @@ urlpatterns = [
     
  
     url('Regionwise',views.drillDownACountry,name='drillDown'),
-    url('Social',views.social,name='social')
+    url('Social',views.social,name='social'),
+    url('compare',views.compare,name='compare')
 
 ]
