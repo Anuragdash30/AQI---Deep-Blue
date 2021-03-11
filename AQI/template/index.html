@@ -240,14 +240,15 @@
             <!-- <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 300%;height:1470px;">
               <div class="card-body"> -->
                 
+
             <div style="margin-top: 110px;margin-left: 20px;">
               
               <form method="post" enctype="multipart/form-data" action="Regionwise">
                 {% csrf_token %}
-                
                     {% for con in wast_west_n %}
                     <table style="border-width: 2px; border: #333;">
                     <tr>
+                      
                         <button  type="submit" class="btn btn-info " value={{con}} name="Name_region" style="width:150px; height: 40px;margin-bottom: 40px;" > {{con}} </button>
                     </tr>
                 </table>
@@ -272,6 +273,7 @@
       <div class="col-10" style="margin-left:170px;margin-top: -1180px;">
         
               <h4 style="text-align: center;">M ward</h4>
+              <p style="margin-top: 80px;margin-left: 25px;">Hello</p>
               <table class="table" style="margin-left:30px;">
                 <thead>
                   <tr class="table-dark">
