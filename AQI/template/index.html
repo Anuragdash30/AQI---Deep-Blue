@@ -40,22 +40,22 @@
     </head>
     <body style="background-color:#B3E5FC;">
         <!-- Navbar Start-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);background-color: #F5F5F5;">
+        <nav class="navbar navbar-expand-lg navbar-light bg-dark" style="height:80px;box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 5%);background-color: #F5F5F5;">
             <div class="container-fluid">
-              <a class="navbar-brand" style="font-family: poppins;font-size: large;font-weight: 600;" >AQV</a>
+              <a class="navbar-brand" style="color:white;font-family: poppins;font-size: 50px;font-weight: 600;" >AQV</a>
               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
               </button>
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                   <li class="nav-item" id="home">
-                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="/">Home</a>
+                    <a class="nav-link active" style="margin-left:1050px;color:skyblue;font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="/">Home</a>
                   </li>
                   <li class="nav-item" id="socio">
-                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="Social">Socio-demo</a>
+                    <a class="nav-link " style="margin-left:50px;color:skyblue;font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="Social">Socio Demo</a>
                   </li>
                   <li class="nav-item" id="aircompare">
-                    <a class="nav-link active" style="font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="compare">Air-compare</a>
+                    <a class="nav-link " style="margin-left:50px;color:skyblue;font-family: poppins;font-size: large;font-weight: 600;" aria-current="page" href="compare">Air Compare</a>
                   </li>
                 </ul>
               </div>
@@ -214,14 +214,26 @@
         </table>
             {% endfor %}
         </div>
-        <div class="col-8" style="margin-left: 60px;">
+        <div class="col-6" style="margin-left: 60px;">
             <div> 
-                <canvas id="myChart2" style="height: 236px; width: 280px"></canvas>
-                
-
+                <canvas id="myChart2" style="height: 320px; width: 280px"></canvas>
                 
             </div>
           </div>
+          
+            <div style="margin-left:-20px" class="col-2">
+              <p style="margin-top: 7px;color:darkcyan;font-weight: bold;">{{countsVal_east.0}}</p>
+              <p style="margin-top: -5px;color:darkcyan;font-weight: bold;">{{countsVal_east.1}}</p> 
+              <p style="margin-top: -5px;color:darkcyan;font-weight: bold;">{{countsVal_east.2}}</p>
+              <p style="margin-top: -7px;color:darkcyan;font-weight: bold;">{{countsVal_east.3}}</p>
+              <p style="margin-top: -5px;color:darkcyan;font-weight: bold;">{{countsVal_east.4}}</p>
+              <p style="margin-top: -5px;color:darkcyan;font-weight: bold;">{{countsVal_east.5}}</p>
+              <p style="margin-top: px;color:darkcyan;font-weight: bold;">{{countsVal_east.6}}</p>
+
+             
+           
+          </div>
+
             </form>
           </div>
         </div>
@@ -247,7 +259,7 @@
       <!-- Vicinity starts -->
       <div class="container">
         <div class="row">
-          <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;height:1160" >
+          <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;height:1180" >
             <div class="card-body">
           <div class="col-2">
             <!-- <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 300%;height:1470px;">
@@ -783,7 +795,7 @@ type: 'horizontalBar',
 
 // The data for our dataset
 data: {
-labels: {{ wast_west_n|safe }},
+labels: {{ wast_east_n|safe }},
 datasets: [{
 data: {{ countsVal_east|safe }},
 label: 'Current AQI',
