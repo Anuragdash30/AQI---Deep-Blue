@@ -296,17 +296,44 @@
                 <div class="row">
                   <div class="col-6">
                     <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:480px;">
-                      <div class="card-body">
-                    <canvas id="pie-chart" width="800" height="450"></canvas>
+                      <div class="card-body" style="display: inline-block;" >
+                        <div id="my-legend-con" class="legend-con" style="bottom: 0px; float: left; margin-top: 100px;" ><ul style="list-style-type: none;margin: 0;padding: 0;"><li style="list-style: none;margin: 0;padding: 0;"></li></ul></div>
+
+                        <div class="name" style="display: flex;
+                        align-items:center;
+                        margin-bottom: 10px;
+                        justify-content: center;
+                        min-height: 365px;
+                        position: relative;">
+                        <p style="position: relative; left: 300px;
+                        margin-top: 64px;">Total </p>
+                        <canvas id="pie-chart" width="800" height="550"></canvas>
+                    
+                  </div>
+                  
                   </div>
                   </div>
                   </div>
                   <div class="col-6">
                     <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:480px;">
-                      <div class="card-body">
-                    <canvas id="pie-chart1" width="800" height="450"></canvas>
+                      <div class="card-body" style="display: inline-block;" >
+                        <div id="my-legend-con2" class="legend-con2" style="bottom: 0px; float: left; margin-top: 100px;" ><ul style="list-style-type: none;margin: 0;padding: 0;"><li style="list-style: none;margin: 0;padding: 0;"></li></ul></div>
+
+                        <div class="name" style="display: flex;
+                        align-items:center;
+                        margin-bottom: 10px;
+                        justify-content: center;
+                        min-height: 365px;
+                        position: relative;">
+                        <p style="position: relative; left: 300px;
+                        margin-top: 64px;">Total </p>
+                    <canvas id="pie-chart1" width="800" height="550"></canvas></div>
+                        
+                      
                   </div>
+
                   </div>
+
                   </div>
 
                 </div>
@@ -319,16 +346,38 @@
                 <div class="row">
                   <div class="col-6">
                     <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:480px;">
-                      <div class="card-body">
-                    <canvas id="pie-chart2" width="800" height="450"></canvas>
+                      <div class="card-body" style="display: inline-block;" >
+                        <div id="my-legend-con3" class="legend-con3" style="bottom: 0px; float: left; margin-top: 100px;" ><ul style="list-style-type: none;margin: 0;padding: 0;"><li style="list-style: none;margin: 0;padding: 0;"></li></ul></div>
+
+                        <div class="name" style="display: flex;
+                        align-items:center;
+                        margin-bottom: 10px;
+                        justify-content: center;
+                        min-height: 365px;
+                        position: relative;">
+                        <p style="position: relative; left: 300px;
+                        margin-top: 64px;">Total </p>
+                    <canvas id="pie-chart2" width="800" height="650"></canvas></div>
+
                   </div>
                   </div>
                   </div>
 
                   <div class="col-6">
                     <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;width: 100%;height:480px;">
-                      <div class="card-body">
-                    <canvas id="pie-chart3" width="800" height="450"></canvas>
+                      <div class="card-body" style="display: inline-block;" >
+                        <div id="my-legend-con4" class="legend-con4" style="bottom: 0px; float: left; margin-top: 100px;" ><ul style="list-style-type: none;margin: 0;padding: 0;"><li style="list-style: none;margin: 0;padding: 0;"></li></ul></div>
+
+                        <div class="name" style="display: flex;
+                        align-items:center;
+                        margin-bottom: 10px;
+                        justify-content: center;
+                        min-height: 365px;
+                        position: relative;">
+                        <p style="position: relative; left: 270px;
+                        margin-top: 64px;">Total </p>
+                    <canvas id="pie-chart3" width="800" height="650"></canvas></div>
+
                   </div>
                   </div>
                   </div>
@@ -344,9 +393,28 @@
                 
 
     <script>
-
+// Chart.pluginService.register({
+//   id: 'p1',
+//     beforeDraw: function (chart) {
+//         var width = chart.chart.width,
+//             height = chart.chart.height,
+//             ctx = chart.chart.ctx;
+//         ctx.restore();
+//         var fontSize = (height / 114).toFixed(2);
+//         ctx.font = fontSize + "em sans-serif";
+//         ctx.textBaseline = "middle";
+//         var text = chart.config.options.elements.center.text,
+//             textX = Math.round((width - ctx.measureText(text).width) / 2),
+//             textY = height / 2;
+//         ctx.fillText(text, textX, textY);
+//         ctx.save();
+//     }
+// });
         var ctx = document.getElementById('myChart').getContext('2d');
         var chartOptions = {
+          // plugins: {
+          //   p1: false
+          // },
                                 legend: {
                                     display: false
                                         },
@@ -395,6 +463,9 @@
     
         var ctx = document.getElementById('myChart2').getContext('2d');
         var chartOptions = {
+          // plugins: {
+          //   p1: false
+          // },
                                 legend: {
                                     display: false
                                         },
@@ -497,82 +568,328 @@ function getRandomColor(indidata) {
         text: 'AQI Index for {{Name_region}}'
       },
       legend: { display: false }
+     
     }
 });
 
 </script>
 <script>
-  new Chart(document.getElementById("pie-chart"), {
-    type: 'pie',
+  
+  var cdata={{ valgend|safe}};
+  var sum=0;
+  console.log(cdata);
+  for(var i=0; i<cdata.length; i++){
+    sum +=cdata[i];
+  }
+  console.log(sum);
+  var textInside = sum.toString();
+  var myChart=new Chart(document.getElementById("pie-chart"), {
+    type: 'doughnut',
+    plugins: [{
+      beforeDraw: function (chart) {
+        var width = chart.chart.width,
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+        ctx.restore();
+        var fontSize = (height / 150).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+        var text = chart.config.options.elements.center.text,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+        // console.log(text);
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+    }
+    }],
+    animation:{
+        animateScale:true
+    },
     data: {
       labels: {{ namegend|safe}},
       datasets: [{
         label: "Gender Wise Population",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        backgroundColor: [
+                "#a2d6c4",
+                "#36A2EB",
+                "#3e8787",
+                "#579aac",
+                "#7dcfe8",
+                "#b3dfe7",
+                "#CDDC39"
+            ],
         data: {{ valgend|safe}}
       }]
     },
+    
     options: {
       title: {
-        display: true,
-        text: 'Gender Wise Population(2021)',
-        fontSize:20
-        
-      }
+            display: true,
+            text: 'Population Based on Gender(2021)',
+            fontSize: 20,
+        },
+        elements: {
+          center: {
+            text: textInside 
+          },
+          
+        },
+        responsive: true,
+        legend: false,
+        legendCallback: function(chart) {
+            var legendHtml = [];
+            legendHtml.push('<ul style= "list-style-type:none;">');
+            var item = chart.data.datasets[0];
+            for (var i=0; i < item.data.length; i++) {
+                legendHtml.push('<li>');
+                legendHtml.push('<span class="chart-legend" style="display:inline-block; width:25px;height:25px;margin-right:10px;background-color:' + item.backgroundColor[i] +'"></span>');
+                legendHtml.push('<span class="chart-legend-label-text" style="display:inline-block;">' + item.data[i] + ' - '+chart.data.labels[i]+'</span>');
+                legendHtml.push('</li>');
+            }
+
+            legendHtml.push('</ul>');
+            return legendHtml.join("");
+        },
+        tooltips: {
+             enabled: true,
+             mode: 'label',
+             callbacks: {
+                label: function(tooltipItem, data) {
+                    var indice = tooltipItem.index;
+                    return data.datasets[0].data[indice] + " " + data.labels[indice];
+                }
+             }
+         },
     }
-    
 });
+$('#my-legend-con').html(myChart.generateLegend());
+console.log(document.getElementById('my-legend-con'));
+
+var item= chart.data.datasets[0];
+console.log(item);
 </script>
 <script>
-  
-  new Chart(document.getElementById("pie-chart1"), {
-    type: 'pie',
+  var cdata2={{ xvalrel|safe}};
+  var sum2=0;
+  console.log(cdata2);
+  for(var i=0; i<cdata2.length; i++){
+    sum2 +=cdata2[i];
+  }
+  console.log(sum2);
+  var textInside2 = sum2.toString();
+  var myChart2=new Chart(document.getElementById("pie-chart1"), {
+    type: 'doughnut',
+    plugins: [{
+      beforeDraw: function (chart) {
+        var width = chart.chart.width,
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+        ctx.restore();
+        var fontSize = (height / 150).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+        var text = chart.config.options.elements.center.text,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+        // console.log(text);
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+    }
+    }],
+    animation:{
+        animateScale:true
+    },
     data: {
       labels: {{ namerel|safe}},
       datasets: [{
         label: "Religious Population",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        backgroundColor: ["#a2d6c4",
+                "#36A2EB",
+                "#3e8787",
+                "#579aac",
+                "#7dcfe8",
+                "#b3dfe7",
+                "#CDDC39"],
         data: {{ xvalrel|safe}},
         fontSize:20
       }]
     },
     options: {
       title: {
-        display: true,
-        text: 'Population Based On Religion(2021)',
-        fontSize:20
-      }
+            display: true,
+            text: 'Population Based on Religion(2021)',
+            fontSize: 20,
+        },
+        elements: {
+          center: {
+            text: textInside2
+          },
+          
+        },
+        responsive: true,
+        legend: false,
+        legendCallback: function(chart) {
+            var legendHtml2 = [];
+            legendHtml2.push('<ul style= "list-style-type:none;">');
+            var item2 = chart.data.datasets[0];
+            for (var i=0; i < item2.data.length; i++) {
+                legendHtml2.push('<li>');
+                legendHtml2.push('<span class="chart-legend" style="display:inline-block; width:25px;height:25px;margin-right:10px;background-color:' + item2.backgroundColor[i] +'"></span>');
+                legendHtml2.push('<span class="chart-legend-label-text" style="display:inline-block;">' + item2.data[i] + ' - '+chart.data.labels[i]+'</span>');
+                legendHtml2.push('</li>');
+            }
+
+            legendHtml2.push('</ul>');
+            return legendHtml2.join("");
+        },
+        tooltips: {
+             enabled: true,
+             mode: 'label',
+             callbacks: {
+                label: function(tooltipItem, data) {
+                    var indice = tooltipItem.index;
+                    return data.datasets[0].data[indice] + " " + data.labels[indice];
+                }
+             }
+         },
     }
 });
+$('#my-legend-con2').html(myChart2.generateLegend());
+console.log(document.getElementById('my-legend-con2'));
 </script>
 <script>
-  new Chart(document.getElementById("pie-chart2"), {
-    type: 'pie',
+  var cdata3={{ xvallang|safe}};
+  var sum3=0;
+  console.log(cdata3);
+  for(var i=0; i<cdata3.length; i++){
+    sum3 +=cdata3[i];
+  }
+  console.log(sum3);
+  var textInside3 = sum3.toString();
+  var myChart3=new Chart(document.getElementById("pie-chart2"), {
+    type: 'doughnut',
+    plugins: [{
+      beforeDraw: function (chart) {
+        var width = chart.chart.width,
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+        ctx.restore();
+        var fontSize = (height / 150).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+        var text = chart.config.options.elements.center.text,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+        // console.log(text);
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+    }
+    }],
+    animation:{
+        animateScale:true
+    },
     data: {
       labels: {{ namelang|safe}},
       datasets: [{
         label: "Population Based On Language Spoken",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        backgroundColor: ["#a2d6c4",
+                "#36A2EB",
+                "#3e8787",
+                "#579aac",
+                "#7dcfe8",
+                "#b3dfe7",
+                "#CDDC39"],
         data: {{ xvallang|safe}}
       }]
     },
     options: {
       title: {
-        display: true,
-        text: 'Population Based On Language Spoken(2021)',
-        fontSize:20
-      }
+            display: true,
+            text: 'Population Based on Languages(2021)',
+            fontSize: 20,
+        },
+        elements: {
+          center: {
+            text: textInside3
+          },
+          
+        },
+        responsive: true,
+        legend: false,
+        legendCallback: function(chart) {
+            var legendHtml3 = [];
+            legendHtml3.push('<ul style= "list-style-type:none;">');
+            var item3 = chart.data.datasets[0];
+            for (var i=0; i < item3.data.length; i++) {
+                legendHtml3.push('<li>');
+                legendHtml3.push('<span class="chart-legend" style="display:inline-block; width:25px;height:25px;margin-right:10px;background-color:' + item3.backgroundColor[i] +'"></span>');
+                legendHtml3.push('<span class="chart-legend-label-text" style="display:inline-block;">' + item3.data[i] + ' - '+chart.data.labels[i]+'</span>');
+                legendHtml3.push('</li>');
+            }
+
+            legendHtml3.push('</ul>');
+            return legendHtml3.join("");
+        },
+        tooltips: {
+             enabled: true,
+             mode: 'label',
+             callbacks: {
+                label: function(tooltipItem, data) {
+                    var indice = tooltipItem.index;
+                    return data.datasets[0].data[indice] + " " + data.labels[indice];
+                }
+             }
+         },
     }
 });
+$('#my-legend-con3').html(myChart3.generateLegend());
+console.log(document.getElementById('my-legend-con3'));
+
 </script>
 <script>
-  new Chart(document.getElementById("pie-chart3"), {
-    type: 'pie',
+   var cdata4={{ xvalem|safe}};
+   console.log(cdata4);
+  var sum4=0;
+  console.log(cdata4);
+  console.log(cdata4.length);
+  for(var i=0; i<cdata4.length; i++){
+    sum4 +=cdata4[i];
+  }
+  console.log(sum4);
+  var textInside4 = sum4.toString();
+  var myChart4=new Chart(document.getElementById("pie-chart3"), {
+    type: 'doughnut',
+    plugins: [{
+      beforeDraw: function (chart) {
+        var width = chart.chart.width,
+            height = chart.chart.height,
+            ctx = chart.chart.ctx;
+        ctx.restore();
+        var fontSize = (height / 150).toFixed(2);
+        ctx.font = fontSize + "em sans-serif";
+        ctx.textBaseline = "middle";
+        var text = chart.config.options.elements.center.text,
+            textX = Math.round((width - ctx.measureText(text).width) / 2),
+            textY = height / 2;
+        // console.log(text);
+        ctx.fillText(text, textX, textY);
+        ctx.save();
+    }
+    }],
+    animation:{
+        animateScale:true
+    },
     data: {
       labels: {{ nameemp|safe}},
       datasets: [{
         label: "Population Based Of Occupation",
-        backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"],
+        backgroundColor: ["#a2d6c4",
+                "#36A2EB",
+                "#3e8787",
+                "#579aac",
+                "#7dcfe8",
+                "#b3dfe7",
+                "#CDDC39"],
         data: {{ xvalem|safe}},
         
         
@@ -580,11 +897,44 @@ function getRandomColor(indidata) {
     },
     options: {
       title: {
-        display: true,
-        text: 'Population Based Of Occupation(2021)',
-        fontSize:20
-      }
+            display: true,
+            text: 'Population Based on Occupation(2021)',
+            fontSize: 20,
+        },
+        elements: {
+          center: {
+            text: textInside4
+          },
+          
+        },
+        responsive: true,
+        legend: false,
+        legendCallback: function(chart) {
+            var legendHtml4 = [];
+            legendHtml4.push('<ul style= "list-style-type:none;">');
+            var item4 = chart.data.datasets[0];
+            for (var i=0; i < item4.data.length; i++) {
+                legendHtml4.push('<li>');
+                legendHtml4.push('<span class="chart-legend" style="display:inline-block; width:25px;height:25px;margin-right:10px;background-color:' + item4.backgroundColor[i] +'"></span>');
+                legendHtml4.push('<span class="chart-legend-label-text" style="display:inline-block;">' + item4.data[i] + ' - '+chart.data.labels[i]+'</span>');
+                legendHtml4.push('</li>');
+            }
+
+            legendHtml4.push('</ul>');
+            return legendHtml4.join("");
+        },
+        tooltips: {
+             enabled: true,
+             mode: 'label',
+             callbacks: {
+                label: function(tooltipItem, data) {
+                    var indice = tooltipItem.index;
+                    return data.datasets[0].data[indice] + " " + data.labels[indice];
+                }
+             }
+         },
     }
 });
+$('#my-legend-con4').html(myChart4.generateLegend());
 </script>
 </html>
