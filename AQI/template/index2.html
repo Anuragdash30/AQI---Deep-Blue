@@ -303,6 +303,15 @@
                           </div>
                           
                 </div>
+                <div style="font-weight: 500;font-family:Poppins;font-size:40px;text-align: center;">&#128200  Population Analysis on {{Name_region}}</div>
+                        
+                <canvas id="mixed-chart1" style="margin-top:50px;height:600px;width:1200px;"></canvas>
+                <br>
+                <h5 style="margin-left:50px;font-weight: 600;font-size: 14px;font-family: poppins;"></h5>
+
+              </div>
+              
+    </div>
               </div>
               
            
@@ -588,6 +597,70 @@ function getRandomColor(indidata) {
       title: {
         display: true,
         text: 'AQI Index for {{Name_region}}'
+      },
+      legend: { display: false }
+     
+    }
+});
+
+</script>
+
+<script> 
+function getRandomColor(indidata) {
+    var pool = [];
+    
+    for(i = 0; i <indidata.length; i++) {
+      if(indidata[i]  >=300)  
+      {
+      pool.push("#800000");
+      }
+      else if(indidata[i]>=201 && indidata[i]<300)
+      {
+        pool.push("#800080");
+      }
+      else if(indidata[i]>=151 && indidata[i]<201)
+      {
+        pool.push("red");
+      }
+      else if(indidata[i]>=101 && indidata[i]<151)
+      {
+        pool.push("orange");
+      }
+      else if(indidata[i]>=51 && indidata[i]<101)
+      {
+        pool.push("yellow");
+      }
+      else
+      {
+        pool.push("green");
+      }
+
+
+    }
+    return pool;
+}   
+    new Chart(document.getElementById("mixed-chart1"), {
+    type: 'bar',
+    data: {
+      labels: {{ nameye|safe}},
+      datasets: [{
+          label: "AQI",
+          type: "line",
+          borderColor: "#1E90FF",
+          data: {{popgend}},
+          fill: false
+        }, {
+          label: "Population",
+          type: "bar",
+          backgroundColor:"#1E90FF",
+          data:  {{popgend}} ,
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: true,
+        text: 'Population Change For {{Name_region}}'
       },
       legend: { display: false }
      

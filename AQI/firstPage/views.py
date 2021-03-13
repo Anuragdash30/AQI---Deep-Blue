@@ -277,6 +277,24 @@ def drillDownACountry(request):
         indi = mankhud_west
         demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
     demo1=demo
+    nameye=demo1[list(['Year'])]
+    popgend=demo1[list(['Population'])]
+    nameye=nameye.values
+    popgend=popgend.values
+    popgen=[]
+
+    for l in popgend:
+        popgen.append(l)
+    popgen=np.array(popgen).tolist()
+    popgen = list(chain.from_iterable(popgen)) 
+
+    namey=[]
+
+    for l in nameye:
+        namey.append(l)
+    namey=np.array(namey).tolist()
+    namey = list(chain.from_iterable(namey)) 
+
     demo = demo.tail(1)
     namegend=["Male","Female"]
     valgend = demo[list(['Male', 'Female'])]
@@ -385,7 +403,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'nameemp':nameemp,'xvalem':xvalem,'xvallang':xvallang,'namelang':namelang,'namerel':namerel,'xvalrel':xvalrel,'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'popgend':popgen,'nameye':namey,'nameemp':nameemp,'xvalem':xvalem,'xvallang':xvallang,'namelang':namelang,'namerel':namerel,'xvalrel':xvalrel,'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
