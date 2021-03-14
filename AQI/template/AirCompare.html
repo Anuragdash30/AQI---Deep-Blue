@@ -177,11 +177,89 @@
                   </div>
                   </div>
                 </div>
-                
+               
               </div>
+            </div>
+            <div class="container-fluid">
+              <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px; margin-left: 80px; width:90%;height:750px; margin-top: 20px;">
+                <div class="card-body">
+              <canvas id="mixed-chart1" style="margin-top:50px;height:600px;width:1200px;"></canvas>  
+              
+              </div>
+              </div>
+              </div>
+              <br>
+              <br>
+              
 
-              </div>
-          
+<script>
+
+  function getRandomColor(indidata) {
+      var pool = [];
+      
+      for(i = 0; i <indidata.length; i++) {
+        if(indidata[i]  >=300)  
+        {
+        pool.push("#800000");
+        }
+        else if(indidata[i]>=201 && indidata[i]<300)
+        {
+          pool.push("#800080");
+        }
+        else if(indidata[i]>=151 && indidata[i]<201)
+        {
+          pool.push("red");
+        }
+        else if(indidata[i]>=101 && indidata[i]<151)
+        {
+          pool.push("orange");
+        }
+        else if(indidata[i]>=51 && indidata[i]<101)
+        {
+          pool.push("yellow");
+        }
+        else
+        {
+          pool.push("green");
+        }
+  
+  
+      }
+      return pool;
+  }   
+      new Chart(document.getElementById("mixed-chart1"), {
+      type: 'line',
+      data: {
+        labels: {{ nameoo|safe}},
+        datasets: [{
+            label: "Predicted AQI",
+            type: "line",
+            borderColor: "#1E90FF",
+            backgroundColor:"#1E90FF",
+            data: {{ pre}},
+            fill: false
+          }, {
+            label: "Original AQI",
+            type: "line",
+            backgroundColor:"lightgreen",
+            borderColor: "lightgreen",
+            data:  {{aqio}} ,
+            fill: false
+          }
+        ]
+      },
+      options: {
+        title: {
+          display: true,
+          text: 'Comparison between Predicted Vs The Original AQI'
+        },
+        legend: { display: true }
+       
+      }
+  });
+  
+  </script>
+  
               <script>
                 
                 setup();
