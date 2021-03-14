@@ -6,6 +6,11 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.highcharts.com/maps/modules/data.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
@@ -295,7 +300,7 @@
                 <div class="card" style="box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px;height:710">
                   <div class="card-body">
                 <div style="font-weight: 500;font-family:Poppins;font-size:40px;text-align: center;">&#128200 Analysis on {{Name_region}}</div>
-                        
+                <!-- <ol class="breadcrumb">Enter dates : <input type="text" name="datefilter" value="" /></ol> -->
                             <canvas id="mixed-chart" style="margin-top:50px;height:600px;width:1200px;"></canvas>
                             <br>
                             <h5 style="margin-left:50px;font-weight: 600;font-size: 14px;font-family: poppins;"><span style="color: #34a12b;word-spacing: 10px;">&#8226 Good(0-50) </span><span style="color: #FFEA00;word-spacing: 10px;">&#8226 Moderate(51-100) </span><span style="color: #FF9100;word-spacing: 10px;">&#8226 Poor(101-150) </span><span style="color: #f44336;word-spacing: 10px;">&#8226 Unhealthy(151-200) </span><span style="color: #9C27B0;word-spacing: 10px;">&#8226 Severe(201-250) </span><span style="color: #800000;word-spacing: 10px;">&#8226 Hazard(251-300)</span></h5>
@@ -424,23 +429,22 @@
                 
 
     <script>
-// Chart.pluginService.register({
-//   id: 'p1',
-//     beforeDraw: function (chart) {
-//         var width = chart.chart.width,
-//             height = chart.chart.height,
-//             ctx = chart.chart.ctx;
-//         ctx.restore();
-//         var fontSize = (height / 114).toFixed(2);
-//         ctx.font = fontSize + "em sans-serif";
-//         ctx.textBaseline = "middle";
-//         var text = chart.config.options.elements.center.text,
-//             textX = Math.round((width - ctx.measureText(text).width) / 2),
-//             textY = height / 2;
-//         ctx.fillText(text, textX, textY);
-//         ctx.save();
-//     }
-// });
+      $(function() {
+
+      $('input[name="datefilter"]').daterangepicker({
+          showDropdowns : true,
+          autoUpdateInput: false,
+          locale: {
+              cancelLabel: 'Clear'
+          }
+      });
+      $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
+    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
+      var fromDate = picker.startDate.format('DD/MM/YYYY');
+      var toDate = picker.endDate.format('DD/MM/YYY');
+      if (fromDate != '' && toDate != '') {
+                console.log(fromDate, toDate);
+
         var ctx = document.getElementById('myChart').getContext('2d');
         var chartOptions = {
           // plugins: {
