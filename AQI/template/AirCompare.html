@@ -179,8 +179,17 @@
                 </div>
                
               </div>
+            </div>
+            <div class="container-fluid">
+              <div class="card" style="font-family:Poppins;box-shadow: 0 2px 20px 0 rgb(0 0 0 / 10%);border-radius: 10px; margin-left: 80px; width:90%;height:750px; margin-top: 20px;">
+                <div class="card-body">
               <canvas id="mixed-chart1" style="margin-top:50px;height:600px;width:1200px;"></canvas>  
+              
               </div>
+              </div>
+              </div>
+              <br>
+              <br>
               
 
 <script>
@@ -226,12 +235,14 @@
             label: "Predicted AQI",
             type: "line",
             borderColor: "#1E90FF",
+            backgroundColor:"#1E90FF",
             data: {{ pre}},
             fill: false
           }, {
             label: "Original AQI",
             type: "line",
-            backgroundColor:"#1E90FF",
+            backgroundColor:"lightgreen",
+            borderColor: "lightgreen",
             data:  {{aqio}} ,
             fill: false
           }
@@ -242,7 +253,7 @@
           display: true,
           text: 'Comparison between Predicted Vs The Original AQI'
         },
-        legend: { display: false }
+        legend: { display: true }
        
       }
   });
