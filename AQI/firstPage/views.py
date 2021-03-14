@@ -710,8 +710,43 @@ def gettext3(AQIW):
     else:
         pool = "Good"
     return pool
-
+    
 def compare(request):
     westaqi=pd.read_csv("Data\AQI DATA NEW\westaqi.csv")
     eastaqi=pd.read_csv("Data\AQI DATA NEW\eastaqi.csv")
-    return render(request,'AirCompare.html')
+    pre = pd.read_csv("Data\AQI DATA NEW\predictedanu.csv").dropna(how='all')
+    Anushak = pd.read_csv("Data\AQI DATA NEW\AnushaktiApi.csv").dropna(how='all')
+    anuo=Anushak.tail(14)
+
+    popgend=pre[list(['AQI'])]
+
+    popgend=popgend.values
+    popgen=[]
+
+    for l in popgend:
+        popgen.append(l)
+    popgen=np.array(popgen).tolist()
+    popgen = list(chain.from_iterable(popgen)) 
+
+  
+
+    aqio=anuo[list(['AQI'])]
+  
+    aqio=aqio.values
+   
+
+    anuooo = anuo[list(anuo.columns[0:4])+list([anuo.columns[-1]])]
+    anuooo.columns = ['Date', 'O3', 'PM2.5', 'PM10', 'AQI']
+    nameoo = list(anuooo['Date'].values)
+  
+
+    aqioo=[]
+    for l in aqio:
+        aqioo.append(l)
+    aqioo=np.array(aqioo).tolist()
+    aqioo = list(chain.from_iterable(aqioo))  
+
+    context = {'nameoo':nameoo,'aqio':aqioo,'pre':popgen}
+    return render(request,'AirCompare.html',context)
+
+
