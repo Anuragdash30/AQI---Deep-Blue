@@ -6,10 +6,7 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script src="https://code.highcharts.com/maps/highmaps.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
     <script src="https://code.highcharts.com/maps/modules/data.js"></script>
     <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
@@ -484,21 +481,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>          
 
     <script>
-      $(function() {
-
-      $('input[name="datefilter"]').daterangepicker({
-          showDropdowns : true,
-          autoUpdateInput: false,
-          locale: {
-              cancelLabel: 'Clear'
-          }
-      });
-      $('input[name="datefilter"]').on('apply.daterangepicker', function(ev, picker) {
-    $(this).val(picker.startDate.format('DD/MM/YYYY') + ' - ' + picker.endDate.format('DD/MM/YYYY'));
-      var fromDate = picker.startDate.format('DD/MM/YYYY');
-      var toDate = picker.endDate.format('DD/MM/YYY');
-      if (fromDate != '' && toDate != '') {
-                console.log(fromDate, toDate);
+        
 
         var ctx = document.getElementById('myChart').getContext('2d');
         var chartOptions = {
