@@ -9,7 +9,7 @@ import emoji
 from statsmodels.tsa.stattools import adfuller
 from pmdarima import auto_arima
 from statsmodels.tsa.arima_model import ARIMA
-from itertools import chain 
+from itertools import chain
 pd.options.mode.chained_assignment = None
 
 
@@ -239,109 +239,120 @@ def drillDownACountry(request):
     Name_region = request.POST.get('Name_region')
     if(Name_region == "Chedda-Nagar"):
         indi = Chedda_Nagar
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
     if(Name_region == "Tilak-Nagar"):
         indi = Tilak_Nagar
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
     if(Name_region == "Sindhi-Society"):
         indi = Sindhi_Society
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
     if(Name_region == "Chembur-West"):
         indi = Chembur_West
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
     if(Name_region == "Deonar"):
         indi = Deonar
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
     if(Name_region == "Mahul"):
         indi = Mahul_E
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
     if(Name_region == "Cheeta-Camp"):
         indi = Cheeta_camp
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
     if(Name_region == "Chembur-East"):
         indi = chembur_east
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
     if(Name_region == "Govandi"):
         indi = govandi_east
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
     if(Name_region == "Shivaji-Nagar"):
         indi = shivaji_nagar
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
     if(Name_region == "Trombay"):
         indi = trombay
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
     if(Name_region == "Anushakti"):
         indi = Anushakti
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
     if(Name_region == "Mankhurd"):
         indi = mankhud_west
-        demo = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
-    demo1=demo
-    nameye=demo1[list(['Year'])]
-    popgend=demo1[list(['Population'])]
-    nameye=nameye.values
-    popgend=popgend.values
-    popgen=[]
+        demo = pd.read_csv(
+            "Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
+    demo1 = demo
+    nameye = demo1[list(['Year'])]
+    popgend = demo1[list(['Population'])]
+    nameye = nameye.values
+    popgend = popgend.values
+    popgen = []
 
     for l in popgend:
         popgen.append(l)
-    popgen=np.array(popgen).tolist()
-    popgen = list(chain.from_iterable(popgen)) 
+    popgen = np.array(popgen).tolist()
+    popgen = list(chain.from_iterable(popgen))
 
-    namey=[]
+    namey = []
 
     for l in nameye:
         namey.append(l)
-    namey=np.array(namey).tolist()
-    namey = list(chain.from_iterable(namey)) 
+    namey = np.array(namey).tolist()
+    namey = list(chain.from_iterable(namey))
 
     demo = demo.tail(1)
-    namegend=["Male","Female"]
+    namegend = ["Male", "Female"]
     valgend = demo[list(['Male', 'Female'])]
-    
-    valgend=valgend.values
-    xvalgend=[]
+
+    valgend = valgend.values
+    xvalgend = []
 
     for l in valgend:
         xvalgend.append(l)
-    xvalgend=np.array(xvalgend).tolist()
-    xvalgend = list(chain.from_iterable(xvalgend)) 
-    
-    
-    namerel=["Muslim","Hindu","Baudha"]
-    valgend = demo[list(['Muslim', 'Hindu','Baudha'])]
-    
-    valgend=valgend.values
-    xvalrel=[]
+    xvalgend = np.array(xvalgend).tolist()
+    xvalgend = list(chain.from_iterable(xvalgend))
+
+    namerel = ["Muslim", "Hindu", "Baudha"]
+    valgend = demo[list(['Muslim', 'Hindu', 'Baudha'])]
+
+    valgend = valgend.values
+    xvalrel = []
 
     for l in valgend:
         xvalrel.append(l)
-    xvalrel=np.array(xvalrel).tolist()
-    xvalrel = list(chain.from_iterable(xvalrel)) 
-    
+    xvalrel = np.array(xvalrel).tolist()
+    xvalrel = list(chain.from_iterable(xvalrel))
 
-    namelang=["Hindi","Marathi","Bhjopuri","Urdu"]
-    valgend = demo[list(['Hindi','Marathi','Bhjopuri','Urdu'])]
-    
-    valgend=valgend.values
-    xvallang=[]
+    namelang = ["Hindi", "Marathi", "Bhjopuri", "Urdu"]
+    valgend = demo[list(['Hindi', 'Marathi', 'Bhjopuri', 'Urdu'])]
+
+    valgend = valgend.values
+    xvallang = []
 
     for l in valgend:
         xvallang.append(l)
-    xvallang=np.array(xvallang).tolist()
-    xvallang = list(chain.from_iterable(xvallang)) 
-    
-    nameemp=["Casual_labour","Business","Employeed","Rag_picker"]
-    valgend = demo[list(['Casual_labour','Business','Employeed','Rag_picker'])]
-    
-    valgend=valgend.values
-    xvalem=[]
+    xvallang = np.array(xvallang).tolist()
+    xvallang = list(chain.from_iterable(xvallang))
+
+    nameemp = ["Casual_labour", "Business", "Employeed", "Rag_picker"]
+    valgend = demo[list(['Casual_labour', 'Business',
+                         'Employeed', 'Rag_picker'])]
+
+    valgend = valgend.values
+    xvalem = []
 
     for l in valgend:
         xvalem.append(l)
-    xvalem=np.array(xvalem).tolist()
-    xvalem = list(chain.from_iterable(xvalem)) 
-
+    xvalem = np.array(xvalem).tolist()
+    xvalem = list(chain.from_iterable(xvalem))
 
     train = indi
     train = train.dropna()
@@ -403,7 +414,7 @@ def drillDownACountry(request):
 
     logVals = list(np.log(ind) if ind != 0 else 0 for ind in countsVal_west)
 
-    context = context = {'popgend':popgen,'nameye':namey,'nameemp':nameemp,'xvalem':xvalem,'xvallang':xvallang,'namelang':namelang,'namerel':namerel,'xvalrel':xvalrel,'namegend':namegend,'valgend':xvalgend,'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
+    context = context = {'popgend': popgen, 'nameye': namey, 'nameemp': nameemp, 'xvalem': xvalem, 'xvallang': xvallang, 'namelang': namelang, 'namerel': namerel, 'xvalrel': xvalrel, 'namegend': namegend, 'valgend': xvalgend, 'preddesc': preddesc, 'predemj': predemj, 'predcol': predcol, 'newdates': newdates, 'daypredicts': daypredicts, 'aqipredict': aqipredict, 'Name_region': Name_region, 'indidate': indidate, 'indidata': indidata, 'uniquewest': uniquewest, 'wast_west_n': wast_west_n, 'countsVal_west': countsVal_west,
                          'maxVal_east': maxVal_east, 'maxVal_west': maxVal_west, 'overallCountminwest': overallCountminwest, 'overallCountmineast': overallCountmineast, 'wast_east_n': wast_east_n, 'countsVal_east': countsVal_east}
 
     return render(request, 'index2.html', context)
@@ -583,23 +594,25 @@ def getdesc(aqipredic):
 # Avoid going near high-traffic areas
 # stay at home!
 
+
 def social(request):
-    Chedda_Nagar = pd.read_csv("Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
+    Chedda_Nagar = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dchedda.csv").dropna(how='all')
 
+    Tilak_Nagar = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
 
-    Tilak_Nagar = pd.read_csv("Data\AQI DATA NEW\demographic\dtilak.csv").dropna(how='all')
+    Sindhi_Society = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
 
+    Chembur_West = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
 
-    Sindhi_Society = pd.read_csv("Data\AQI DATA NEW\demographic\dsindhi.csv").dropna(how='all')
+    Deonar = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
 
-
-    Chembur_West =  pd.read_csv("Data\AQI DATA NEW\demographic\dche_w.csv").dropna(how='all')
-
-    Deonar =  pd.read_csv("Data\AQI DATA NEW\demographic\ddeonar.csv").dropna(how='all')
-
-
-    Mahul_E = pd.read_csv("Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
-
+    Mahul_E = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dmahul.csv").dropna(how='all')
 
     CheddaApi = Chedda_Nagar.tail(1)
     CheddaApi['name'] = 'Chedda-Nagar'
@@ -616,27 +629,27 @@ def social(request):
     MahulApi = Mahul_E.tail(1)
     MahulApi['name'] = 'Mahul'
 
+    # m ward east
+    Cheeta_camp = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
 
+    chembur_east = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
 
+    govandi_east = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
 
-    ################# m ward east
-    Cheeta_camp = pd.read_csv("Data\AQI DATA NEW\demographic\dcheeta.csv").dropna(how='all')
+    shivaji_nagar = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
 
+    trombay = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
 
-    chembur_east = pd.read_csv("Data\AQI DATA NEW\demographic\dchem_e.csv").dropna(how='all')
+    Anushakti = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
 
-
-    govandi_east = pd.read_csv("Data\AQI DATA NEW\demographic\dgovandi.csv").dropna(how='all')
-
-
-    shivaji_nagar =  pd.read_csv("Data\AQI DATA NEW\demographic\dshivaji.csv").dropna(how='all')
-
-
-    trombay = pd.read_csv("Data\AQI DATA NEW\demographic\dtrombay.csv").dropna(how='all')
-
-    Anushakti = pd.read_csv("Data\AQI DATA NEW\demographic\danu.csv").dropna(how='all')
-
-    mankhud_west = pd.read_csv("Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
+    mankhud_west = pd.read_csv(
+        "Data\AQI DATA NEW\demographic\dmankhud.csv").dropna(how='all')
 
     Cheeta_campApi = Cheeta_camp.tail(1)
     Cheeta_campApi['name'] = 'Cheetah-Camp'
@@ -660,12 +673,12 @@ def social(request):
     mankhud_westApi['name'] = 'Mankhurd'
 
     #############
-    
+
     df_rowwe = pd.concat([CheddaApi, SindhiApi, TilakApi,
-                        ChemburWApi, DeonarApi, MahulApi])
+                          ChemburWApi, DeonarApi, MahulApi])
 
     df_row2ea = pd.concat([chembur_eastApi, Cheeta_campApi, govandi_eastApi,
-                        shivaji_nagarApi, trombayApi, AnushaktiApi, mankhud_westApi])
+                           shivaji_nagarApi, trombayApi, AnushaktiApi, mankhud_westApi])
 
     df_totalpo = pd.concat([df_rowwe, df_row2ea])
 
@@ -684,17 +697,18 @@ def social(request):
     df3 = df3.sort_values(by='Population', ascending=False)
     wast_east_n = list(df3['name'].values)
     countsVal_east = list(df3['Population'].values)
-        
-    maxw=countsVal_west[-1]
-    loww=countsVal_west[0]
-    maxe=countsVal_east[-1]
-    lowe=countsVal_east[0]
 
-    
+    maxw = countsVal_west[-1]
+    loww = countsVal_west[0]
+    maxe = countsVal_east[-1]
+    lowe = countsVal_east[0]
+
     # dataForheatMap,dateCat=getHeatMapData(mwardwest,wast_west_n)
     # datasetForLine,axisvalues=getLinebarGroupData(mwardwest,uniquewest)
-    context = {'popeast':eastpop,'popwest':westpop,'namew':wast_west_n,'namee':wast_east_n,'val_w':countsVal_west,'val_e':countsVal_east,'maxpw':maxw,'lowpw':loww,'maxpe':maxe,'lowpe':lowe}
-    return render(request, 'social.html', context) 
+    context = {'popeast': eastpop, 'popwest': westpop, 'namew': wast_west_n, 'namee': wast_east_n,
+               'val_w': countsVal_west, 'val_e': countsVal_east, 'maxpw': maxw, 'lowpw': loww, 'maxpe': maxe, 'lowpe': lowe}
+    return render(request, 'social.html', context)
+
 
 def gettext3(AQIW):
     if AQIW >= 300:
@@ -710,43 +724,39 @@ def gettext3(AQIW):
     else:
         pool = "Good"
     return pool
-    
+
+
 def compare(request):
-    westaqi=pd.read_csv("Data\AQI DATA NEW\westaqi.csv")
-    eastaqi=pd.read_csv("Data\AQI DATA NEW\eastaqi.csv")
+    westaqi = pd.read_csv("Data\AQI DATA NEW\westaqi.csv")
+    eastaqi = pd.read_csv("Data\AQI DATA NEW\eastaqi.csv")
     pre = pd.read_csv("Data\AQI DATA NEW\predictedanu.csv").dropna(how='all')
-    Anushak = pd.read_csv("Data\AQI DATA NEW\AnushaktiApi.csv").dropna(how='all')
-    anuo=Anushak.tail(14)
+    Anushak = pd.read_csv(
+        "Data\AQI DATA NEW\AnushaktiApi.csv").dropna(how='all')
+    anuo = Anushak.tail(14)
 
-    popgend=pre[list(['AQI'])]
+    popgend = pre[list(['AQI'])]
 
-    popgend=popgend.values
-    popgen=[]
+    popgend = popgend.values
+    popgen = []
 
     for l in popgend:
         popgen.append(l)
-    popgen=np.array(popgen).tolist()
-    popgen = list(chain.from_iterable(popgen)) 
+    popgen = np.array(popgen).tolist()
+    popgen = list(chain.from_iterable(popgen))
 
-  
+    aqio = anuo[list(['AQI'])]
 
-    aqio=anuo[list(['AQI'])]
-  
-    aqio=aqio.values
-   
+    aqio = aqio.values
 
     anuooo = anuo[list(anuo.columns[0:4])+list([anuo.columns[-1]])]
     anuooo.columns = ['Date', 'O3', 'PM2.5', 'PM10', 'AQI']
     nameoo = list(anuooo['Date'].values)
-  
 
-    aqioo=[]
+    aqioo = []
     for l in aqio:
         aqioo.append(l)
-    aqioo=np.array(aqioo).tolist()
-    aqioo = list(chain.from_iterable(aqioo))  
+    aqioo = np.array(aqioo).tolist()
+    aqioo = list(chain.from_iterable(aqioo))
 
-    context = {'nameoo':nameoo,'aqio':aqioo,'pre':popgen}
-    return render(request,'AirCompare.html',context)
-
-
+    context = {'nameoo': nameoo, 'aqio': aqioo, 'pre': popgen}
+    return render(request, 'AirCompare.html', context)
