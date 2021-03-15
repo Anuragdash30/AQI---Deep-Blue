@@ -301,7 +301,7 @@
           
       <div class="col-10" style="margin-left:170px;margin-top: -1165px;">
         
-        <h3 style="font-family: poppins;margin-top: 20px;text-align: center;">M-ward </h3>
+        <h3 id="desc" style="font-family: poppins;margin-top: 20px;text-align: center;">M-ward </h3>
             
               <table class="table" style="margin-left:30px;">
                 <thead>
@@ -734,6 +734,14 @@ driver.defineSteps([
     popover: {
       title: 'Get Standard AQI Range',
       description: 'Table showing standard air quality index',
+      position: 'top'
+    }
+  },
+  {
+    element: '#desc',
+    popover: {
+      title: 'Best features of M-Ward',
+      description: 'Get best characteristics i.e. schools and hospitals of each region',
       position: 'top'
     }
   },
