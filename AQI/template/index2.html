@@ -322,7 +322,7 @@
                 <div id="aqid" style="font-weight: 500;font-family:Poppins;font-size:40px;text-align: center;">&#128200 Analysis on {{Name_region}}</div>
                 <div class="row">
                   <div class="col-sm-4">
-                <ol class="breadcrumb" style="font-family: poppins; font-size: 15px; margin-top: 10px;">Select dates : <span>  </span><input name="datefilter" value="12/28/2020 - 2/14/2021" ></ol>
+                <ol class="breadcrumb" style="font-family: poppins; font-size: 15px; margin-top: 10px;">Select dates : <span>  </span><input name="datefilter" value="12/28/2020 - 3/14/2021" ></ol>
               </div>
               <div class="col-sm-8">
                 <button class="datefun" style="margin-top: 6px;"> GO </button></div></div>
@@ -493,6 +493,8 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>          
 <!-- demo -->
 <script>
+  var datess= {{indidate|safe}};
+  console.log(datess);
   const driver = new Driver({
     allowClose:false,
   });
@@ -503,16 +505,26 @@ driver.defineSteps([
     element: '#aqid',
     popover: {
       className: 'first-step-popover-class',
-      title: 'Title on Popover',
-      description: 'Body of the popover',
+      title: 'Reasons for High and Low AQI',
+      description: 'Weekends relate to significantly lower concentration of pollutants.',
       position: 'top'
     }
   },
   {
     element: '#aqid',
     popover: {
-      title: 'Title on Popover',
-      description: 'Body of the popover',
+      className: 'firs-step-popover-class',
+      title: 'Reasons for High and Low AQI',
+      description: 'Monday to Friday is 2 to 6 times of weekends.',
+      position: 'top'
+    }
+  },
+  {
+    element: '#aqid',
+    popover: {
+      className: 'fir-step-popover-class',
+      title: 'Reasons for High and Low AQI',
+      description: 'Similarly holiday effect is observed during public holiday, where the pollution levels reduce by at least 4% for O 3 and PM and up to 11 to 14 % for NO, CO and NO 2 from the pollution levels in the same week ',
       position: 'top'
     }
   },
@@ -527,7 +539,7 @@ driver.defineSteps([
 ]);
 
 // Start the introduction
-driver.start();
+// driver.start();
 </script>
     <script>
         
